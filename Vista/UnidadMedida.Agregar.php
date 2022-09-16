@@ -18,14 +18,12 @@
             </div>
             <div class="card-body">
                 <form action="UnidadMedida.Agregar.Procesar.php" method="post">
-                    <div class="form-group">
-                        <label for="descripcion">Descripci&oacute;n</label>
-                        <input type="text" name="descripcion" class="form-control" id="descripcion" aria-describedby="emailHelp" required>
-                    </div>
-                    <input type="submit" class="btn btn-success" value="Confirmar" />
-                    <a href="UnidadMedida.Todo.php" class="btn btn-outline-danger"><i class="oi oi-account-logout"> </i> Cancelar </a>
+
+                    <?php include_once './UnidadMedida.Formulario.php'; ?>
+
                 </form>
             </div>
+           
         </div>
     </div>
     <?php include_once "../gui/footer.php"; ?>
