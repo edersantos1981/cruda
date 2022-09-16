@@ -18,7 +18,12 @@ $(document).ready(function () {
                     key: 'p',
                     altKey: true
                 }
-/*            },
+            },
+            {
+                extend: 'pdf',
+                text: 'Exportar a PDF'
+            /*
+            },
             {
                 extend: 'excel',
                 text: 'Exportar a Excel (Alt+X)',
@@ -28,16 +33,13 @@ $(document).ready(function () {
                 },
             },
             {
-                extend: 'pdf',
-                text: 'Exportar a PDF'
-            },
-            {
                 extend: 'copy',
                 text: 'Copiar en Portapeles (Alt+C)',
                 key: {
                     key: 'c',
                     altKey: true
-                }*/
+                }
+                */
             }
 
         ],
