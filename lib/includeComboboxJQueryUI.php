@@ -18,7 +18,6 @@
                     var selected = this.element.children(":selected"),
                         value = selected.val() ? selected.text() : "";
 
-                        /*
                     this.input = $("<input>").appendTo(this.wrapper).val(value).attr("title", "").addClass("custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left").autocomplete({
                         delay: 0,
                         minLength: 0,
@@ -30,18 +29,6 @@
                         }
                     }).focus(function() {
                         $(this).val('');
-                    });
-                    */
-
-                    this.input = $("<input>").appendTo(this.wrapper).val(value).attr("title", "").addClass("custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left").autocomplete({
-                        delay: 0,
-                        minLength: 0,
-                        source: this._source.bind(this),
-
-                    }).tooltip({
-                        classes: {
-                            "ui-tooltip": "ui-state-highlight"
-                        }
                     });
 
                     this._on(this.input, {
