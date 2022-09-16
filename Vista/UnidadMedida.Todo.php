@@ -31,7 +31,9 @@ $Coleccion = new \Modelo\UnidadMedidaColeccion($ArrayFindAll);
                     </a>
                 </p>
 
-                <table class="table table-striped table-hover table-responsive-sm table-sm btn-lg">
+                <script>var columnasSinSort = [1];</script>
+                <script src="../gui/tablaSort.js"></script>
+                <table id="csvtable" class="table table-striped table-hover table-responsive-sm table-sm btn-lg">
                     <thead>
                         <tr class="table-info">
                             <th>Descripci&oacute;n</th>

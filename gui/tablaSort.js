@@ -1,12 +1,13 @@
 $(document).ready(function () {
     $('#csvtable').DataTable({
-        "pageLength": 15,
+        "pageLength": 10,
         "aaSorting": [],
         columnDefs: [{
             //orderable: false
             orderable: false,
             targets: columnasSinSort
         }],
+        /*
         dom: 'Bfrtip',
         buttons: [
             //            'copy', 'csv', 'excel', 'pdf', 'print',
@@ -40,6 +41,7 @@ $(document).ready(function () {
             }
 
         ],
+        */
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
         }
