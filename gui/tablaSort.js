@@ -7,18 +7,10 @@ $(document).ready(function () {
             orderable: false,
             targets: columnasSinSort
         }],
-        /*
+        
         dom: 'Bfrtip',
         buttons: [
             //            'copy', 'csv', 'excel', 'pdf', 'print',
-            {
-                extend: 'excel',
-                text: 'Exportar a Excel (Alt+X)',
-                key: {
-                    key: 'x',
-                    altKey: true
-                },
-            },
             {
                 extend: 'print',
                 text: 'Imprimir (Alt+P)',
@@ -26,6 +18,14 @@ $(document).ready(function () {
                     key: 'p',
                     altKey: true
                 }
+/*            },
+            {
+                extend: 'excel',
+                text: 'Exportar a Excel (Alt+X)',
+                key: {
+                    key: 'x',
+                    altKey: true
+                },
             },
             {
                 extend: 'pdf',
@@ -37,11 +37,11 @@ $(document).ready(function () {
                 key: {
                     key: 'c',
                     altKey: true
-                }
+                }*/
             }
 
         ],
-        */
+        
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
         }
