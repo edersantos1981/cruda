@@ -1,6 +1,5 @@
 <?php
-
-use function PHPSTORM_META\type;
+session_start();
 
 include_once '../lib/Constantes.Class.php';
 include_once '../vendor/autoload.php';
@@ -11,20 +10,19 @@ if (count($_POST) > 0) {
     $Mapper = new \Mappers\UnidadMedida();
 
     try {
-        $idObjetoCreado = $Mapper->insert($ObjetoCreado);
+        $_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG'] = $Mapper->insert($ObjetoCreado);
     }
     catch (\Exception $th) {
-        $idObjetoCreado = null;
+        $_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG'] = \Uargflow\BDMapper::PRG_ERROR;
+        $Error = $th->getCode();
     }
 
+    header("HTTP/1.1 303 See Other");
+    header("Location: " . $_SERVER['PHP_SELF']);
+    die();
 }
 ?>
 
-<?php
-session_start();
-include_once '../vendor/autoload.php';
-include_once '../lib/Constantes.Class.php';
-?>
 <html>
 
 <head>
@@ -47,27 +45,51 @@ include_once '../lib/Constantes.Class.php';
             <div class="card-body">
 
                 <?php
-                /* Escenario 1: Se cargó exitosamente. */
-                if (is_int($idObjetoCreado)) {
+                /*  Escenario 1: Ya fue cargado anteriormente (Refresh). No vuelve a cargar.  */
+                if ($_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG'] == \Uargflow\BDMapper::PRG_OK) {
                 ?>
-                    <p class="alert alert-success">Operaci&oacute;n realizada con &eacute;xito.</p>
-                    <p>Los datos fueron cargados correctamente.</p>
-                <?php } ?>
+
+                    <p class="alert alert-warning">Hubo un error</p>
+                    <p>No es posible cargar dos veces el mismo elemento. Esto puede suceder por una actualizaci&oacute;n de
+                        p&aacute;gina.</p>
 
                 <?php
-                /*  Escenario 2: Error capturado por excepción.  */
-                if (!$idObjetoCreado) {
+                } ?>
+
+                <?php
+                /* Escenario 2: Se cargó exitosamente. Se carga flag PRG_OK en sesion. */
+                if (is_int($_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG']) && $_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG'] >= 0) {
+                    $_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG'] = \Uargflow\BDMapper::PRG_OK;
                 ?>
+
+                    <p class="alert alert-success">Operaci&oacute;n realizada con &eacute;xito.</p>
+                    <p>Los datos fueron cargados correctamente.</p>
+
+                <?php
+
+                } ?>
+
+
+
+                <?php
+                /*  Escenario 3: Error capturado por excepción.  */
+                if ($_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG'] == \Uargflow\BDMapper::PRG_ERROR) {
+                ?>
+
                     <p class="alert alert-danger">Hubo un error</p>
-                    <p>No fue posible cargar los datos en el sistema. Por favor, intente nuevamente. Si el problema persiste, contacte el administrador del sistema.</p>
-                    <small>C&oacute;digo de referencia: <?= $th->getCode() ?></small>
-                <?php } ?>
+                    <p>No fue posible cargar los datos en el sistema. Por favor, intente nuevamente. Si el problema
+                        persiste, contacte el administrador del sistema.</p>
+
+
+                <?php
+
+                } ?>
             </div>
             <div class="card-footer">
                 <p>Opciones:</p>
                 <p>
                     <a href="UnidadMedida.Agregar.php" class="btn btn-outline-success">
-                        <i class="oi oi-plus"> </i> Agregar otro elemento
+                        <i class="oi oi-plus"> </i> Agregar otra Unidad
                     </a>
                     <a href="UnidadMedida.Todo.php" class="btn btn-outline-primary">
                         <i class="oi oi-list"> </i> Ir a Panel de Control
@@ -82,4 +104,3 @@ include_once '../lib/Constantes.Class.php';
 </body>
 
 </html>
-
