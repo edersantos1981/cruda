@@ -21,27 +21,21 @@ $(document).ready(function () {
             },
             {
                 extend: 'pdf',
-                text: 'Exportar a PDF'
-            /*
+                text: 'PDF (Alt+F)',
+                key: {
+                    key: 'f',
+                    altKey: true
+                }
+
             },
             {
                 extend: 'excel',
-                text: 'Exportar a Excel (Alt+X)',
+                text: 'Excel (Alt+X)',
                 key: {
                     key: 'x',
                     altKey: true
-                },
-            },
-            {
-                extend: 'copy',
-                text: 'Copiar en Portapeles (Alt+C)',
-                key: {
-                    key: 'c',
-                    altKey: true
                 }
-                */
             }
-
         ],
         
         "language": {
