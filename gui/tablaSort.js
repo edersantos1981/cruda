@@ -7,18 +7,10 @@ $(document).ready(function () {
             orderable: false,
             targets: columnasSinSort
         }],
-        /*
+        
         dom: 'Bfrtip',
         buttons: [
             //            'copy', 'csv', 'excel', 'pdf', 'print',
-            {
-                extend: 'excel',
-                text: 'Exportar a Excel (Alt+X)',
-                key: {
-                    key: 'x',
-                    altKey: true
-                },
-            },
             {
                 extend: 'print',
                 text: 'Imprimir (Alt+P)',
@@ -29,19 +21,23 @@ $(document).ready(function () {
             },
             {
                 extend: 'pdf',
-                text: 'Exportar a PDF'
+                text: 'PDF (Alt+F)',
+                key: {
+                    key: 'f',
+                    altKey: true
+                }
+
             },
             {
-                extend: 'copy',
-                text: 'Copiar en Portapeles (Alt+C)',
+                extend: 'excel',
+                text: 'Excel (Alt+X)',
                 key: {
-                    key: 'c',
+                    key: 'x',
                     altKey: true
                 }
             }
-
         ],
-        */
+        
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
         }
