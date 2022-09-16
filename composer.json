@@ -1,0 +1,20 @@
+{
+    "name": "vendor/psr4",
+    "description": "Description of project psr4.",
+    "authors": [
+        {
+            "name": "usuario",
+            "email": "your@email.here"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Uargflow\\": "Uargflow/",
+            "Mappers\\": "Mappers/",
+            "Modelo\\": "Modelo/"
+        }
+    },
+    "require": {
+        "phpunit/phpunit": "6.5"
+    }
+}
