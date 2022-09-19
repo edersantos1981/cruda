@@ -38,18 +38,7 @@ try {
                 </h5>
             </div>
             <div class="card-body">
-                <?php if ($ObjetoEliminado) { ?>
-                    <p class="alert alert-success">Operaci&oacute;n realizada con &eacute;xito.</p>
-                    <p>Se ha eliminado correctamente.</p>
-                <?php
-                } ?>
-                <?php if (!$ObjetoEliminado) { ?>
-                    <p class="alert alert-danger">Hubo un error</p>
-                    <p>No fue posible eliminar. Por favor, intente nuevamente. </p>
-                    <p>Si el problema persiste, contacte el administrador del sistema.</p>
-                    <small>C&oacute;digo de referencia: <b><?= $th->getCode() ?></b></small>
-                <?php
-                } ?>
+                <?php include_once "GuiABM.MensajeEliminar.php" ?>
             </div>
             <div class="card-footer">
                 <p>Opciones:</p>

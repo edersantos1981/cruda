@@ -22,7 +22,7 @@ class ModeloGenerico
 
     function getNombre()
     {
-        return $this->nombre;
+        return htmlspecialchars($this->nombre);
     }
 
     /**
@@ -30,7 +30,7 @@ class ModeloGenerico
      */
     function getDescripcion()
     {
-        return $this->descripcion;
+        return htmlspecialchars($this->descripcion);
     }
 
     /**

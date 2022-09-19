@@ -25,10 +25,10 @@ class Constantes {
     const APPDIR = "agvp_dogo";
         
     const SERVER = "http://localhost";
-    const APPURL = "http://localhost/agvp_dogo";
-    const HOMEURL = "http://localhost/agvp_dogo";
-    const HOMEAUTH = "http://localhost/agvp_dogo";
-    const HOMEADMIN = "http://localhost/agvp_dogo";
+    const APPURL = "http://localhost/cruda";
+    const HOMEURL = "http://localhost/cruda";
+    const HOMEAUTH = "http://localhost/cruda";
+    const HOMEADMIN = "http://localhost/cruda";
     
     const BD_SCHEMA = "dogo";
     const BD_USERS = "dogo";

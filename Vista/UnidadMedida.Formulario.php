@@ -2,6 +2,7 @@
 <div class="form-group">
     <label for="descripcion">Descripci&oacute;n</label>
     <input type="text" name="descripcion" class="form-control" id="descripcion" aria-describedby="emailHelp" value="<?= isset($ObjetoCreado) ? $ObjetoCreado->getDescripcion() : null; ?>" required>
+    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
 </div>
 
 <input type="submit" class="btn btn-success" value="Confirmar" />
