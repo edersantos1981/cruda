@@ -1,13 +1,13 @@
 <?php 
 namespace Modelo;
-class UnidadMedidaColeccion extends \Uargflow\ColeccionGenerica {
+class SubcuentaColeccion extends \Uargflow\ColeccionGenerica {
     
     public function __construct($array) {
-        parent::__construct($array, UnidadMedida::class);
+        parent::__construct($array, Subcuenta::class);
     }
     
     /**
-    * @return UnidadMedida[]
+    * @return Subcuenta[]
     */
     public function getColeccion() {
     	return parent::getColeccion();

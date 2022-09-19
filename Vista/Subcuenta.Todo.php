@@ -2,9 +2,10 @@
 
 include_once '../vendor/autoload.php';
 
-$Mapper = new \Mappers\UnidadMedida();
+$Mapper = new \Mappers\Subcuenta();
 $ArrayFindAll = $Mapper->findAll();
-$Coleccion = new \Modelo\UnidadMedidaColeccion($ArrayFindAll);
+$Coleccion = new \Modelo\SubcuentaColeccion($ArrayFindAll);
+
 ?>
 <html>
 
@@ -12,7 +13,7 @@ $Coleccion = new \Modelo\UnidadMedidaColeccion($ArrayFindAll);
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
     <?php include_once '../lib/Constantes.Class.php'; ?>
-    <title><?= Constantes::NOMBRE_SISTEMA; ?> - Unidades de Medida</title>
+    <title><?= Constantes::NOMBRE_SISTEMA; ?> - SubCuentas</title>
 </head>
 
 <body>
@@ -20,7 +21,7 @@ $Coleccion = new \Modelo\UnidadMedidaColeccion($ArrayFindAll);
         var idObjeto = 0;
 
         function cambiaHrefBottonEliminar(idObjetoAEliminar) {
-            $("#enlaceEliminar").attr("href", "UnidadMedida.Eliminar.php?id=" + idObjetoAEliminar);
+            $("#enlaceEliminar").attr("href", "Subcuenta.Eliminar.php?id=" + idObjetoAEliminar);
         }
     </script>
     <?php include_once '../gui/navbar.php'; ?>
@@ -28,39 +29,56 @@ $Coleccion = new \Modelo\UnidadMedidaColeccion($ArrayFindAll);
         <div class="card ">
             <div class="card-header">
                 <h5 class="card-title">
-                    <i class="oi oi-list"> </i> Panel de Control - Unidades de Medida
+                    <i class="oi oi-list"> </i> Panel de Control - Subcuentas
                 </h5>
             </div>
             <div class="card-body">
                 <p>
-                    <a href="UnidadMedida.Agregar.php" class="btn btn-success">
+                    <a href="Subcuenta.Agregar.php" class="btn btn-success">
                         <i class="oi oi-plus"> </i> Agregar
                     </a>
                 </p>
 
                 <script>
-                    var columnasSinSort = [1];
+                    var columnasSinSort = [2];
                 </script>
                 <script src="../gui/tablaSort.js"></script>
                 <table id="csvtable" class="table table-striped table-hover table-responsive-sm table-sm btn-lg">
                     <thead>
                         <tr class="table-info">
                             <th>Descripci&oacute;n</th>
+                            <th>Cuenta asociada</th>
                             <th style="width: 20%;">Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($Coleccion->getColeccion() as $Item) { ?>
+                            <?php
+                            /*
+                            Explicación - descripción
+                            $idCuenta = $Item->getFk_cuenta();
+                            $arrayBD = $Mapper->findCuentaById($idCuenta);
+                            $CuentaInstanciada = new \Modelo\Cuenta($arrayBD);
+                            $Item->setCuenta($CuentaInstanciada);
+                            */
+                            $Item->setCuenta(new \Modelo\Cuenta($Mapper->findCuentaById($Item->getFk_cuenta())));
+                                 ?>
                             <tr>
-                                <td>
-                                    <?= $Item->getDescripcion(); ?>
+                            <td>
+                                    <?= $Item; ?>
                                 </td>
                                 <td>
-                                    <a name="" id="" class="btn btn-outline-warning" href="UnidadMedida.Editar.php?id=<?= $Item->getId(); ?>" role="button"><i class="oi oi-pencil"> </i> Editar</a>
-                                    <a name="" id="" class="btn btn-outline-danger" href="UnidadMedida.Eliminar.php?id=<?= $Item->getId(); ?>" role="button" data-toggle="modal" data-target="#exampleModalCenter" onClick="cambiaHrefBottonEliminar(<?= $Item->getId(); ?>);"><i class="oi oi-circle-x"> </i> Eliminar</a>
+                                    <?= $Item->getCuenta(); ?>
+                                </td>
+                                <td>
+                                    <a name="" id="" class="btn btn-outline-warning" href="Subcuenta.Editar.php?id=<?= $Item->getId(); ?>" role="button"><i class="oi oi-pencil"> </i> Editar</a>
+                                    <a name="" id="" class="btn btn-outline-danger" href="Subcuenta.Eliminar.php?id=<?= $Item->getId(); ?>" role="button" data-toggle="modal" data-target="#exampleModalCenter" onClick="cambiaHrefBottonEliminar(<?= $Item->getId(); ?>);"><i class="oi oi-circle-x">
+                                        </i>
+                                        Eliminar</a>
                                 </td>
                             </tr>
-                        <?php } ?>
+                        <?php
+                        } ?>
 
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -87,13 +105,14 @@ $Coleccion = new \Modelo\UnidadMedidaColeccion($ArrayFindAll);
                                 </div>
                             </div>
                         </div>
+
                     </tbody>
                 </table>
             </div>
             <div class="card-footer">
                 <p>Opciones</p>
                 <p>
-                    <a href="UnidadMedida.Agregar.php" class="btn btn-success">
+                    <a href="Subcuenta.Agregar.php" class="btn btn-success">
                         <i class="oi oi-plus"> </i> Agregar
                     </a>
                 </p>

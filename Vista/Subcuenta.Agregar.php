@@ -1,10 +1,16 @@
+<?php
+include_once '../vendor/autoload.php';
+
+?>
+
 <html>
 
 <head>
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
     <?php include_once '../lib/Constantes.Class.php'; ?>
-    <title><?= Constantes::NOMBRE_SISTEMA; ?> - Unidades de Medida</title>
+    <?php include_once '../lib/includeComboboxJQueryUI.php' ?>
+    <title><?= Constantes::NOMBRE_SISTEMA; ?> - SubCuentas</title>
 </head>
 
 <body>
@@ -13,17 +19,17 @@
         <div class="card ">
             <div class="card-header">
                 <h5 class="card-title">
-                    <i class="oi oi-plus"> </i> Agregar Unidad de Medida
+                    <i class="oi oi-plus"> </i> Agregar Subcuenta
                 </h5>
             </div>
             <div class="card-body">
-                <form action="UnidadMedida.Agregar.Procesar.php" method="post">
+                <form action="Subcuenta.Agregar.Procesar.php" method="post">
 
-                    <?php include_once './UnidadMedida.Formulario.php'; ?>
+                    <?php include_once './Subcuenta.Formulario.php'; ?>
 
                 </form>
             </div>
-           
+
         </div>
     </div>
     <?php include_once "../gui/footer.php"; ?>

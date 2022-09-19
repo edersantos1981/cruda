@@ -5,11 +5,13 @@ include_once '../lib/Constantes.Class.php';
 include_once '../vendor/autoload.php';
 
 if (count($_POST) > 0) {
-
-    $ObjetoCreado = new \Modelo\UnidadMedida($_POST);
-    $Mapper = new \Mappers\UnidadMedida();
+    
+    $ObjetoCreado = new \Modelo\Subcuenta($_POST);
+    $Mapper = new \Mappers\Subcuenta();
+    
 
     try {
+       
         $_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG'] = $Mapper->insert($ObjetoCreado);
     }
     catch (\Exception $th) {
@@ -18,8 +20,6 @@ if (count($_POST) > 0) {
     }
 
     header("HTTP/1.1 303 See Other");
-    header("Location: " . Constantes::APPURL . "/Vista/GuiABM.PRGAgregar.php?modelo=UnidadMedida");
+    header("Location: " . Constantes::APPURL . "/Vista/GuiABM.PRGAgregar.php?modelo=Subcuenta");
     die();
 }
-?>
-
