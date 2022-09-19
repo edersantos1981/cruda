@@ -59,8 +59,8 @@ class Subcuenta extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
     public function update($Objeto)
     {
         $this->query = "UPDATE {$this->nombreTabla} "
-            . "SET fk_cuenta = {$this->bdconexion->escape_string($Objeto->getFk_cuenta())} , "
-            . "descripcion = '{$this->bdconexion->escape_string($Objeto->getDescripcion())}' "
+            . "SET fk_cuenta = " . $this->bdconexion->escape_string($Objeto->getFk_cuenta()) . ", "
+            . "descripcion = ' " . $this->bdconexion->escape_string($Objeto->getDescripcion()) . "' "
             . "WHERE {$this->nombreAtributoId} = {$Objeto->getId()}";
 
         try {

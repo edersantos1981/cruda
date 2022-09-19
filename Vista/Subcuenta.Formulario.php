@@ -20,7 +20,7 @@ $ColeccionCuenta = new \Modelo\CuentaColeccion($ArrayFindAllCuenta);
     </div>
     <div class="form-group col-md-8">
         <label for="descripcion">Descripci&oacute;n</label>
-        <input type="text" name="descripcion" class="form-control" id="descripcion" aria-describedby="emailHelp" value="<?= isset($ObjetoCreado) ? $ObjetoCreado->getDescripcion() : null; ?>" required>
+        <input type="text" name="descripcion" class="form-control" id="descripcion" aria-describedby="emailHelp" value="<?= isset($ObjetoCreado) ? htmlspecialchars($ObjetoCreado->getDescripcion()) : null; ?>" required>
         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
 
     </div>

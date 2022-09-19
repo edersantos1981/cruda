@@ -58,7 +58,7 @@ class Cuenta extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
     public function update($Objeto)
     {
         $this->query = "UPDATE {$this->nombreTabla} "
-            . "SET descripcion = '{$this->bdconexion->escape_string($Objeto->getDescripcion())}' "
+            . "SET descripcion = '" . $this->bdconexion->escape_string($Objeto->getDescripcion()) . "' "
             . "WHERE {$this->nombreAtributoId} = {$Objeto->getId()}";
 
         try {

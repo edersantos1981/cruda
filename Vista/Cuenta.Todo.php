@@ -2,9 +2,9 @@
 
 include_once '../vendor/autoload.php';
 
-$Mapper = new \Mappers\UnidadMedida();
+$Mapper = new \Mappers\Cuenta();
 $ArrayFindAll = $Mapper->findAll();
-$Coleccion = new \Modelo\UnidadMedidaColeccion($ArrayFindAll);
+$Coleccion = new \Modelo\CuentaColeccion($ArrayFindAll);
 ?>
 <html>
 
@@ -12,7 +12,7 @@ $Coleccion = new \Modelo\UnidadMedidaColeccion($ArrayFindAll);
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
     <?php include_once '../lib/Constantes.Class.php'; ?>
-    <title><?= Constantes::NOMBRE_SISTEMA; ?> - Unidades de Medida</title>
+    <title><?= Constantes::NOMBRE_SISTEMA; ?> - Cuentas</title>
 </head>
 
 <body>
@@ -20,7 +20,7 @@ $Coleccion = new \Modelo\UnidadMedidaColeccion($ArrayFindAll);
         var idObjeto = 0;
 
         function cambiaHrefBottonEliminar(idObjetoAEliminar) {
-            $("#enlaceEliminar").attr("href", "UnidadMedida.Eliminar.php?id=" + idObjetoAEliminar);
+            $("#enlaceEliminar").attr("href", "Cuenta.Eliminar.php?id=" + idObjetoAEliminar);
         }
     </script>
     <?php include_once '../gui/navbar.php'; ?>
@@ -28,12 +28,12 @@ $Coleccion = new \Modelo\UnidadMedidaColeccion($ArrayFindAll);
         <div class="card ">
             <div class="card-header">
                 <h5 class="card-title">
-                    <i class="oi oi-list"> </i> Panel de Control - Unidades de Medida
+                    <i class="oi oi-list"> </i> Panel de Control - Cuentas
                 </h5>
             </div>
             <div class="card-body">
                 <p>
-                    <a href="UnidadMedida.Agregar.php" class="btn btn-success">
+                    <a href="Cuenta.Agregar.php" class="btn btn-success">
                         <i class="oi oi-plus"> </i> Agregar
                     </a>
                 </p>
@@ -52,17 +52,19 @@ $Coleccion = new \Modelo\UnidadMedidaColeccion($ArrayFindAll);
                     <tbody>
                         <?php foreach ($Coleccion->getColeccion() as $Item) { ?>
                             <tr>
+
                                 <td>
-                                    <?= htmlspecialchars($Item->getDescripcion()); ?>
+                                    <?= $Item; ?>
                                 </td>
                                 <td>
-                                    <a name="" id="" class="btn btn-outline-warning" href="UnidadMedida.Editar.php?id=<?= $Item->getId(); ?>" role="button"><i class="oi oi-pencil"> </i> Editar</a>
-                                    <a name="" id="" class="btn btn-outline-danger" href="UnidadMedida.Eliminar.php?id=<?= $Item->getId(); ?>" role="button" data-toggle="modal" data-target="#exampleModalCenter" onClick="cambiaHrefBottonEliminar(<?= $Item->getId(); ?>);"><i class="oi oi-circle-x">
+                                    <a name="" id="" class="btn btn-outline-warning" href="Cuenta.Editar.php?id=<?= $Item->getId(); ?>" role="button"><i class="oi oi-pencil"> </i> Editar</a>
+                                    <a name="" id="" class="btn btn-outline-danger" href="Cuenta.Eliminar.php?id=<?= $Item->getId(); ?>" role="button" data-toggle="modal" data-target="#exampleModalCenter" onClick="cambiaHrefBottonEliminar(<?= $Item->getId(); ?>);"><i class="oi oi-circle-x">
                                         </i>
                                         Eliminar</a>
                                 </td>
                             </tr>
-                        <?php } ?>
+                        <?php
+                        } ?>
 
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -96,7 +98,7 @@ $Coleccion = new \Modelo\UnidadMedidaColeccion($ArrayFindAll);
             <div class="card-footer">
                 <p>Opciones</p>
                 <p>
-                    <a href="UnidadMedida.Agregar.php" class="btn btn-success">
+                    <a href="Cuenta.Agregar.php" class="btn btn-success">
                         <i class="oi oi-plus"> </i> Agregar
                     </a>
                 </p>
