@@ -7,4 +7,7 @@ class BDConfig {
     const USUARIO = "agvp";
     const PASS = "agvp";
     const SCHEMA = "dogo";
+
+    const SCHEMA_SESIONES = "sesiones";
+
 }
