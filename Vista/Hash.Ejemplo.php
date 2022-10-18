@@ -10,7 +10,7 @@ Este es un ejemplo de uso de la Clase \Uargflow\Hash, en distintas modalidades:
 - Algoritmo Argon2i
 - Algoritmo utilizado por defecto en el servidor
 
-A partir de ello, también permite la verificación
+A partir de ello, también permite la verificación de contraseñas.
 
 */
 
@@ -25,19 +25,6 @@ $arrayPasswords['passDefault1'] = new \Uargflow\Hash($password1, PASSWORD_DEFAUL
 $arrayPasswords['passBCrypt2']  = new \Uargflow\Hash($password2, PASSWORD_BCRYPT);
 $arrayPasswords['passArgon2i2'] = new \Uargflow\Hash($password2, PASSWORD_ARGON2I);
 $arrayPasswords['passDefault2'] = new \Uargflow\Hash($password2, PASSWORD_DEFAULT);
-
-
-// $Item  = new \Uargflow\Hash($password, PASSWORD_BCRYPT);
-
-
-
-// Verificación de password encriptada
-/*
-print_r((bool) password_verify($password, $passBCrypt->getPasswordHash()));
-print_r((bool) password_verify($password, $passBCrypt2->getPasswordHash()));
-print_r((bool) password_verify($password, $passDefault->getPasswordHash()));
-print_r((bool) password_verify($password, $passArgon2i->getPasswordHash()));
-*/
 
 ?>
 <html>

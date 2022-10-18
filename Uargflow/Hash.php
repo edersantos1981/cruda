@@ -14,8 +14,8 @@ class Hash {
     }
 
     /**
-     * Ese método JAMÁS DEBE UTILIZARSE EN PRODUCCIÓN
-     * Solo utilizar a modo de prueba, ejemplo.
+     * Ese método JAMÁS DEBE UTILIZARSE EN PRODUCCIÓN.
+     * Solo utilizar a modo de prueba y/o ejemplo.
      */
     function getPassword() {
         return $this->password;
