@@ -7,6 +7,29 @@ class SessionManager implements \SessionHandlerInterface
      * @var \mysqli
      */
     private $link;
+
+    static function start_session($session_name, $secure)
+    {
+        // Make sure the session cookie is not accessible via javascript.
+        $httponly = true;
+
+        // Force the session to only use cookies, not URL variables.
+        ini_set('session.use_only_cookies', 1);
+
+        // Get session cookie parameters 
+        $cookieParams = session_get_cookie_params();
+        // Set the parameters
+        session_set_cookie_params($cookieParams["lifetime"], $cookieParams["path"], $cookieParams["domain"], $secure, $httponly);
+
+        // Change the session name 
+        session_name($session_name);
+        
+        // Now we cat start the session
+        session_start();
+        // This line regenerates the session and delete the old one. 
+        // It also generates a new encryption key in the database. 
+        session_regenerate_id(true);
+    }
    
     public function open($path, $name) {
         $this->link = new \mysqli(BDConfig::HOST, BDConfig::USUARIO, BDConfig::PASS, BDConfig::SCHEMA_SESIONES);
