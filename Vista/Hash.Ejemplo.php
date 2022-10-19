@@ -14,18 +14,32 @@ A partir de ello, también permite la verificación de contraseñas.
 
 */
 
-
 // Casos de test
 $password1 = 123;
-$password2 = 321;
+$password2 = "Eder123654·#_";
+$password3 = "EderSantos";
+$password4 = "AGVP.santacruz2022!";
+$password5 = "BrasilHexaQatar2022(Y)(Y)";
 
 $arrayPasswords['passBCrypt1']  = new \Uargflow\Hash($password1, PASSWORD_BCRYPT);
 $arrayPasswords['passArgon2i1'] = new \Uargflow\Hash($password1, PASSWORD_ARGON2I);
 $arrayPasswords['passDefault1'] = new \Uargflow\Hash($password1, PASSWORD_DEFAULT);
+
 $arrayPasswords['passBCrypt2']  = new \Uargflow\Hash($password2, PASSWORD_BCRYPT);
 $arrayPasswords['passArgon2i2'] = new \Uargflow\Hash($password2, PASSWORD_ARGON2I);
 $arrayPasswords['passDefault2'] = new \Uargflow\Hash($password2, PASSWORD_DEFAULT);
 
+$arrayPasswords['passBCrypt3']  = new \Uargflow\Hash($password3, PASSWORD_BCRYPT);
+$arrayPasswords['passArgon2i3'] = new \Uargflow\Hash($password3, PASSWORD_ARGON2I);
+$arrayPasswords['passDefault3'] = new \Uargflow\Hash($password3, PASSWORD_DEFAULT);
+
+$arrayPasswords['passBCrypt4']  = new \Uargflow\Hash($password4, PASSWORD_BCRYPT);
+$arrayPasswords['passArgon2i4'] = new \Uargflow\Hash($password4, PASSWORD_ARGON2I);
+$arrayPasswords['passDefault4'] = new \Uargflow\Hash($password4, PASSWORD_DEFAULT);
+
+$arrayPasswords['passBCrypt4']  = new \Uargflow\Hash($password5, PASSWORD_BCRYPT);
+$arrayPasswords['passArgon2i4'] = new \Uargflow\Hash($password5, PASSWORD_ARGON2I);
+$arrayPasswords['passDefault4'] = new \Uargflow\Hash($password5, PASSWORD_DEFAULT);
 ?>
 <html>
 
@@ -83,8 +97,7 @@ $arrayPasswords['passDefault2'] = new \Uargflow\Hash($password2, PASSWORD_DEFAUL
                                 <td><?= $_POST['password']; ?></td>
                                 <td><?= $Item->verificaPasswordCorrecta($_POST['password']) ?></td>
                             </tr>
-                        <?php }
-                        ?>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
