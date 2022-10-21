@@ -17,7 +17,6 @@ $_SESSION['var1'] = "Eder el groso";
 $_SESSION['var2'] = "Victor el maestro";
 $_SESSION['var3'] = "Franco el mas capo";
 
-//session_destroy();
 ?>
 
 <html>
