@@ -4,18 +4,15 @@ include_once '../vendor/autoload.php';
 
 /* 
 
-Este es un ejemplo de uso de la Clase \Uargflow\EncryptDecryptData.
+Este es un ejemplo de uso de la Clase \Uargflow\SSLHandler.
 
 */
 
 // Casos de test
-$data = "new \Uargflow\SessionManager()";
+$ArrayData['1']  = "Sede Central";
+$ArrayData['2'] = "Distrito Río Gallegos";
+$ArrayData['3'] = "Distrito El Calafate";
 
-$ArrayData['1']  = "Eder";
-$ArrayData['2'] = "Victor";
-$ArrayData['3'] = "Franco";
-
-//session_destroy();
 ?>
 
 <html>
@@ -67,8 +64,8 @@ $ArrayData['3'] = "Franco";
                 <p>Para mayor informacion, visitar https://www.php.net/manual/en/refs.crypto.php</p>
                 <pre>
                     <code class="language-html" data-lang="html">
-                    $encriptado = \Uargflow\SSLHandler::encrypt($cadenaDeTexto);
-                    $descifrado = \Uargflow\SSLHandler::decrypt($encriptado);
+                    $datosEncriptados = \Uargflow\SSLHandler::encrypt($cadenaDeTexto);
+                    $datosDescifrados = \Uargflow\SSLHandler::decrypt($datosEncriptados);
                     </code>
                 </pre>
 
