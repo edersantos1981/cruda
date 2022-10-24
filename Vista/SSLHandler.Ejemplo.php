@@ -35,21 +35,21 @@ $ArrayData['3'] = "Distrito El Calafate";
                 </h5>
             </div>
             <div class="card-body">
-                <table id="csvtable" class="table table-striped table-hover table-responsive-sm table-sm btn-lg">
+                <table id="csvtable" class="table table-striped table-hover table-responsive table-sm btn-lg">
                     <thead>
                         <tr class="table-info">
-                            <th>Texto Plano</th>
-                            <th>Encriptado</th>
-                            <th>Descifrado</th>
+                            <th nowrap>Texto Plano</th>
+                            <th >Encriptado</th>
+                            <th nowrap>Descifrado</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($ArrayData as $Item) {
                         ?>
                             <tr>
-                                <td><?= $Item; ?></td>
+                                <td nowrap><?= $Item; ?></td>
                                 <td><?php $a = \Uargflow\SSLHandler::encrypt($Item); echo $a?></td>
-                                <td><?= \Uargflow\SSLHandler::decrypt($a); ?></td>
+                                <td nowrap><?= \Uargflow\SSLHandler::decrypt($a); ?></td>
                             </tr>
                         <?php }
                         ?>
