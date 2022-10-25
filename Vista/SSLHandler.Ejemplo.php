@@ -1,21 +1,16 @@
 <?php
 
-include_once '../vendor/autoload.php';
-
+include_once __DIR__ . '/../vendor/autoload.php';
 /* 
 
-Este es un ejemplo de uso de la Clase \Uargflow\SessionManager.
+Este es un ejemplo de uso de la Clase \Uargflow\SSLHandler.
 
 */
 
 // Casos de test
-$handler = new \Uargflow\SessionManager();
-session_set_save_handler($handler, true);
-\Uargflow\SessionManager::start_session('dogo', true);
-
-$_SESSION['var1']  = "Sede Central";
-$_SESSION['var2'] = "Distrito Río Gallegos";
-$_SESSION['var3'] = "Distrito El Calafate";
+$ArrayData['1']  = "Sede Central";
+$ArrayData['2'] = "Distrito Río Gallegos";
+$ArrayData['3'] = "Distrito El Calafate";
 
 ?>
 
@@ -25,7 +20,7 @@ $_SESSION['var3'] = "Distrito El Calafate";
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
     <?php include_once '../lib/Constantes.Class.php'; ?>
-    <title><?= Constantes::NOMBRE_SISTEMA; ?> - Session Manager</title>
+    <title><?= Constantes::NOMBRE_SISTEMA; ?> - SSL Handler</title>
 </head>
 
 <body>
@@ -35,23 +30,25 @@ $_SESSION['var3'] = "Distrito El Calafate";
         <div class="card ">
             <div class="card-header">
                 <h5 class="card-title">
-                    <i class="oi oi-thumb-up"> </i> Ejemplo de uso - componente \Uargflow\SessionManager
+                    <i class="oi oi-thumb-up"> </i> Ejemplo de uso - componente \Uargflow\SSLHandler
                 </h5>
             </div>
             <div class="card-body">
                 <table id="csvtable" class="table table-striped table-hover table-responsive-sm table-sm btn-lg">
                     <thead>
                         <tr class="table-info">
-                            <th>Llave</th>
-                            <th>Valor</th>
+                            <th>Texto Plano</th>
+                            <th>Encriptado</th>
+                            <th>Descifrado</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($_SESSION as $Item => $valor) {
+                        <?php foreach ($ArrayData as $Item) {
                         ?>
                             <tr>
                                 <td><?= $Item; ?></td>
-                                <td><?= $valor ?></td>
+                                <td><?php $a = \Uargflow\SSLHandler::encrypt($Item); echo $a?></td>
+                                <td><?= \Uargflow\SSLHandler::decrypt($a); ?></td>
                             </tr>
                         <?php }
                         ?>
@@ -61,15 +58,13 @@ $_SESSION['var3'] = "Distrito El Calafate";
             <div class="card-body jumbotron">
                 <h3><i class="oi oi-thumb-up"> </i> Ayuda para Desarrolladores</h3>
                 <hr />
-                <p>La clase SessionManager se encuentra en el namespace \Uargflow, e implementa la interface SessionHandlerInterface</p>
-                <p>Se alamacenan los datos de sesi&oacute;n en la base de datos</p>
-                <p>Para mayor informacion, visitar https://www.php.net/manual/en/class.sessionhandlerinterface.php</p>
+                <p>La clase SSLHandler se encuentra en el namespace \Uargflow, e implementa la interface SSLHandlerInterface.</p>
+                <p>Esta clase permite encriptar y descifrar datos mediante la libreria OpenSSL y un vector de inicializac&oacute;n pseudorandom.</p>
+                <p>Para mayor informacion, visitar https://www.php.net/manual/en/refs.crypto.php</p>
                 <pre>
                     <code class="language-html" data-lang="html">
-                    $handler = new \Uargflow\SessionManager();
-                    session_set_save_handler($handler, true);
-                    \Uargflow\SessionManager::start_session('nombre de la sesión', true);
-                    $_SESSION['var1'] = "primera variable de sesión";
+                    $datosEncriptados = \Uargflow\SSLHandler::encrypt($cadenaDeTexto);
+                    $datosDescifrados = \Uargflow\SSLHandler::decrypt($datosEncriptados);
                     </code>
                 </pre>
 
