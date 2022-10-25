@@ -82,6 +82,6 @@ class SSLHandler
         $iv = openssl_random_pseudo_bytes($iv_length);
         return $iv;
         */
-        return openssl_random_pseudo_bytes(openssl_cipher_iv_length(self::$metodoEncriptacionSSL));
+        return openssl_random_pseudo_bytes(self::LARGO_IV_AES256CTR);
     }
 }
