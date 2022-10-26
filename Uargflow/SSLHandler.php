@@ -4,7 +4,7 @@ namespace Uargflow;
 
 include_once '../vendor/autoload.php';
 
-class SSLHandler
+class SSLHandler implements \Uargflow\SSLInterface
 {
 
     /** Definición de Llaves 32 y 64 caracteres */
