@@ -6,7 +6,7 @@ namespace Uargflow;
  * Este Clase se encuentra en \Uargflow\SSLHandler y permite encriptar y descifrar datos
  * haciendo uso de metodos estáticos que implementan la libreria OpenSSL.
  */
-class SSLHandler
+class SSLHandler implements \Uargflow\SSLInterface
 {
 
     /** Definición de Llave */
