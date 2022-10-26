@@ -13,7 +13,7 @@ include_once '../vendor/autoload.php';
  *
  */
 
-class SSLHandler
+class SSLHandler implements \Uargflow\SSLInterface
 {
     static $metodoEncriptacion = 'aes-128-ctr';
 
