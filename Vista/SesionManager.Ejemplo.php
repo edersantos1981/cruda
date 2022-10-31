@@ -13,9 +13,9 @@ $handler = new \Uargflow\SessionManager();
 session_set_save_handler($handler, true);
 
 \Uargflow\SessionManager::start_session('dogo', true);
-$_SESSION['var1'] = "Eder el groso";
-$_SESSION['var2'] = "Victor el maestro";
-$_SESSION['var3'] = "Franco el mas capo";
+$_SESSION['var1'] = "Sede Central";
+$_SESSION['var2'] = "Río Gallegos";
+$_SESSION['var3'] = "El Calafate";
 
 ?>
 
