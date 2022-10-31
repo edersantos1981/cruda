@@ -6,20 +6,19 @@
         $.widget("custom.combobox", {
             _create: function() {
                     this.wrapper = $("<span>").addClass("custom-combobox").insertAfter(this.element);
-
                     this.element.hide();
-                    this._createAutocomplete();
+                    this._createAutocomplete(this.element.attr('required'));
                     this._createShowAllButton();
                 }
 
                 ,
 
-            _createAutocomplete: function() {
+            _createAutocomplete: function(paramRequired) {
                     var selected = this.element.children(":selected"),
                         value = selected.val() ? selected.text() : "";
 
-                        /*
-                    this.input = $("<input>").appendTo(this.wrapper).val(value).attr("title", "").addClass("custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left").autocomplete({
+                    // this.input = $("<input>").appendTo(this.wrapper).val(value).attr("title", "").addClass("form-control").autocomplete({
+                    this.input = $("<input>").appendTo(this.wrapper).val(value).attr("title", "").attr("required",paramRequired).addClass("custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left").autocomplete({
                         delay: 0,
                         minLength: 0,
                         source: this._source.bind(this),
@@ -30,18 +29,6 @@
                         }
                     }).focus(function() {
                         $(this).val('');
-                    });
-                    */
-
-                    this.input = $("<input>").appendTo(this.wrapper).val(value).attr("title", "").addClass("custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left").autocomplete({
-                        delay: 0,
-                        minLength: 0,
-                        source: this._source.bind(this),
-
-                    }).tooltip({
-                        classes: {
-                            "ui-tooltip": "ui-state-highlight"
-                        }
                     });
 
                     this._on(this.input, {
@@ -158,5 +145,18 @@
         $("#toggle").on("click", function() {
             $("#combobox").toggle();
         });
-    });
+
+        $("#combobox2").combobox();
+
+        $("#toggle").on("click", function() {
+            $("#combobox2").toggle();
+        });
+
+        $("#combobox3").combobox();
+
+        $("#toggle").on("click", function() {
+            $("#combobox3").toggle();
+        });
+   
+   });
 </script>
