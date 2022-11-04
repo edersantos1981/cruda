@@ -10,6 +10,7 @@
 <link rel="icon" href="../gui/favicon.ico" sizes="32x32 48x48" type="image/vnd.microsoft.icon" />
 <!-- <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css" /> -->
 <link rel="stylesheet" href="../lib/mdb/css/addons/buttons.dataTables.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
 <style>
     table.dataTable thead .sorting:after,
@@ -39,5 +40,11 @@
     }        
     .dataTables_filter label {
         float: left !important;
+    }
+</style>
+
+<style>
+    .exporta-oculto {
+        display: none;
     }
 </style>
