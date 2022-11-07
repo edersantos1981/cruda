@@ -24,7 +24,7 @@
 
     <!-- </div> -->
 
-    <?php include './index.jumbo.php' ?>
+    <?php include './menu.jumbo.php' ?>
     <br />
     <?php include_once __DIR__ . '/../gui/footer.php'; ?>
 </body>

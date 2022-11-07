@@ -26,7 +26,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="../Vista/index.php"><i class="bi bi-house-fill"></i> Portada
+                <a class="nav-link" href="../Vista/menu.php"><i class="bi bi-house-fill"></i> Portada
                     <span class="sr-only">(current)</span>
                 </a>
             </li>
