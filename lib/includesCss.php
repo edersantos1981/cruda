@@ -11,6 +11,7 @@
 <!-- <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css" /> -->
 <link rel="stylesheet" href="../lib/mdb/css/addons/buttons.dataTables.min.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<link rel="stylesheet" href="../lib/style.css" />
 
 <style>
     table.dataTable thead .sorting:after,

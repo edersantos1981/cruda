@@ -18,8 +18,8 @@ setlocale(LC_TIME, 'es_AR.utf8');
 class Constantes {
 
     
-    const NOMBRE_SISTEMA = "DOGO AGVP";
-    const ID_SISTEMA = "AGVPDOGO";
+    const NOMBRE_SISTEMA = "CRUDA AGVP";
+    const ID_SISTEMA = "AGVPCRUDA";
     
     const WEBROOT = "/var/www/html/agvp_dogo";
     const APPDIR = "agvp_dogo";

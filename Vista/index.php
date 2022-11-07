@@ -10,11 +10,20 @@
 
 <body>
     <?php include_once __DIR__ . '/../gui/navbar.php'; ?>
-    <div class="jumbotron bg-warning">
-        <h3 class="display-4"><i class="bi-check-square"></i> <?= Constantes::NOMBRE_SISTEMA ?></h3>
-        <p class="lead">Hola, Valeria!</p>
-        <p class="lead">Ingrese al sistema que desea a continuaci&oacute;n.</p>
+    <div class="jumbotron jumbo-pic text-white">
+        <h1 class="jumbotron-titulo">¡Hola, Valeria!</h1>
+        <h3 class="jumbotron-subtitulo lead">¿A qu&eacute; sistema deseas ingresar?</h3>
+        <div>
+            <img class="logo-santacruz" src="../lib/img/logo_santacruz.png">
+        </div>
+        <div>
+            <img class="logo-vialidad" src="../lib/img/logo_vialidad.png">
+        </div>
     </div>
+    
+
+    <!-- </div> -->
+
     <?php include './index.jumbo.php' ?>
     <br />
     <?php include_once __DIR__ . '/../gui/footer.php'; ?>
