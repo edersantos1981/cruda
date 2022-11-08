@@ -31,8 +31,10 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="bi bi-check-square"></i> Acciones R&aacute;pidas
+                <a class="nav-link" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="bi bi-check-square"></i> 
+                    Acciones R&aacute;pidas
+                    <i class="fa fa-caret-down"></i>
                 </a>
                 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
                     <a class="dropdown-item" href="#"><i class="oi oi-account-login"></i> Ingreso</a>
@@ -44,8 +46,10 @@
                 <a class="nav-link" href="#"><i class="oi oi-file"></i> Reportes</a>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="bi bi-gear"></i> Configuraciones
+                <a class="nav-link" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="bi bi-gear"></i> 
+                    Configuraciones
+                    <i class="fa fa-caret-down"></i>
                 </a>
                 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
                     <a class="dropdown-item" href="#"><i class="bi-rulers"></i> Unidades de Medida</a>
@@ -57,8 +61,9 @@
         </ul>
         <ul class="navbar-nav ml-auto nav-flex-icons">
             <li class="nav-item dropdown avatar">
-                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img src="../gui/favicon.ico" class="rounded-circle z-depth-0" alt="avatar image" height="25">
+                    <i class="fa fa-caret-down"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
                     <a class="dropdown-item" href="#"><i class="bi bi-person"> </i> Valeria </a>
