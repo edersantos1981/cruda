@@ -41,7 +41,8 @@ class Permiso extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
 
         $this->query = "INSERT INTO {$this->nombreTabla} "
             . "VALUES (NULL, '"
-            . $this->bdconexion->escape_string($Objeto->getDescripcion()) . "')";
+            . $this->bdconexion->escape_string($Objeto->getDescripcion()) . "', "
+            . $this->bdconexion->escape_string($Objeto->getFk_sistema()) . ")";
 
         try {
             $this->ejecutarQuery();
@@ -68,5 +69,14 @@ class Permiso extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
         }
 
         return true;
+    }
+
+    /**
+     * @return array 
+     */
+    function findSistemaById($idSistema)
+    {
+        $MapperSistema = new \Mappers\Sistema();
+        return $MapperSistema->findById($idSistema);
     }
 }

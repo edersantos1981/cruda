@@ -10,7 +10,6 @@ $ColeccionSistema = new \Modelo\SistemaColeccion($ArrayFindAllSistema);
     <label for="combobox">Sistema</label>
     <div class="ui-widget">
         <select id="combobox" name="fk_sistema" class="form-control" aria-describedby="emailHelp" required>
-            <option <?php if (!isset($ObjetoCreado)) echo "selected" ?>></option>
             <?php foreach ($ColeccionSistema->getColeccion() as $ItemSistema) { ?>
                 <option value="<?= $ItemSistema->getId() ?>" <?php if (isset($ObjetoCreado) && ($ObjetoCreado->getFk_sistema() == $ItemSistema->getId())) echo "selected"; ?>><?= $ItemSistema; ?></option>
             <?php } ?>

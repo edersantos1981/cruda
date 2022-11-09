@@ -15,6 +15,12 @@ class Permiso extends \Uargflow\ModeloGenerico {
      */
     protected $fk_sistema;
 
+    /**
+     *
+     * @var String
+     */
+    protected $sistema;
+
     function __construct($arrayDatos) {
 
         parent::mapeoAtributosArray($arrayDatos);
@@ -38,6 +44,26 @@ class Permiso extends \Uargflow\ModeloGenerico {
     public function setFk_sistema(int $fk_sistema)
     {
         $this->fk_sistema = $fk_sistema;
+    }
+
+    /**
+     * Get the value of sistema
+     *
+     * @return  String
+     */ 
+    public function getSistema()
+    {
+        return $this->sistema;
+    }
+
+    /**
+     * Set the value of sistema
+     *
+     * @param  String  $sistema
+     */ 
+    public function setSistema(String $sistema)
+    {
+        $this->sistema = $sistema;
     }
 
     function __toString()
