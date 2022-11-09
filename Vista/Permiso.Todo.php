@@ -32,20 +32,26 @@ $Coleccion = new \Modelo\PermisoColeccion($ArrayFindAll);
                 </p>
 
                 <script>
-                    var columnasSinSort = [1];
+                    var columnasSinSort = [2];
                 </script>
                 <script src="../gui/tablaSort.js"></script>
                 <table id="csvtable" class="table table-striped table-hover table-responsive-sm table-sm btn-lg">
                     <thead>
                         <tr class="table-info">
+                            <th>Sistema Asociado</th>
                             <th>Descripci&oacute;n</th>
                             <th style="width: 20%;">Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($Coleccion->getColeccion() as $Item) { ?>
+                            <?php
+                            $Item->setSistema(new \Modelo\Permiso($Mapper->findSistemaById($Item->getFk_sistema())));
+                                 ?>
                             <tr>
-
+                                <td>
+                                    <?= $Item->getSistema(); ?>
+                                </td>
                                 <td>
                                     <?= $Item; ?>
                                 </td>
