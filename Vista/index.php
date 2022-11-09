@@ -34,7 +34,7 @@
 				</div>
 				-->
 				<div class="d-flex justify-content-end social_icon">
-				    <span><img src="https://www.agvp.gob.ar/wp-content/uploads/2020/06/LOGO-VIALIDAD-1018x1024.png" style="width:60px" /></span></span>
+				    <span><img src="../lib/img/logo_vialidad.png" style="width:60px" /></span></span>
 				</div>
 			</div>
 			<div class="card-body">
