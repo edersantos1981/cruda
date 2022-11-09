@@ -28,7 +28,6 @@ CREATE TABLE IF NOT EXISTS `usuarios`.`USUARIO` (
   `mail` VARCHAR(250) NULL,
   `whatsaap` VARCHAR(250) NULL,
   `password` VARCHAR(1000) NOT NULL,
-  `expiracion_pass` TIMESTAMP(2) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -53,7 +52,6 @@ DROP TABLE IF EXISTS `usuarios`.`ROL` ;
 CREATE TABLE IF NOT EXISTS `usuarios`.`ROL` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `descripcion` VARCHAR(250) NOT NULL,
-  `vigencia_pass` TIMESTAMP(2) NOT NULL,
   `fk_sistema` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_ROL_SISTEMA1_idx` (`fk_sistema` ASC) ,
@@ -109,32 +107,16 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `usuarios`.`DISTRITO`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `usuarios`.`DISTRITO` ;
-
-CREATE TABLE IF NOT EXISTS `usuarios`.`DISTRITO` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `descripcion` VARCHAR(250) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `usuarios`.`USUARIO_ROL`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `usuarios`.`USUARIO_ROL_DISTRITO` ;
+DROP TABLE IF EXISTS `usuarios`.`USUARIO_ROL` ;
 
-CREATE TABLE IF NOT EXISTS `usuarios`.`USUARIO_ROL_DISTRITO` (
+CREATE TABLE IF NOT EXISTS `usuarios`.`USUARIO_ROL` (
   `fk_usuario` INT NOT NULL,
   `fk_rol` INT NOT NULL,
-  `fk_distrito` INT NOT NULL,
-  `fecha_desde` TIMESTAMP(6) NOT NULL,
-  `fecha_hasta` TIMESTAMP(6) NULL,
-  PRIMARY KEY (`fk_usuario`, `fk_rol`, `fk_distrito`, `fecha_desde`),
+  PRIMARY KEY (`fk_usuario`, `fk_rol`),
   INDEX `fk_USUARIO_has_ROL_ROL1_idx` (`fk_rol` ASC) ,
   INDEX `fk_USUARIO_has_ROL_USUARIO1_idx` (`fk_usuario` ASC) ,
-  INDEX `fk_USUARIO_ROL_DISTRITO1_idx` (`fk_distrito` ASC) ,
   CONSTRAINT `fk_USUARIO_ROL_USUARIO1`
     FOREIGN KEY (`fk_usuario`)
     REFERENCES `usuarios`.`USUARIO` (`id`)
@@ -144,45 +126,10 @@ CREATE TABLE IF NOT EXISTS `usuarios`.`USUARIO_ROL_DISTRITO` (
     FOREIGN KEY (`fk_rol`)
     REFERENCES `usuarios`.`ROL` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_USUARIO_ROL_DISTRITO1`
-    FOREIGN KEY (`fk_distrito`)
-    REFERENCES `usuarios`.`DISTRITO` (`id`)
-    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 USE `usuarios` ;
-
--- -----------------------------------------------------
--- Placeholder table for view `usuarios`.`vw_rol_inactivo`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `usuarios`.`vw_rol_inactivo` (`USUARIO_id` INT, `ROL_id` INT, `DISTRITO_id` INT, `fecha_desde` INT, `fecha_hasta` INT);
-
--- -----------------------------------------------------
--- Placeholder table for view `usuarios`.`vw_rol_activo`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `usuarios`.`vw_rol_activo` (`USUARIO_id` INT, `ROL_id` INT, `DISTRITO_id` INT, `fecha_desde` INT, `fecha_hasta` INT);
-
--- -----------------------------------------------------
--- View `usuarios`.`vw_rol_inactivo`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `usuarios`.`vw_rol_inactivo`;
-DROP VIEW IF EXISTS `usuarios`.`vw_rol_inactivo` ;
-USE `usuarios`;
-CREATE  OR REPLACE VIEW `vw_rol_inactivo` AS
-SELECT * FROM USUARIO_ROL_DISTRITO
-WHERE fecha_hasta < curdate();
-
--- -----------------------------------------------------
--- View `usuarios`.`vw_rol_activo`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `usuarios`.`vw_rol_activo`;
-DROP VIEW IF EXISTS `usuarios`.`vw_rol_activo` ;
-USE `usuarios`;
-CREATE  OR REPLACE VIEW `vw_rol_activo` AS
-SELECT * FROM USUARIO_ROL_DISTRITO
-WHERE fecha_hasta is null or fecha_hasta >= curdate();
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
