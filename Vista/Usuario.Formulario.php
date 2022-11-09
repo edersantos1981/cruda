@@ -3,12 +3,12 @@
 <div class="form-group">
 
 <label for="descripcion">Nombre Usuario</label>
-    <input type="text" name="descripcion" class="form-control" id="descripcion" aria-describedby="emailHelp" value="<?= isset($ObjetoCreado) ? htmlspecialchars($ObjetoCreado->getNombre()) : null; ?>" required>
+    <input type="text" name="nombre" class="form-control" id="nombre" aria-describedby="emailHelp" value="<?= isset($ObjetoCreado) ? htmlspecialchars($ObjetoCreado->getNombre()) : null; ?>" required>
 
 
 
     <label for="descripcion">Password</label>
-    <input type="password" name="descripcion" class="form-control" id="descripcion" aria-describedby="emailHelp" value="<?= isset($ObjetoCreado) ? htmlspecialchars($ObjetoCreado->getPassword()) : null; ?>" required>
+    <input type="password" name="password" class="form-control" id="password" aria-describedby="emailHelp" value="<?= isset($ObjetoCreado) ? htmlspecialchars($ObjetoCreado->getPassword()) : null; ?>" required>
 
 </div>
 

@@ -23,12 +23,6 @@ class Usuario extends \Uargflow\ModeloGenerico
         parent::mapeoAtributosArray($arrayDatos);
     }
 
-
-    function __toString()
-    {
-        return sprintf("%04d", $this->getId()) . " - " . $this->nombre;
-    }
-
     /**
      * Get the value of mail
      *
@@ -87,5 +81,10 @@ class Usuario extends \Uargflow\ModeloGenerico
     public function setPassword(String $password)
     {
         $this->password = $password;
+    }
+
+    function __toString()
+    {
+        return sprintf("%04d", $this->getId()) . " - " . $this->nombre;
     }
 }

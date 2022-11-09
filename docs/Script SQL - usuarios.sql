@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `usuarios`.`USUARIO` (
   `nombre` VARCHAR(250) NOT NULL,
   `mail` VARCHAR(250) NULL,
   `whatsaap` VARCHAR(250) NULL,
-  `password` VARCHAR(1000) NOT NULL,
+  `password` VARCHAR(256) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
