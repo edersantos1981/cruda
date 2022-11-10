@@ -13,7 +13,7 @@
 <!--Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-    <a class="navbar-brand text-warning" href="<?= Constantes::HOMEURL ?>">
+    <a class="navbar-brand text-warning" href="../Vista/menu.php">
         <i class="bi-check-square"></i>
         <?= Constantes::NOMBRE_SISTEMA; ?>
     </a>
@@ -32,7 +32,7 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="bi bi-check-square"></i> 
+                    <i class="bi bi-check-square"></i>
                     Acciones R&aacute;pidas
                     <i class="fa fa-caret-down"></i>
                 </a>
@@ -47,7 +47,7 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="bi bi-gear"></i> 
+                    <i class="bi bi-gear"></i>
                     Configuraciones
                     <i class="fa fa-caret-down"></i>
                 </a>
@@ -56,6 +56,19 @@
                     <a class="dropdown-item" href="#"><i class="oi oi-document"></i> Tipos de Comprobante</a>
                     <a class="dropdown-item" href="#"><i class="bi-person-rolodex"></i> Proveedores</a>
                     <a class="dropdown-item" href="#"><i class="oi oi-list"></i> Nomenclador</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="bi bi-lock-fill"></i>
+                    Usuarios
+                    <i class="fa fa-caret-down"></i>
+                </a>
+                <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+                    <a class="dropdown-item" href="../Vista/Usuario.Todo.php"><i class="bi bi-person-fill"></i> Usuarios</a>
+                    <a class="dropdown-item" href="../Vista/Sistema.Todo.php"><i class="bi bi-pc-display"></i></i> Sistemas</a>
+                    <a class="dropdown-item" href="../Vista/Rol.Todo.php"><i class="bi bi-person-check-fill"></i> Roles</a>
+                    <a class="dropdown-item" href="../Vista/Permiso.Todo.php"><i class="bi bi-key-fill"></i> Permisos</a>
                 </div>
             </li>
         </ul>
@@ -69,7 +82,7 @@
                     <a class="dropdown-item" href="#"><i class="bi bi-person"> </i> Valeria </a>
                     <a class="dropdown-item" href="#"><i class="bi bi-geo-alt"> </i> Sede Central </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#"><i class="bi bi-person"></i>  Mis Datos</a>
+                    <a class="dropdown-item" href="#"><i class="bi bi-person"></i> Mis Datos</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#"><i class="oi oi-account-logout"></i> Salir</a>
                 </div>
