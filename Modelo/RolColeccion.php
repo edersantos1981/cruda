@@ -7,7 +7,7 @@ class RolColeccion extends \Uargflow\ColeccionGenerica {
     }
     
     /**
-    * @return Roles[]
+    * @return Rol[]
     */
     public function getColeccion() {
     	return parent::getColeccion();
