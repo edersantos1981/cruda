@@ -30,8 +30,4 @@ class Constantes {
     const HOMEAUTH = "http://localhost/cruda";
     const HOMEADMIN = "http://localhost/cruda";
     
-    const BD_SCHEMA = "dogo";
-    const BD_USERS = "dogo";
-    
-
 }

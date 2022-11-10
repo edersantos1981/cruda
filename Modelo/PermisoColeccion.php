@@ -7,7 +7,7 @@ class PermisoColeccion extends \Uargflow\ColeccionGenerica {
     }
     
     /**
-    * @return Permisos[]
+    * @return Permiso[]
     */
     public function getColeccion() {
     	return parent::getColeccion();

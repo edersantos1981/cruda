@@ -1,7 +1,6 @@
 <?php
 
 namespace Uargflow;
-use NewException;
 
 class BDMapper implements \Uargflow\MapperInterface {
 

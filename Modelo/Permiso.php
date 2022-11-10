@@ -17,7 +17,7 @@ class Permiso extends \Uargflow\ModeloGenerico {
 
     /**
      *
-     * @var String
+     * @var Sistema
      */
     protected $sistema;
 
@@ -41,15 +41,15 @@ class Permiso extends \Uargflow\ModeloGenerico {
      *
      * @param  int  $fk_sistema
      */ 
-    public function setFk_sistema(int $fk_sistema)
+    public function setFk_sistema($fk_sistema_)
     {
-        $this->fk_sistema = $fk_sistema;
+        $this->fk_sistema = $fk_sistema_;
     }
 
     /**
      * Get the value of sistema
      *
-     * @return  String
+     * @return Sistema
      */ 
     public function getSistema()
     {
@@ -59,11 +59,11 @@ class Permiso extends \Uargflow\ModeloGenerico {
     /**
      * Set the value of sistema
      *
-     * @param  String  $sistema
+     * @param  Sistema  $sistema_
      */ 
-    public function setSistema(String $sistema)
+    public function setSistema($sistema_)
     {
-        $this->sistema = $sistema;
+        $this->sistema = $sistema_;
     }
 
     function __toString()

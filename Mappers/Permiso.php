@@ -72,11 +72,11 @@ class Permiso extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
     }
 
     /**
-     * @return array 
+     * @return Sistema 
      */
     function findSistemaById($idSistema)
     {
         $MapperSistema = new \Mappers\Sistema();
-        return $MapperSistema->findById($idSistema);
+        return new \Modelo\Sistema($MapperSistema->findById($idSistema));
     }
 }
