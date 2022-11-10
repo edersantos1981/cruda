@@ -49,7 +49,7 @@ class Rol extends \Uargflow\ModeloGenerico {
     /**
      * Get the value of sistema
      *
-     * @return  String
+     * @return Sistema
      */ 
     public function getSistema()
     {
@@ -59,11 +59,11 @@ class Rol extends \Uargflow\ModeloGenerico {
     /**
      * Set the value of sistema
      *
-     * @param  String  $sistema
+     * @param  Sistema  $sistema_
      */ 
-    public function setSistema(String $sistema)
+    public function setSistema($sistema_)
     {
-        $this->sistema = $sistema;
+        $this->sistema = $sistema_;
     }
     
     function __toString()
