@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-11-2022 a las 15:04:59
+-- Tiempo de generación: 10-11-2022 a las 15:59:37
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -90,18 +90,19 @@ INSERT INTO `sistema` (`id`, `descripcion`) VALUES
 
 CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(250) COLLATE utf8_bin NOT NULL,
+  `nombre_usuario` varchar(250) COLLATE utf8_bin NOT NULL,
   `mail` varchar(250) COLLATE utf8_bin DEFAULT NULL,
   `whatsaap` varchar(250) COLLATE utf8_bin DEFAULT NULL,
-  `password` varchar(1000) COLLATE utf8_bin NOT NULL
+  `password` varchar(1000) COLLATE utf8_bin NOT NULL,
+  `nombre_completo` varchar(250) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `nombre`, `mail`, `whatsaap`, `password`) VALUES
-(4, 'VICTOR', '', '', '123456');
+INSERT INTO `usuario` (`id`, `nombre_usuario`, `mail`, `whatsaap`, `password`, `nombre_completo`) VALUES
+(4, 'VICTOR', '', '', '123456', '');
 
 -- --------------------------------------------------------
 
@@ -150,7 +151,8 @@ ALTER TABLE `sistema`
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `nombre_usuario` (`nombre_usuario`);
 
 --
 -- Indices de la tabla `usuario_rol`
