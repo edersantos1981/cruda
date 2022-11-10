@@ -42,7 +42,6 @@ class Rol extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
         $this->query = "INSERT INTO {$this->nombreTabla} "
             . "VALUES (NULL, '"
             . $this->bdconexion->escape_string($Objeto->getDescripcion()) . "', "
-            . "NULL, "
             . $this->bdconexion->escape_string($Objeto->getFk_sistema()) . ")";
         try {
             $this->ejecutarQuery();
@@ -78,6 +77,6 @@ class Rol extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
     function findSistemaById($idSistema)
     {
         $MapperSistema = new \Mappers\Sistema();
-        return $MapperSistema->findById($idSistema);
+        return new \Modelo\Sistema($MapperSistema->findById($idSistema));        
     }
 }

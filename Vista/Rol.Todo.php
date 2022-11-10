@@ -45,23 +45,13 @@ $Coleccion = new \Modelo\RolColeccion($ArrayFindAll);
                     </thead>
                     <tbody>
                         <?php foreach ($Coleccion->getColeccion() as $Item) { ?>
-                            <?php
-                            $Item->setSistema(new \Modelo\Rol($Mapper->findSistemaById($Item->getFk_sistema())));
-                                 ?>
+                            <?php $Item->setSistema(new \Modelo\Sistema($Mapper->findSistemaById($Item->getFk_sistema())));?>
                             <tr>
-                                <td>
-                                    <?= $Item->getSistema(); ?>
-                                </td>
-                                <td>
-                                    <?= $Item; ?>
-                                </td>
-                                <td>
-                                    <a name="" id="" class="btn btn-outline-warning" href="Rol.Editar.php?id=<?= $Item->getId(); ?>" role="button"><i class="oi oi-pencil"> </i> Editar</a>
-                                </td>
+                                <td><?= $Item->getSistema(); ?></td>
+                                <td><?= $Item; ?></td>
+                                <td><a name="" id="" class="btn btn-outline-warning" href="Rol.Editar.php?id=<?= $Item->getId(); ?>" role="button"><i class="oi oi-pencil"> </i> Editar</a></td>
                             </tr>
-                        <?php
-                        } ?>
-
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>

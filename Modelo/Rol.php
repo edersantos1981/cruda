@@ -13,7 +13,7 @@ class Rol extends \Uargflow\ModeloGenerico {
      *
      * @var int
      */
-    protected $fk_sistema, $vigencia_pass;
+    protected $fk_sistema;
 
      /**
      *
@@ -65,33 +65,9 @@ class Rol extends \Uargflow\ModeloGenerico {
     {
         $this->sistema = $sistema;
     }
-
-    /**
-     * Get the value of vigencia_pass
-     *
-     * @return  int
-     */ 
-    public function getVigencia_pass()
-    {
-        return $this->vigencia_pass;
-    }
-
-    /**
-     * Set the value of vigencia_pass
-     *
-     * @param  int  $vigencia_pass
-     *
-     * @return  self
-     */ 
-    public function setVigencia_pass(int $vigencia_pass)
-    {
-        $this->vigencia_pass = $vigencia_pass;
-
-        return $this;
-    }
     
     function __toString()
     {
-        return sprintf("%04d", $this->getId()) . " - " . $this->descripcion;
+        return sprintf("%04d", $this->id) . " - " . $this->descripcion;
     }
 }
