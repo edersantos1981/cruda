@@ -9,7 +9,17 @@ namespace Modelo;
  */
 class Usuario extends \Uargflow\ModeloGenerico
 {
+    /**
+     *
+     * @var int
+     */
+    protected $fk_rol;
 
+    /**
+     *
+     * @var Rol
+     */
+    protected $rol;
 
     /**
      *
@@ -81,6 +91,46 @@ class Usuario extends \Uargflow\ModeloGenerico
     public function setPassword(String $password)
     {
         $this->password = $password;
+    }
+
+    /**
+     * Get the value of fk_rol
+     *
+     * @return  int
+     */ 
+    public function getFk_rol()
+    {
+        return $this->fk_rol;
+    }
+
+    /**
+     * Set the value of fk_rol
+     *
+     * @param  int  $fk_rol
+     */ 
+    public function setFk_rol(int $fk_rol)
+    {
+        $this->fk_rol = $fk_rol;
+    }
+
+    /**
+     * Get the value of rol
+     *
+     * @return Rol
+     */ 
+    public function getRol()
+    {
+        return $this->rol;
+    }
+
+    /**
+     * Set the value of rol
+     *
+     * @param  Rol  $rol_
+     */ 
+    public function setRol($rol_)
+    {
+        $this->rol = $rol_;
     }
 
     function __toString()

@@ -7,7 +7,7 @@ class UsuarioColeccion extends \Uargflow\ColeccionGenerica {
     }
     
     /**
-    * @return Usarios[]
+    * @return Usuario[]
     */
     public function getColeccion() {
     	return parent::getColeccion();

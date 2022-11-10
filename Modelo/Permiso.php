@@ -68,6 +68,6 @@ class Permiso extends \Uargflow\ModeloGenerico {
 
     function __toString()
     {
-        return sprintf("%04d", $this->getId()) . " - " . $this->descripcion;
+        return sprintf("%04d", $this->id) . " - " . $this->descripcion;
     }
 }

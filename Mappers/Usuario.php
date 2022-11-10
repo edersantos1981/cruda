@@ -82,6 +82,6 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
     function findRolById($idRol)
     {
         $MapperRol = new \Mappers\Rol();
-        return $MapperRol->findById($idRol);
+        return new \Modelo\Rol($MapperRol->findById($idRol));
     }
 }
