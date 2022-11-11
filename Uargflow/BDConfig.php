@@ -10,4 +10,5 @@ class BDConfig {
     const SCHEMA = "cruda";
     const SCHEMA_SESIONES = "sesiones";
     const SCHEMA_USUARIOS = "usuarios_1_14_0";
+    const SCHEMA_LOGS = "logs";
 }

@@ -41,10 +41,11 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
 
         $this->query = "INSERT INTO {$this->nombreTabla} "
             . "VALUES (NULL, "
-            . "'" . $this->bdconexion->escape_string($Objeto->getNombre()) . "', "
+            . "'" . $this->bdconexion->escape_string($Objeto->getNombre_usuario()) . "', "
             . "'" . $this->bdconexion->escape_string($Objeto->getMail()) . "', "
             . "'" . $this->bdconexion->escape_string($Objeto->getWhatsapp()) . "', "
-            . "'" . $this->bdconexion->escape_string($Objeto->getPassword()) . "')";
+            . "'" . \Uargflow\Hash::creaHash($this->bdconexion->escape_string($Objeto->getPassword())) . "', "
+            . "'" . $this->bdconexion->escape_string($Objeto->getNombre_completo()) . "')";
 
         try {
             $this->ejecutarQuery();
@@ -61,10 +62,10 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
     public function update($Objeto)
     {
         $this->query = "UPDATE {$this->nombreTabla} "
-            . "SET nombre = '" . $this->bdconexion->escape_string($Objeto->getNombre()) . "', "
+            . "SET nombre_usuario = '" . $this->bdconexion->escape_string($Objeto->getNombre_usuario()) . "', "
             . "mail = '" . $this->bdconexion->escape_string($Objeto->getMail()) . "', "
             . "whatsapp = '" . $this->bdconexion->escape_string($Objeto->getWhatsapp()) . "', "
-            . "password = '" . $this->bdconexion->escape_string($Objeto->getPassword()) . "' "
+            . "nombre_completo = '" . $this->bdconexion->escape_string($Objeto->getNombre_completo()) . "' "
             . "WHERE {$this->nombreAtributoId} = {$Objeto->getId()}";
 
         try {
@@ -72,6 +73,48 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
         } catch (\Exception $ex) {
             throw $ex;
         }
+
+        return true;
+    }
+
+    /**
+     * @param \modelo\Usuario $Objeto
+     */
+    function updatePassword($Objeto)
+    {
+        $this->bdconexion->autocommit(false);
+        $this->bdconexion->begin_transaction();
+
+        $this->query = "UPDATE {$this->nombreTabla} "
+            . "SET password = '" . \Uargflow\Hash::creaHash($this->bdconexion->escape_string($Objeto->getPassword())) . "' "
+            . "WHERE {$this->nombreAtributoId} = {$Objeto->getId()}";
+
+        try {
+            $this->ejecutarQuery();
+        } catch (\Exception $ex) {
+            $this->bdconexion->rollback();
+            throw $ex;
+        }
+
+        $usuario = $this->findById($Objeto->getId());
+ 
+        $this->query = "INSERT INTO " . \Uargflow\BDConfig::SCHEMA_LOGS . ".usuario_blanqueo "
+            . "VALUES (NULL, "
+            . $this->bdconexion->escape_string($usuario['id']) . ", "
+            . "'" . $this->bdconexion->escape_string($usuario['nombre_usuario']) . "', "
+            . "'" . $this->bdconexion->escape_string($usuario['nombre_completo']) . "', "
+            . "NULL, "
+            . "NULL )";
+
+        try {
+            $this->ejecutarQuery();
+        } catch (\Exception $ex) {
+            $this->bdconexion->rollback();
+            throw $ex;
+        }
+
+        $this->bdconexion->commit();
+        $this->bdconexion->autocommit(true);
 
         return true;
     }

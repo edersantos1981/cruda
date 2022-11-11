@@ -92,7 +92,7 @@ CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
   `nombre_usuario` varchar(250) COLLATE utf8_bin NOT NULL,
   `mail` varchar(250) COLLATE utf8_bin DEFAULT NULL,
-  `whatsaap` varchar(250) COLLATE utf8_bin DEFAULT NULL,
+  `whatsapp` varchar(250) COLLATE utf8_bin DEFAULT NULL,
   `password` varchar(1000) COLLATE utf8_bin NOT NULL,
   `nombre_completo` varchar(250) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
