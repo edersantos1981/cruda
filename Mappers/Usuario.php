@@ -97,12 +97,13 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
         }
 
         $usuario = $this->findById($Objeto->getId());
- 
+
         $this->query = "INSERT INTO " . \Uargflow\BDConfig::SCHEMA_LOGS . ".usuario_blanqueo "
             . "VALUES (NULL, "
             . $this->bdconexion->escape_string($usuario['id']) . ", "
             . "'" . $this->bdconexion->escape_string($usuario['nombre_usuario']) . "', "
             . "'" . $this->bdconexion->escape_string($usuario['nombre_completo']) . "', "
+            . "'" .\Uargflow\IpAddress::get_client_ip() . "', "
             . "NULL, "
             . "NULL )";
 
