@@ -79,4 +79,21 @@ class Permiso extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
         $MapperSistema = new \Mappers\Sistema();
         return new \Modelo\Sistema($MapperSistema->findById($idSistema));
     }
+
+    /**
+     * @return array
+     */
+    function findPermisosbySistema($idSistema)
+    {
+        $this->query = 
+            "SELECT * "
+            . "FROM "  . \Uargflow\BDConfig::SCHEMA_USUARIOS .  ".permiso "
+            . "WHERE fk_sistema = $idSistema ";
+        try {
+            $this->ejecutarQuery();
+        } catch (\Exception $ex) {
+            throw $ex;
+        }
+        return $this->resultset->fetch_all(MYSQLI_ASSOC);
+    }
 }

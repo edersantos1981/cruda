@@ -79,4 +79,23 @@ class Rol extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
         $MapperSistema = new \Mappers\Sistema();
         return new \Modelo\Sistema($MapperSistema->findById($idSistema));        
     }
+
+    /**
+     * @return array
+     */
+    function findPermisos($idRol)
+    {
+        $this->query = 
+            "SELECT P.* "
+            . "FROM " . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".permiso P, " . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".rol_permiso RP "
+            . "WHERE P.id = RP.fk_permiso "
+            . "AND RP.fk_rol = {$idRol}";
+        try {
+            $this->ejecutarQuery();
+        } catch (\Exception $ex) {
+            throw $ex;
+        }
+
+        return $this->resultset->fetch_all(MYSQLI_ASSOC);
+    }
 }

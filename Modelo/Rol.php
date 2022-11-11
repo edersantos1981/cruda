@@ -21,6 +21,12 @@ class Rol extends \Uargflow\ModeloGenerico {
      */
     protected $sistema;
 
+     /**
+     *
+     * @var Permiso[]
+     */
+    protected $permisos;
+
     function __construct($arrayDatos) {
 
         parent::mapeoAtributosArray($arrayDatos);
@@ -69,5 +75,28 @@ class Rol extends \Uargflow\ModeloGenerico {
     function __toString()
     {
         return sprintf("%04d", $this->id) . " - " . $this->descripcion;
+    }
+
+    /**
+     * Get the value of permisos
+     *
+     * @return  Permiso[]
+     */ 
+    public function getPermisos()
+    {
+        return $this->permisos;
+    }
+
+    /**
+     * Set the value of permisos
+     *
+     * @param  Permiso[]  $permisos
+     *
+     * @return  self
+     */ 
+    public function setPermisos($permisos)
+    {
+        $this->permisos = $permisos;
+        return $this;
     }
 }
