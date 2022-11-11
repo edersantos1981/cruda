@@ -10,6 +10,8 @@
 
 <body>
     <?php include_once '../gui/navbar.php'; ?>
+    
+
     <div class="container-fluid">
         <div class="card ">
             <div class="card-header">
@@ -21,6 +23,7 @@
                 <form action="Usuario.Agregar.Procesar.php" method="post">
 
                     <?php include_once './Usuario.Formulario.php'; ?>
+                    <?php include_once '../lib/toggleVisiblePassword.php'; ?>
 
                 </form>
             </div>

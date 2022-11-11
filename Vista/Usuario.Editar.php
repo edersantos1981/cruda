@@ -25,7 +25,7 @@ $ObjetoCreado = new \Modelo\Usuario($Mapper->findById($_GET['id']));
                 </div>
                 <div class="card-body">
                     <form action="Usuario.Editar.Procesar.php" method="post">
-                            <?php include_once 'Usario.Formulario.php'; ?>
+                            <?php include_once 'Usuario.Formulario.php'; ?>
                     </form>
                 </div>
             </div>   

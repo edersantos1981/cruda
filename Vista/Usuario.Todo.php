@@ -35,27 +35,25 @@ $Coleccion = new \Modelo\UsuarioColeccion($ArrayFindAll);
                     var columnasSinSort = [2];
                 </script>
                 <script src="../gui/tablaSort.js"></script>
+               
                 <table id="csvtable" class="table table-striped table-hover table-responsive-sm table-sm btn-lg">
                     <thead>
                         <tr class="table-info">
-                            <th>Nombre</th>
                             <th>Usuario</th>
+                            <th>Nombre Completo</th>
                             <th style="width: 20%;">Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($Coleccion->getColeccion() as $Item) { ?>
-                            <?php $Item->setRol(new \Modelo\Rol($Mapper->findRolById($Item->getFk_rol()))); ?>
+                            <?php // $Item->setRol($Mapper->findRolById($Item->getFk_rol())); 
+                            ?>
                             <tr>
-                                <td><?= $Item->getRol(); ?></td>
+                                <td><?= $Item->getNombre_usuario(); ?></td>
+                                <td><?= $Item->getNombre_completo(); ?></td>
                                 <td>
-                                    <?= $Item; ?>
-                                </td>
-                                <td>
-                                    <?= $Item->getPassword(); ?>
-                                </td>
-                                <td>
-                                    <a name="" id="" class="btn btn-outline-warning" href="Permiso.Editar.php?id=<?= $Item->getId(); ?>" role="button"><i class="oi oi-pencil"> </i> Editar</a>
+                                    <a name="" id="" class="btn btn-outline-warning" href="Usuario.Editar.php?id=<?= $Item->getId(); ?>" role="button"><i class="oi oi-pencil"> </i> Editar</a>
+                                    <a name="" id="" class="btn btn-outline-success" href="Usuario.Blanqueo.php?id=<?= $Item->getId(); ?>" role="button"><i class="bi bi-key"> </i> Blanqueo</a>
                                 </td>
                             </tr>
                         <?php

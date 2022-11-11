@@ -25,7 +25,7 @@ class Usuario extends \Uargflow\ModeloGenerico
      *
      * @var String
      */
-    protected $mail, $whatsapp, $password;
+    protected $mail, $nombre_completo, $nombre_usuario, $whatsapp, $password;
 
     function __construct($arrayDatos)
     {
@@ -64,6 +64,26 @@ class Usuario extends \Uargflow\ModeloGenerico
     }
 
     /**
+     * Get the value of fk_rol
+     *
+     * @return  int
+     */
+    public function getFk_rol()
+    {
+        return $this->fk_rol;
+    }
+
+    /**
+     * Get the value of rol
+     *
+     * @return Rol
+     */
+    public function getRol()
+    {
+        return $this->rol;
+    }
+
+    /**
      * Set the value of whatsapp
      *
      * @param  String  $whatsapp
@@ -94,43 +114,63 @@ class Usuario extends \Uargflow\ModeloGenerico
     }
 
     /**
-     * Get the value of fk_rol
-     *
-     * @return  int
-     */ 
-    public function getFk_rol()
-    {
-        return $this->fk_rol;
-    }
-
-    /**
      * Set the value of fk_rol
      *
      * @param  int  $fk_rol
-     */ 
+     */
     public function setFk_rol(int $fk_rol)
     {
         $this->fk_rol = $fk_rol;
     }
 
     /**
-     * Get the value of rol
-     *
-     * @return Rol
-     */ 
-    public function getRol()
-    {
-        return $this->rol;
-    }
-
-    /**
      * Set the value of rol
      *
      * @param  Rol  $rol_
-     */ 
+     */
     public function setRol($rol_)
     {
         $this->rol = $rol_;
+    }
+
+    /**
+     * Get the value of nombre_completo
+     *
+     * @return  String
+     */
+    public function getNombre_completo()
+    {
+        return $this->nombre_completo;
+    }
+
+    /**
+     * Get the value of nombre_usuario
+     *
+     * @return  String
+     */
+    public function getNombre_usuario()
+    {
+        return $this->nombre_usuario;
+    }
+
+    /**
+     * Set the value of nombre_completo
+     *
+     * @param  String  $nombre_completo
+     */
+    public function setNombre_completo(String $nombre_completo)
+    {
+        $this->nombre_completo = $nombre_completo;
+    }
+
+    /**
+     * Set the value of nombre_usuario
+     *
+     * @param  String  $nombre_usuario
+     */
+    public function setNombre_usuario(String $nombre_usuario)
+    {
+        $this->nombre_usuario = $nombre_usuario;
     }
 
     function __toString()
