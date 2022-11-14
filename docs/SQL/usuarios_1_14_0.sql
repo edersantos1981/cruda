@@ -101,7 +101,7 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `nombre_usuario`, `mail`, `whatsaap`, `password`, `nombre_completo`) VALUES
+INSERT INTO `usuario` (`id`, `nombre_usuario`, `mail`, `whatsapp`, `password`, `nombre_completo`) VALUES
 (4, 'VICTOR', '', '', '123456', '');
 
 -- --------------------------------------------------------
