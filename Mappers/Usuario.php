@@ -103,7 +103,7 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
             . $this->bdconexion->escape_string($usuario['id']) . ", "
             . "'" . $this->bdconexion->escape_string($usuario['nombre_usuario']) . "', "
             . "'" . $this->bdconexion->escape_string($usuario['nombre_completo']) . "', "
-            . "'" .\Uargflow\IpAddress::get_client_ip() . "', "
+            . "'" . \Uargflow\IpAddress::get_client_ip() . "', "
             . "NULL, "
             . "NULL )";
 
@@ -127,5 +127,24 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
     {
         $MapperRol = new \Mappers\Rol();
         return new \Modelo\Rol($MapperRol->findById($idRol));
+    }
+
+    /**
+     * @return array
+     */
+    function findRoles($idUsuario)
+    {
+        $this->query =
+            "SELECT RU.* "
+            . "FROM " . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario U, " . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario_rol RU "
+            . "WHERE U.id = RU.fk_usuario "
+            . "AND RU.fk_usuario = {$idUsuario}";
+        try {
+            $this->ejecutarQuery();
+        } catch (\Exception $ex) {
+            throw $ex;
+        }
+
+        return $this->resultset->fetch_all(MYSQLI_ASSOC);
     }
 }
