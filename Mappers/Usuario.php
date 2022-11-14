@@ -58,18 +58,16 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
             // Si hay error, rollback
             $this->bdconexion->rollback();
         }
-        $idUsario = $this->bdconexion->insert_id;
-      
+
+        //Recupera el id de usuario insertado para utilizar en insert de roles a partir de nombre_usuario
+        $idUsuario = $this->findbyNombreUsuario($Objeto->getNombre_usuario())[0]["id"];
+
         foreach ($Objeto->getRoles() as $rol) {
 
-            $this->query = "INSERT INTO usuario_rol "
+            $this->query = "INSERT INTO " . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario_rol "
                 . "VALUES ("
-                . $idUsario . ", "
+                . $idUsuario . ", "
                 . $this->bdconexion->escape_string($rol->getId()) . ")";
-
-                $idUsarioROL = $this->bdconexion->insert_id;
-                var_dump($idUsarioROL);
-                die;
             try {
                 $this->ejecutarQuery();
             } catch (\Exception $ex) {
@@ -77,15 +75,15 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
                 // Si hay error, rollback
                 $this->bdconexion->rollback();
             }
-
         }
-        
+        $idUsuarioInsertado = $this->bdconexion->insert_id;
+
         // @todo: con el insert_id, recorrer Objeto->getPermisos y hacer INSERT en ROL_PERMISO
         // Al final:
         $this->bdconexion->commit();
         $this->bdconexion->autocommit(true);
 
-        return $idUsario;
+        return $idUsuarioInsertado;
     }
 
     /**
@@ -93,6 +91,24 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
      */
     public function update($Objeto)
     {
+        // Autocommit a falso para mantener atomicidad de transaccion
+        $this->bdconexion->autocommit(false);
+        // Inicia transaccion
+        $this->bdconexion->begin_transaction();
+
+        //Borrado de datos preexistentes en tabla usuario_rol
+        $this->query = "DELETE FROM " . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario_rol "
+            . "WHERE fk_usuario = {$Objeto->getId()}";
+
+        try {
+            $this->ejecutarQuery();
+        } catch (\Exception $ex) {
+            throw $ex;
+            // Si hay error, rollback
+            $this->bdconexion->rollback();
+        }
+
+        //Actualiza datos en tabla usuario
         $this->query = "UPDATE {$this->nombreTabla} "
             . "SET nombre_usuario = '" . $this->bdconexion->escape_string($Objeto->getNombre_usuario()) . "', "
             . "mail = '" . $this->bdconexion->escape_string($Objeto->getMail()) . "', "
@@ -104,9 +120,36 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
             $this->ejecutarQuery();
         } catch (\Exception $ex) {
             throw $ex;
+            // Si hay error, rollback
+            $this->bdconexion->rollback();
         }
+        $idUsuarioActualizado = 1;//$this->bdconexion->insert_id;
 
-        return true;
+        foreach ($Objeto->getRoles() as $rol) {
+
+            $this->query = "INSERT INTO " . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario_rol "
+                . "VALUES ("
+                . $Objeto->getId() . ", "
+                . $this->bdconexion->escape_string($rol->getId()) . ")";
+            try {
+                $this->ejecutarQuery();
+            
+            } catch (\Exception $ex) {
+                throw $ex;
+                // Si hay error, rollback
+                $this->bdconexion->rollback();
+            }
+           
+        }
+        
+       
+        // @todo: con el insert_id, recorrer Objeto->getPermisos y hacer INSERT en ROL_PERMISO
+        // Al final:
+        $this->bdconexion->commit();
+        $this->bdconexion->autocommit(true);
+
+        return $idUsuarioActualizado;
+
     }
 
     /**
@@ -184,8 +227,8 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
     {
         $this->query =
             "SELECT * "
-            . "FROM " . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario "
-            . "WHERE nombre_usuario = {$nombreUsuario}";
+            . "FROM {$this->nombreTabla} "
+            . "WHERE nombre_usuario = '{$nombreUsuario}'";
         try {
             $this->ejecutarQuery();
         } catch (\Exception $ex) {
@@ -194,5 +237,4 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
 
         return $this->resultset->fetch_all(MYSQLI_ASSOC);
     }
-
 }
