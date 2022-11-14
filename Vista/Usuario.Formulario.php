@@ -85,7 +85,7 @@ $ColeccionRoles = new \Modelo\RolColeccion($ArrayFindAll);
                 <td><?= $Item->getSistema(); ?></td>
                 <td><?= $Item; ?></td>
                 <td>
-                    <input type="checkbox" name="" id="" 
+                    <input type="checkbox" name="rol[<?= $Item->getId() ?>]"
                     <?php
                     if(isset($ArrayFindRolesUsuario)) 
                     foreach ($ArrayFindRolesUsuario as $ItemRolUsuario) {

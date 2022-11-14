@@ -56,12 +56,14 @@ class Rol extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
             $this->bdconexion->rollback();
         }
 
+        $idRol = $this->bdconexion->insert_id;
+
         // @todo: con el insert_id, recorrer Objeto->getPermisos y hacer INSERT en ROL_PERMISO
         // Al final:
         $this->bdconexion->commit();
         $this->bdconexion->autocommit(true);
 
-        return $this->bdconexion->insert_id;
+        return $idRol;
 
     }
 

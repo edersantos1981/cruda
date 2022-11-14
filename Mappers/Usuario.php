@@ -38,6 +38,10 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
      */
     public function insert($Objeto)
     {
+        // Autocommit a falso para mantener atomicidad de transaccion
+        $this->bdconexion->autocommit(false);
+        // Inicia transaccion
+        $this->bdconexion->begin_transaction();
 
         $this->query = "INSERT INTO {$this->nombreTabla} "
             . "VALUES (NULL, "
@@ -51,9 +55,37 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
             $this->ejecutarQuery();
         } catch (\Exception $ex) {
             throw $ex;
+            // Si hay error, rollback
+            $this->bdconexion->rollback();
         }
+        $idUsario = $this->bdconexion->insert_id;
+      
+        foreach ($Objeto->getRoles() as $rol) {
 
-        return $this->bdconexion->insert_id;
+            $this->query = "INSERT INTO usuario_rol "
+                . "VALUES ("
+                . $idUsario . ", "
+                . $this->bdconexion->escape_string($rol->getId()) . ")";
+
+                $idUsarioROL = $this->bdconexion->insert_id;
+                var_dump($idUsarioROL);
+                die;
+            try {
+                $this->ejecutarQuery();
+            } catch (\Exception $ex) {
+                throw $ex;
+                // Si hay error, rollback
+                $this->bdconexion->rollback();
+            }
+
+        }
+        
+        // @todo: con el insert_id, recorrer Objeto->getPermisos y hacer INSERT en ROL_PERMISO
+        // Al final:
+        $this->bdconexion->commit();
+        $this->bdconexion->autocommit(true);
+
+        return $idUsario;
     }
 
     /**
