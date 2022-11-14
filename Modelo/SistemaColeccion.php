@@ -7,7 +7,7 @@ class SistemaColeccion extends \Uargflow\ColeccionGenerica {
     }
     
     /**
-    * @return Sistemas[]
+    * @return Sistema[]
     */
     public function getColeccion() {
     	return parent::getColeccion();

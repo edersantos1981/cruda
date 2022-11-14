@@ -1,6 +1,10 @@
 <?php
 $MapperSistema = new \Mappers\Sistema();
 $ColeccionSistema = new \Modelo\SistemaColeccion($MapperSistema->findAll());
+
+$Mapper = new \Mappers\Permiso();
+$ArrayFindAll = $Mapper->findAll();
+$ColeccionPermisos = new \Modelo\PermisoColeccion($ArrayFindAll);
 ?>
 
 <input type="hidden" name="id" value="<?= isset($ObjetoCreado) ? $ObjetoCreado->getId() : null; ?>">
@@ -20,22 +24,35 @@ $ColeccionSistema = new \Modelo\SistemaColeccion($MapperSistema->findAll());
 </div>
 
 <div class="form-group">
-
     <label for="descripcion">Descripci&oacute;n</label>
     <input type="text" name="descripcion" class="form-control" id="descripcion" aria-describedby="emailHelp" value="<?= isset($ObjetoCreado) ? htmlspecialchars($ObjetoCreado->getDescripcion()) : null; ?>" required>
+</div>
+<hr />
+<h4>Permisos</h4>
 
-</div>
-<label for="permisos">Permisos</label>
-<div class="form-group" id="permisos">
-    <?php foreach ($ColeccionPermisosSistema->getColeccion() as $permiso) { ?>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="<?= $permiso->getId(); ?>" id="check<?= $permiso->getId(); ?>">
-            <label class="form-check-label" for="check<?= $permiso->getId(); ?>">
-                <?php echo $permiso;?>
-            </label>
-        </div>
-    <?php } ?>
-</div>
+<script>
+    var columnasSinSort = [2];
+</script>
+<script src="../gui/tablaSort.js"></script>
+<table id="csvtable" class="table table-striped table-hover table-responsive-sm table-sm btn-lg">
+    <thead>
+        <tr class="table-info">
+            <th>Sistema Asociado</th>
+            <th>Descripci&oacute;n</th>
+            <th style="width: 20%;">Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($ColeccionPermisos->getColeccion() as $Item) { ?>
+            <?php $Item->setSistema($Mapper->findSistemaById($Item->getFk_sistema())); ?>
+            <tr>
+                <td><?= $Item->getSistema(); ?></td>
+                <td><?= $Item; ?></td>
+                <td><input type="checkbox" name="permiso[<?= $Item->getId() ?>]" /> </td>
+            </tr>
+        <?php } ?>
+    </tbody>
+</table>
 
 <input type="submit" class="btn btn-success" value="Confirmar" />
 <a href="Rol.Todo.php" class="btn btn-outline-danger"><i class="oi oi-account-logout"> </i> Cancelar </a>

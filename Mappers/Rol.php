@@ -39,6 +39,11 @@ class Rol extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
     public function insert($Objeto)
     {
 
+        // Autocommit a falso para mantener atomicidad de transaccion
+        $this->bdconexion->autocommit(false);
+        // Inicia transaccion
+        $this->bdconexion->begin_transaction();
+
         $this->query = "INSERT INTO {$this->nombreTabla} "
             . "VALUES (NULL, '"
             . $this->bdconexion->escape_string($Objeto->getDescripcion()) . "', "
@@ -47,9 +52,17 @@ class Rol extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
             $this->ejecutarQuery();
         } catch (\Exception $ex) {
             throw $ex;
+            // Si hay error, rollback
+            $this->bdconexion->rollback();
         }
 
+        // @todo: con el insert_id, recorrer Objeto->getPermisos y hacer INSERT en ROL_PERMISO
+        // Al final:
+        $this->bdconexion->commit();
+        $this->bdconexion->autocommit(true);
+
         return $this->bdconexion->insert_id;
+
     }
 
     /**
