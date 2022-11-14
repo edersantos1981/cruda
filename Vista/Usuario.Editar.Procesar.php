@@ -3,8 +3,15 @@
 include_once '../lib/Constantes.Class.php';
 include_once '../vendor/autoload.php';
 
-$Mapper = new \Mappers\Usuario(); 
+
 $ObjetoCreado = new \Modelo\Usuario($_POST); 
+foreach ($_POST['rol'] as $idRol => $foo) {
+    $Roles[] = new \Modelo\Rol(array("id" => $idRol));
+}
+$ObjetoCreado->setRoles($Roles);
+
+$Mapper = new \Mappers\Usuario(); 
+
 $idObjetoEditado = $Mapper->update($ObjetoCreado);
 
 ?>
