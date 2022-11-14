@@ -147,4 +147,20 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
 
         return $this->resultset->fetch_all(MYSQLI_ASSOC);
     }
+
+    function findbyNombreUsuario($nombreUsuario)
+    {
+        $this->query =
+            "SELECT * "
+            . "FROM " . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario "
+            . "WHERE nombre_usuario = {$nombreUsuario}";
+        try {
+            $this->ejecutarQuery();
+        } catch (\Exception $ex) {
+            throw $ex;
+        }
+
+        return $this->resultset->fetch_all(MYSQLI_ASSOC);
+    }
+
 }
