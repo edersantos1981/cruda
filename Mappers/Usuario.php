@@ -123,7 +123,6 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
             // Si hay error, rollback
             $this->bdconexion->rollback();
         }
-        $idUsuarioActualizado = 1;//$this->bdconexion->insert_id;
 
         foreach ($Objeto->getRoles() as $rol) {
 
@@ -141,14 +140,13 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
             }
            
         }
-        
        
         // @todo: con el insert_id, recorrer Objeto->getPermisos y hacer INSERT en ROL_PERMISO
         // Al final:
         $this->bdconexion->commit();
         $this->bdconexion->autocommit(true);
 
-        return $idUsuarioActualizado;
+        return true;
 
     }
 
