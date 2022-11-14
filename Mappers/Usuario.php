@@ -219,6 +219,9 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
         return $this->resultset->fetch_all(MYSQLI_ASSOC);
     }
 
+    /**
+     * @return array Array asociativo
+     */
     function findbyNombreUsuario($nombreUsuario)
     {
         $this->query =
@@ -231,6 +234,6 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
             throw $ex;
         }
 
-        return $this->resultset->fetch_all(MYSQLI_ASSOC);
+        return $this->resultset->fetch_assoc();
     }
 }
