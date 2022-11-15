@@ -2,8 +2,6 @@
 
 namespace Uargflow;
 
-use Exception;
-
 class Login {
 
     const LOGIN_EROR_NOMBRE_USUARIO = 0;
@@ -28,7 +26,7 @@ class Login {
         $this->mapper = new \Mappers\Usuario();
         
         if (!($this->mapper->findbyNombreUsuario($nombreUsuario))) {
-            throw new Exception("Nombre de Usuario inexistente");
+            throw new \Exception("Nombre de Usuario inexistente");
         }
         return new \Modelo\Usuario($this->mapper->findbyNombreUsuario($nombreUsuario));
     }

@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../lib/Core.Init.php';
+include_once __DIR__ . '/../Uargflow/Core.Init.php';
 $Login = new \Uargflow\Login();
 
 try {
@@ -12,7 +12,6 @@ try {
     $loginOk = false;
     header('Location: ../Vista/index.php?error=' . $ex->getMessage());
 }
-
 ?>
 <html>
 
