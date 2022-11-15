@@ -1,11 +1,6 @@
 <?php
-include_once __DIR__ . '/../vendor/autoload.php';
+include_once __DIR__ . '/../lib/Core.Init.php';
 include_once __DIR__ . '/../lib/Constantes.Class.php';
-?>
-<?php
-$handler = new \Uargflow\SessionManager();
-session_set_save_handler($handler, true);
-\Uargflow\SessionManager::start_session('cruda', true);
 $Login = new \Uargflow\Login();
 
 try {
@@ -13,8 +8,10 @@ try {
     $Login->verificaPass($_POST['password'], $Usuario->getPassword());
     $loginOk = true;
     $_SESSION['nombre_usuario']  = $_POST['nombre_usuario'];
+    header('Location: ../Vista/menu.php');
 } catch (\Exception $ex) {
     $loginOk = false;
+    //header('Location: ../Vista/index.php');
 }
 
 ?>

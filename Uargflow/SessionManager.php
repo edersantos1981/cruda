@@ -86,4 +86,10 @@ class SessionManager implements \SessionHandlerInterface
             return false;
         }
     }
+
+    static function checkUsuario(){
+        if(!isset($_SESSION['nombre_usuario']))
+            header('Location: ../Vista/index.php');
+    }
+
 }

@@ -6,6 +6,8 @@ use Exception;
 
 class Login {
 
+    const LOGIN_EROR_NOMBRE_USUARIO = 0;
+
     /**
      * @var \Modelo\Usuario
      */
