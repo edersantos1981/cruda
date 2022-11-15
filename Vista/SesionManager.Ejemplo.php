@@ -11,12 +11,11 @@ Este es un ejemplo de uso de la Clase \Uargflow\SessionManager.
 // Casos de test
 $handler = new \Uargflow\SessionManager();
 session_set_save_handler($handler, true);
-\Uargflow\SessionManager::start_session('dogo', true);
+\Uargflow\SessionManager::start_session('cruda', true);
 
 $_SESSION['var1']  = "Sede Central";
 $_SESSION['var2'] = "Distrito Río Gallegos";
 $_SESSION['var3'] = "Distrito El Calafate";
-
 ?>
 
 <html>
