@@ -4,8 +4,8 @@ namespace Uargflow;
 
 class BDConfig {
     const HOST = "localhost";
-    const USUARIO = "dba";
-    const PASS = "Uarg_2017";
+    const USUARIO = "agvp";
+    const PASS = "agvp";
 
     const SCHEMA = "cruda";
     const SCHEMA_SESIONES = "sesiones";
