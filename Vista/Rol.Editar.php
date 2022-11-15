@@ -6,12 +6,10 @@ include_once '../vendor/autoload.php';
 $Mapper = new \Mappers\Rol();
 $ObjetoCreado = new \Modelo\Rol($Mapper->findById($_GET['id']));
 
-$MapperSistema = new \Mappers\Sistema();
-$MapperPermiso = new \Mappers\Permiso();
+if(isset($ObjetoCreado)){
+    $ArrayFindPermisosRol = $Mapper->findPermisos($ObjetoCreado->getId());
+}
 
-$ColeccionSistema = new \Modelo\SistemaColeccion($MapperSistema->findAll());
-$ColeccionPermisosSistema = new \Modelo\PermisoColeccion($MapperPermiso->findPermisosbySistema($ObjetoCreado->getFk_sistema()));
-$ColeccionPermisosRol = new \Modelo\PermisoColeccion($Mapper->findPermisos($ObjetoCreado->getId()));
 ?>
 <html>
     <head>

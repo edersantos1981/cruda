@@ -37,18 +37,28 @@ $ColeccionPermisos = new \Modelo\PermisoColeccion($ArrayFindAll);
 <table id="csvtable" class="table table-striped table-hover table-responsive-sm table-sm btn-lg">
     <thead>
         <tr class="table-info">
-            <th>Sistema Asociado</th>
-            <th>Descripci&oacute;n</th>
-            <th style="width: 20%;">Opciones</th>
+            <th>Sistema</th>
+            <th>Permiso</th>
+            <th style="width: 20%;">Asignar</th>
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($ColeccionPermisos->getColeccion() as $Item) { ?>
+    <?php foreach ($ColeccionPermisos->getColeccion() as $Item) { ?>
             <?php $Item->setSistema($Mapper->findSistemaById($Item->getFk_sistema())); ?>
+
             <tr>
                 <td><?= $Item->getSistema(); ?></td>
                 <td><?= $Item; ?></td>
-                <td><input type="checkbox" name="permiso[<?= $Item->getId() ?>]" /> </td>
+                <td>
+                    <input type="checkbox" name="permiso[<?= $Item->getId() ?>]"
+                    <?php
+                    if(isset($ArrayFindPermisosRol)) 
+                    foreach ($ArrayFindPermisosRol as $ItemPermisoRol) {
+                        if ($Item->getId() == $ItemPermisoRol["id"]) {
+                            echo "checked";
+                        }
+                    } ?>>
+                </td>
             </tr>
         <?php } ?>
     </tbody>
