@@ -40,10 +40,11 @@ class Login {
     public function verificaPass($passInput, $passBD) {
 
         if (!Hash::verificaPasswordHashBD($passInput, $passBD)) {
-            throw new Exception("Contrase&ntilde;a inv&aacute;lida.");
+            throw new \Exception("Contrase&ntilde;a inv&aacute;lida.");
         }
 
         return true;
     }
+    
 
 }

@@ -1,17 +1,30 @@
 <?php
 include_once __DIR__ . '/../Uargflow/Core.Init.php';
-$Login = new \Uargflow\Login();
 
 try {
+
+    $Login = new \Uargflow\Login();
+
     $Usuario = $Login->verificaUsuario($_POST['nombre_usuario']);
     $Login->verificaPass($_POST['password'], $Usuario->getPassword());
+
+    $MapperUsuario = new \Mappers\Usuario();
+    $UsuarioPermisos = $MapperUsuario->findPermisosJSON($Usuario->getId());
+
+    $_SESSION['nombre_usuario']  = $Usuario->getNombre_usuario();
+    $_SESSION['nombre_completo'] = $Usuario->getNombre_completo();
+    $_SESSION['permisos'] = $UsuarioPermisos;
+
     $loginOk = true;
-    $_SESSION['nombre_usuario']  = $_POST['nombre_usuario'];
     header('Location: ../Vista/menu.php');
+    
 } catch (\Exception $ex) {
+
     $loginOk = false;
     header('Location: ../Vista/index.php?error=' . $ex->getMessage());
 }
+
+
 ?>
 <html>
 

@@ -91,9 +91,19 @@ class SessionManager implements \SessionHandlerInterface
         }
     }
 
-    static function checkUsuario(){
-        if(!isset($_SESSION['nombre_usuario']))
+    static function checkUsuario()
+    {
+        if (!isset($_SESSION['nombre_usuario']))
             header('Location: ../Vista/index.php');
+    }
+
+    /**
+     * @BracamonteF @todo 15/11 Crear dos métodos, CON redirect y SIN redirect 
+     */
+    static function checkPermiso($idPermiso_)
+    {
+        $permisos = json_decode($_SESSION['permisos']);
+        return (in_array($idPermiso_, $permisos));
     }
 
 }
