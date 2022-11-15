@@ -5,6 +5,11 @@ include_once '../vendor/autoload.php';
 
 $Mapper = new \Mappers\Usuario();
 $ObjetoCreado = new \Modelo\Usuario($Mapper->findById($_GET['id']));
+$MapperUsuario = new \Mappers\Usuario();
+if(isset($ObjetoCreado)){
+    $ArrayFindRolesUsuario = $MapperUsuario->findRoles($ObjetoCreado->getId());
+}
+
 ?>
 <html>
     <head>

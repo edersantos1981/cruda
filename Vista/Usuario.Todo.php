@@ -46,8 +46,6 @@ $Coleccion = new \Modelo\UsuarioColeccion($ArrayFindAll);
                     </thead>
                     <tbody>
                         <?php foreach ($Coleccion->getColeccion() as $Item) { ?>
-                            <?php // $Item->setRol($Mapper->findRolById($Item->getFk_rol())); 
-                            ?>
                             <tr>
                                 <td><?= $Item->getNombre_usuario(); ?></td>
                                 <td><?= $Item->getNombre_completo(); ?></td>

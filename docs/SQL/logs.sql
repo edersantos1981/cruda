@@ -20,8 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `logs`
 --
-CREATE DATABASE logs CHARSET utf8;
-USE logs;
+
 -- --------------------------------------------------------
 
 --

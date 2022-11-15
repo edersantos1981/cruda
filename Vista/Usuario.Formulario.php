@@ -1,3 +1,12 @@
+<?php
+
+$Mapper = new \Mappers\Rol();
+$ArrayFindAll = $Mapper->findAll();
+$ColeccionRoles = new \Modelo\RolColeccion($ArrayFindAll);
+
+
+?>
+
 <input type="hidden" name="id" value="<?= isset($ObjetoCreado) ? $ObjetoCreado->getId() : null; ?>">
 
 <div class="form-group">
@@ -18,8 +27,8 @@
 
         <div class="form-group col-md-4">
 
-            <label for="descripcion">Contrase&ntilde;a</label>          
-        
+            <label for="descripcion">Contrase&ntilde;a</label>
+
             <div class="input-group mb-3">
                 <input type="password" name="password" id="password" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <div class="input-group-append">
@@ -39,7 +48,7 @@
     <div class="form-group col-md-6">
 
         <label for="mail">Mail</label>
-        <input type="text" name="mail" class="form-control" id="mail" aria-describedby="emailHelp" value="<?= isset($ObjetoCreado) ? htmlspecialchars($ObjetoCreado->getMail()) : null; ?>">
+        <input type="email" name="mail" class="form-control" id="mail" aria-describedby="emailHelp" value="<?= isset($ObjetoCreado) ? htmlspecialchars($ObjetoCreado->getMail()) : null; ?>">
 
     </div>
 
@@ -51,6 +60,44 @@
     </div>
 
 </div>
+
+<hr />
+<h5> Roles de usuario </h5>
+
+<script>
+    var columnasSinSort = [2];
+</script>
+<script src="../gui/tablaSort.js"></script>
+<table id="csvtable" class="table table-striped table-hover table-responsive-sm table-sm btn-lg">
+    <thead>
+        <tr class="table-info">
+            <th>Sistema</th>
+            <th>Rol</th>
+            <th style="width: 20%;">Asignado</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        <?php foreach ($ColeccionRoles->getColeccion() as $Item) { ?>
+            <?php $Item->setSistema($Mapper->findSistemaById($Item->getFk_sistema())); ?>
+
+            <tr>
+                <td><?= $Item->getSistema(); ?></td>
+                <td><?= $Item; ?></td>
+                <td>
+                    <input type="checkbox" name="rol[<?= $Item->getId() ?>]"
+                    <?php
+                    if(isset($ArrayFindRolesUsuario)) 
+                    foreach ($ArrayFindRolesUsuario as $ItemRolUsuario) {
+                        if ($Item->getId() == $ItemRolUsuario["fk_rol"]) {
+                            echo "checked";
+                        }
+                    } ?>>
+                </td>
+            </tr>
+        <?php } ?>
+    </tbody>
+</table>
 
 
 <input type="submit" class="btn btn-success" value="Confirmar" />

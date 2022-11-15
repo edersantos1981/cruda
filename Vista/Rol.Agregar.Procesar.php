@@ -14,10 +14,7 @@ if (count($_POST) > 0) {
     }
     $ObjetoCreado->setPermisos($Permisos);
 
-    // Trash, eliminar dump die.
-    var_dump($Permisos);
-    die();
-
+  
     $Mapper = new \Mappers\Rol();
 
     try {
