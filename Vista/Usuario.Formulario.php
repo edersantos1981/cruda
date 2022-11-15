@@ -77,19 +77,21 @@ $ColeccionRoles = new \Modelo\RolColeccion($ArrayFindAll);
         </tr>
     </thead>
     <tbody>
-        
-        <?php foreach ($ColeccionRoles->getColeccion() as $Item) { ?>
+    
+        <?php if($ColeccionRoles->getColeccion()) 
+              foreach ($ColeccionRoles->getColeccion() as $Item) { ?>
             <?php $Item->setSistema($Mapper->findSistemaById($Item->getFk_sistema())); ?>
 
             <tr>
                 <td><?= $Item->getSistema(); ?></td>
                 <td><?= $Item; ?></td>
                 <td>
+                
                     <input type="checkbox" name="rol[<?= $Item->getId() ?>]"
                     <?php
                     if(isset($ArrayFindRolesUsuario)) 
                     foreach ($ArrayFindRolesUsuario as $ItemRolUsuario) {
-                        if ($Item->getId() == $ItemRolUsuario["id"]) {
+                        if ($Item->getId() == $ItemRolUsuario["fk_rol"]) {
                             echo "checked";
                         }
                     } ?>>
