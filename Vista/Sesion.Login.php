@@ -1,6 +1,5 @@
 <?php
 include_once __DIR__ . '/../lib/Core.Init.php';
-include_once __DIR__ . '/../lib/Constantes.Class.php';
 $Login = new \Uargflow\Login();
 
 try {
@@ -11,7 +10,7 @@ try {
     header('Location: ../Vista/menu.php');
 } catch (\Exception $ex) {
     $loginOk = false;
-    //header('Location: ../Vista/index.php');
+    header('Location: ../Vista/index.php?error=' . $ex->getMessage());
 }
 
 ?>
@@ -37,6 +36,7 @@ try {
                 <?php if (!$loginOk) { ?>
                     <p class="alert alert-danger">Hubo un error</p>
                     <p><?php echo $ex->getMessage(); ?></p>
+                    <p>Por favor intente nuevamente. Si el problema persiste, entre en contacto con la Direcci&oacute;n de Inform&aacute;tica.</p>
                 <?php } ?>
             </div>
 

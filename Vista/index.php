@@ -32,7 +32,6 @@
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
 							<input type="text" class="form-control" placeholder="Usuario" name="nombre_usuario" required>
-
 						</div>
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
@@ -43,6 +42,7 @@
 						<div class="form-group">
 							<input type="submit" value="Login" class="btn float-right login_btn">
 						</div>
+						<?= $_GET['error'] ?>
 					</form>
 				</div>
 				<div class="card-footer">
