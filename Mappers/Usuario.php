@@ -48,7 +48,7 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
 
         $this->query = "INSERT INTO {$this->nombreTabla} "
             . "VALUES (NULL, "
-            . "'" . $this->bdconexion->escape_string($Objeto->getNombre_usuario()) . "', "
+            . "'" . strtolower($this->bdconexion->escape_string($Objeto->getNombre_usuario())) . "', "
             . "'" . $this->bdconexion->escape_string($Objeto->getMail()) . "', "
             . "'" . $this->bdconexion->escape_string($Objeto->getWhatsapp()) . "', "
             . "'" . \Uargflow\Hash::creaHash($this->bdconexion->escape_string($Objeto->getPassword())) . "', "
@@ -97,7 +97,7 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
 
         //Actualiza datos en tabla usuario
         $this->query = "UPDATE {$this->nombreTabla} "
-            . "SET nombre_usuario = '" . $this->bdconexion->escape_string($Objeto->getNombre_usuario()) . "', "
+            . "SET nombre_usuario = '" . strtolower($this->bdconexion->escape_string($Objeto->getNombre_usuario())) . "', "
             . "mail = '" . $this->bdconexion->escape_string($Objeto->getMail()) . "', "
             . "whatsapp = '" . $this->bdconexion->escape_string($Objeto->getWhatsapp()) . "', "
             . "nombre_completo = '" . $this->bdconexion->escape_string($Objeto->getNombre_completo()) . "' "
@@ -172,7 +172,7 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
         $this->query = "INSERT INTO " . \Uargflow\BDConfig::SCHEMA_LOGS . ".usuario_blanqueo "
             . "VALUES (NULL, "
             . $this->bdconexion->escape_string($usuario['id']) . ", "
-            . "'" . $this->bdconexion->escape_string($usuario['nombre_usuario']) . "', "
+            . "'" . strtolower($this->bdconexion->escape_string($usuario['nombre_usuario'])) . "', "
             . "'" . $this->bdconexion->escape_string($usuario['nombre_completo']) . "', "
             . "'" . \Uargflow\IpAddress::get_client_ip() . "', "
             . "NULL, "
@@ -224,10 +224,11 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
      */
     function findbyNombreUsuario($nombreUsuario)
     {
+        $nombreUsusairolc = strtolower($nombreUsuario);
         $this->query =
             "SELECT * "
             . "FROM {$this->nombreTabla} "
-            . "WHERE nombre_usuario = '{$nombreUsuario}'";
+            . "WHERE nombre_usuario = '{$nombreUsusairolc}'";
         try {
             $this->ejecutarQuery();
         } catch (\Exception $ex) {
