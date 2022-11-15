@@ -62,13 +62,13 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
             $this->bdconexion->rollback();
         }
 
-        //Recupera el id de usuario insertado para utilizar en insert de roles a partir de nombre_usuario
+        //Recupera el id de usuario insertado para utilizar en insert de roles 
         $idUsuarioCreado = $this->bdconexion->insert_id;
 
         foreach ($Objeto->getRoles() as $rol) {
 
-            $this->query = "INSERT INTO {$this->tablaRoles} "   
-                . "VALUES ( " . $idUsuarioCreado . ", " . $rol->getId() . ")";
+            $this->query = "INSERT INTO {$this->tablaRoles} "
+                . "VALUES ( " . $idUsuarioCreado . ", " . $rol->getId() . ", NULL)";
             try {
                 $this->ejecutarQuery();
             } catch (\Exception $ex) {
@@ -111,41 +111,83 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
             $this->bdconexion->rollback();
         }
 
-        //Borrado de datos preexistentes en tabla usuario_rol
-        $this->query = "DELETE FROM {$this->tablaRoles} "
+        //devuelve los roles actualmente asociados al usuario
+        $this->query = "SELECT * FROM {$this->tablaRoles} "
             . "WHERE fk_usuario = " . $Objeto->getId();
-
+            
         try {
             $this->ejecutarQuery();
         } catch (\Exception $ex) {
-            throw $ex;
             // Si hay error, rollback
             $this->bdconexion->rollback();
+            throw $ex;
         }
+        $rolesActuales =  $this->resultset->fetch_all(MYSQLI_ASSOC);
+     
+
+        //elimina los roles actuales que no coinciden con los nuevos
+        foreach ($rolesActuales as $rolActual) {
+            $borrar = true;
+            foreach ($Objeto->getRoles() as $rol) {
+                if ($rolActual["fk_rol"] == $rol->getId()) {
+                    $borrar = false;
+                }
+            }
+            if ($borrar) {
+                //Registra en log el rol borrado
+                $this->query = "INSERT INTO " 
+                    . \Uargflow\BDConfig::SCHEMA_LOGS . ".usuario_alta_baja_rol "
+                    . "VALUES (NULL, " 
+                                 . $Objeto->getId() . ", " 
+                                 . $rolActual["fk_rol"] . ", '" 
+                                 . $rolActual["fecha_desde"] . "', " 
+                                 . "NULL, '" 
+                                 . \Uargflow\IpAddress::get_client_ip() 
+                                 . "', NULL)";
+
+                try {
+                    $this->ejecutarQuery();
+                } catch (\Exception $ex) {
+                    // Si hay error, rollback
+                    $this->bdconexion->rollback();
+                    throw $ex;
+                }
+
+                //Borrado de datos preexistentes en tabla usuario_rol
+                $this->query = "DELETE FROM {$this->tablaRoles} "
+                    . "WHERE fk_rol = " . $rolActual["fk_rol"];
+
+                try {
+                    $this->ejecutarQuery();
+                } catch (\Exception $ex) {
+                    // Si hay error, rollback
+                    $this->bdconexion->rollback();
+                    throw $ex;
+                }
+            }
+        }
+
 
         // Carga de nuevos datos en tabla usuario_rol
         foreach ($Objeto->getRoles() as $rol) {
 
-            $this->query = "INSERT INTO {$this->tablaRoles} "
-                . "VALUES ( " . $Objeto->getId() . ", " . $rol->getId() . ")";
+            $this->query = "INSERT IGNORE INTO {$this->tablaRoles} "
+                . "VALUES ( " . $Objeto->getId() . ", " . $rol->getId() . ", NULL)";
             try {
                 $this->ejecutarQuery();
-            
             } catch (\Exception $ex) {
-                throw $ex;
                 // Si hay error, rollback
                 $this->bdconexion->rollback();
+                throw $ex;
             }
-           
         }
-       
+
         // @todo: con el insert_id, recorrer Objeto->getPermisos y hacer INSERT en ROL_PERMISO
         // Al final:
         $this->bdconexion->commit();
         $this->bdconexion->autocommit(true);
 
         return true;
-
     }
 
     /**
@@ -172,10 +214,8 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
         $this->query = "INSERT INTO " . \Uargflow\BDConfig::SCHEMA_LOGS . ".usuario_blanqueo "
             . "VALUES (NULL, "
             . $this->bdconexion->escape_string($usuario['id']) . ", "
-            . "'" . strtolower($this->bdconexion->escape_string($usuario['nombre_usuario'])) . "', "
-            . "'" . $this->bdconexion->escape_string($usuario['nombre_completo']) . "', "
+            . "NULL, " 
             . "'" . \Uargflow\IpAddress::get_client_ip() . "', "
-            . "NULL, "
             . "NULL )";
 
         try {
@@ -206,7 +246,7 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
     function findRoles($idUsuario)
     {
         $this->query =
-            "SELECT R.* "
+            "SELECT RU.* "
             . "FROM " . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario U, " . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario_rol RU "
             . "WHERE U.id = RU.fk_usuario "
             . "AND RU.fk_usuario = {$idUsuario}";

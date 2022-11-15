@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `usuarios_1_14_0`
+-- Base de datos: `usuarios_1_14_5`
 --
 
 -- --------------------------------------------------------
@@ -102,7 +102,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nombre_usuario`, `mail`, `whatsapp`, `password`, `nombre_completo`) VALUES
-(4, 'VICTOR', '', '', '123456', '');
+(4, 'VICTOR_182', 'Valentinvictor@agvp.gob.ar', '2966313352', '123456', 'Victor Hugo Valentin');
 
 -- --------------------------------------------------------
 
@@ -112,7 +112,8 @@ INSERT INTO `usuario` (`id`, `nombre_usuario`, `mail`, `whatsapp`, `password`, `
 
 CREATE TABLE `usuario_rol` (
   `fk_usuario` int(11) NOT NULL,
-  `fk_rol` int(11) NOT NULL
+  `fk_rol` int(11) NOT NULL,
+  `fecha_desde` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
