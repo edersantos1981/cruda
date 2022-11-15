@@ -89,7 +89,7 @@ $ColeccionRoles = new \Modelo\RolColeccion($ArrayFindAll);
                     <?php
                     if(isset($ArrayFindRolesUsuario)) 
                     foreach ($ArrayFindRolesUsuario as $ItemRolUsuario) {
-                        if ($Item->getId() == $ItemRolUsuario["fk_rol"]) {
+                        if ($Item->getId() == $ItemRolUsuario["id"]) {
                             echo "checked";
                         }
                     } ?>>

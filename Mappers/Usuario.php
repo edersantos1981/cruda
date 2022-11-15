@@ -123,7 +123,7 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
             $this->bdconexion->rollback();
         }
 
-        // Carga de nuevos datos en tabla usuario_rl
+        // Carga de nuevos datos en tabla usuario_rol
         foreach ($Objeto->getRoles() as $rol) {
 
             $this->query = "INSERT INTO {$this->tablaRoles} "
@@ -206,7 +206,7 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
     function findRoles($idUsuario)
     {
         $this->query =
-            "SELECT RU.* "
+            "SELECT R.* "
             . "FROM " . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario U, " . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario_rol RU "
             . "WHERE U.id = RU.fk_usuario "
             . "AND RU.fk_usuario = {$idUsuario}";

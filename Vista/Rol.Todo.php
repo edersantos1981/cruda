@@ -38,8 +38,8 @@ $Coleccion = new \Modelo\RolColeccion($ArrayFindAll);
                 <table id="csvtable" class="table table-striped table-hover table-responsive-sm table-sm btn-lg">
                     <thead>
                         <tr class="table-info">
-                            <th>Sistema Asociado</th>
-                            <th>Descripci&oacute;n</th>
+                            <th>Sistema</th>
+                            <th>Rol</th>
                             <th style="width: 20%;">Opciones</th>
                         </tr>
                     </thead>

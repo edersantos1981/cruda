@@ -101,8 +101,11 @@ class Rol extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
         try {
             $this->ejecutarQuery();
         } catch (\Exception $ex) {
-            throw $ex;
-        }
+             // Si hay error, rollback
+             $this->bdconexion->rollback();
+             throw $ex;
+
+            }
 
         $this->query = "DELETE FROM {$this->tablaPermisos} "
         . "WHERE fk_rol = " . $Objeto->getId();
@@ -110,27 +113,30 @@ class Rol extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
         try {
             $this->ejecutarQuery();
         } catch (\Exception $ex) {
-            throw $ex;
             // Si hay error, rollback
             $this->bdconexion->rollback();
+            throw $ex;
         }
 
-        // Carga de nuevos datos en tabla usuario_rl
+
+        // Carga de nuevos datos en tabla usuario_rol
+        if($Objeto->getPermisos())
         foreach ($Objeto->getPermisos() as $permiso) {
 
             $this->query = "INSERT INTO {$this->tablaPermisos} "
-                . "VALUES ( " . $Objeto->getId() . ", " . $permiso->getId() . ")";
+                . "VALUES (" . $Objeto->getId() . ", " . $permiso->getId() . ")";
             try {
-                $this->ejecutarQuery();
-            
+                $this->ejecutarQuery();            
             } catch (\Exception $ex) {
-                throw $ex;
                 // Si hay error, rollback
                 $this->bdconexion->rollback();
+                throw $ex;
             }
            
         }
 
+        $this->bdconexion->commit();
+        $this->bdconexion->autocommit(true);
 
         return true;
     }

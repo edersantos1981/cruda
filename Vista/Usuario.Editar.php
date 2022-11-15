@@ -3,9 +3,9 @@
 include_once '../lib/Constantes.Class.php';
 include_once '../vendor/autoload.php';
 
-$Mapper = new \Mappers\Usuario();
-$ObjetoCreado = new \Modelo\Usuario($Mapper->findById($_GET['id']));
 $MapperUsuario = new \Mappers\Usuario();
+$ObjetoCreado = new \Modelo\Usuario($MapperUsuario->findById($_GET['id']));
+
 if(isset($ObjetoCreado)){
     $ArrayFindRolesUsuario = $MapperUsuario->findRoles($ObjetoCreado->getId());
 }
