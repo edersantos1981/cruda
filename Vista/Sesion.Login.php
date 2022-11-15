@@ -1,41 +1,51 @@
-<?php include_once __DIR__ . '/../vendor/autoload.php'; ?>
+<?php 
+include_once __DIR__ . '/../vendor/autoload.php'; 
+include_once __DIR__ . '/../lib/Constantes.Class.php';
+?>
 <?php
-$nombreOk = "esantos";
-$passOk = "eder";
-
-$nombreMalo = "eder";
-$passMala = "passMala";
-
 $Login = new \Uargflow\Login();
 
-echo "<br /> Caso 1 : ";
 try {
-    $Usuario = $Login->verificaUsuario($nombreOk);
-    var_dump($Login->verificaPass($passOk, $Usuario->getPassword()));
+    $Usuario = $Login->verificaUsuario($_POST['nombre_usuario']);
+    $Login->verificaPass($_POST['password'], $Usuario->getPassword());
+    $loginOk = true;
 } catch (\Exception $ex) {
-    echo $ex->getMessage();
+    $loginOk = false;
 }
 
-echo "<br /> Caso 2 : ";
-try {
-    $Usuario = $Login->verificaUsuario($nombreOk);
-    $Login->verificaPass($passMala, $Usuario->getPassword());
-} catch (\Exception $ex) {
-    echo $ex->getMessage();
-}
+?>
+<html>
+    <head>
+        <?php include_once '../lib/includesCss.php'; ?>
+        <?php include_once '../lib/includesJs.php'; ?>
+        <title><?= Constantes::NOMBRE_SISTEMA; ?> - Permisos</title>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="oi oi-warning"> </i> Error de Autentificación</h5>
+                </div>
+                <div class="card-body bg-warning">
+                    <?php if ($loginOk) { ?>
+                        <h3> OK </h3>
+                    <?php } ?>
+                    <?php if (!$loginOk) { ?>
+                        <h3> <?php echo $ex->getMessage() ?> </h3>
+                    <?php } ?>                                        
+                </div>
+                <div class="card-footer">
+                    <a href="index.php" class="btn btn-primary">
+                        <i class="oi oi-account-logout"> </i> Volver
+                    </a>
+                    </p>
+                </div>
+            </div>   
+            <div class="row">&nbsp;</div>
 
-echo "<br /> Caso 3 : ";
-try {
-    $Usuario = $Login->verificaUsuario($nombreMalo);
-    $Login->verificaPass($passOk, $Usuario->getPassword());
-} catch (\Exception $ex) {
-    echo $ex->getMessage();
-}
+        </div>
+        <?php include_once "../gui/footer.php"; ?>
+    </body>
+</html>
 
-echo "<br /> Caso 4 : ";
-try {
-    $Usuario = $Login->verificaUsuario($nombreMalo);
-    $Login->verificaPass($passMala, $Usuario->getPassword());
-} catch (\Exception $ex) {
-    echo $ex->getMessage();
-}
+

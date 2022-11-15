@@ -33,19 +33,6 @@ class Login {
 
     /**
      *
-     * @return  bool
-     */ 
-
-    /*
-    public function verificaPass($pass, $usuario){
-        $mapper = new \Mappers\Usuario();
-        $objeto = new \Modelo\Usuario();
-        return Hash::verificaPasswordHashBD($pass, $objeto->getPassword());
-    }
-    */
-
-    /**
-     *
      * @return  true
      * @throws  Exception
      * 
