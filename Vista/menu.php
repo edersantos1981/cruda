@@ -1,10 +1,10 @@
 <?php include_once __DIR__ . '/../vendor/autoload.php'; ?>
+<?php include_once __DIR__ . '/../lib/Constantes.Class.php'; ?>
 
 <html>
 <head>
     <?php include_once __DIR__ . '/../lib/includesCss.php'; ?>
     <?php include_once __DIR__ . '/../lib/includesJs.php'; ?>
-    <?php include_once __DIR__ . '/../lib/Constantes.Class.php'; ?>
     <title><?= Constantes::NOMBRE_SISTEMA; ?> - Portada</title>
 </head>
 
@@ -20,10 +20,6 @@
             <img class="logo-vialidad" src="../lib/img/logo_vialidad.png">
         </div>
     </div>
-    
-
-    <!-- </div> -->
-
     <?php include './menu.jumbo.php' ?>
     <br />
     <?php include_once __DIR__ . '/../gui/footer.php'; ?>
