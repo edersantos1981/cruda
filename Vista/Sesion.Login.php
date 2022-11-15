@@ -24,14 +24,16 @@ try {
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header">
-                    <h5><i class="oi oi-warning"> </i> Error de Autentificación</h5>
+                    <h5><i class="bi bi-key"> </i> Ingreso al Sistema</h5>
                 </div>
-                <div class="card-body bg-warning">
+                <div class="card-body">
                     <?php if ($loginOk) { ?>
-                        <h3> OK </h3>
+                        <p class="alert alert-success">Operaci&oacute;n realizada con &eacute;xito.</p>
+                        <p>Su usuario fue autenticado</p>
                     <?php } ?>
                     <?php if (!$loginOk) { ?>
-                        <h3> <?php echo $ex->getMessage() ?> </h3>
+                        <p class="alert alert-danger">Hubo un error</p>
+                        <p><?php echo $ex->getMessage(); ?></p>
                     <?php } ?>                                        
                 </div>
                 <div class="card-footer">
