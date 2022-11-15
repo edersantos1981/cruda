@@ -32,20 +32,20 @@ class SessionManager implements \SessionHandlerInterface
         session_regenerate_id(true);
     }
 
-    public function open($path, $name)
+    public function open($path, $name): bool
     {
         $this->link = new \mysqli(BDConfig::HOST, BDConfig::USUARIO, BDConfig::PASS, BDConfig::SCHEMA_SESIONES);
 
         return true;
     }
 
-    public function close()
+    public function close(): bool
     {
         $this->link->close();
         return true;
     }
 
-    public function read($id)
+    public function read($id): string|false
     {
         $result = $this->link->query("SELECT Session_Data FROM Session WHERE Session_Id = '" . $id . "' AND Session_Expires > '" . date('Y-m-d H:i:s') . "'");
         if ($row = $result->fetch_assoc()) {
@@ -55,7 +55,7 @@ class SessionManager implements \SessionHandlerInterface
         }
     }
 
-    public function write($id, $data)
+    public function write($id, $data): bool
     {
         $DateTime = date('Y-m-d H:i:s');
         $NewDateTime = date('Y-m-d H:i:s', strtotime($DateTime . ' + 1 hour'));
@@ -66,7 +66,7 @@ class SessionManager implements \SessionHandlerInterface
             return false;
         }
     }
-    public function destroy($id)
+    public function destroy($id): bool
     {
         $result = $this->link->query("DELETE FROM Session WHERE Session_Id ='" . $id . "'");
         if ($result) {
@@ -75,7 +75,7 @@ class SessionManager implements \SessionHandlerInterface
             return false;
         }
     }
-    public function gc($maxlifetime)
+    public function gc($maxlifetime): int|false
     {
         //$result = $this->link->query("DELETE FROM Session WHERE ((UNIX_TIMESTAMP(Session_Expires) + " . $maxlifetime . ") < " . $maxlifetime . ")");
         $result = $this->link->query("DELETE FROM Session WHERE Session_Expires <= NOW()");
