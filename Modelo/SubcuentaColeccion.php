@@ -1,6 +1,6 @@
 <?php 
 namespace Modelo;
-class SubcuentaColeccion extends \Uargflow\ColeccionGenerica {
+class SubcuentaColeccion extends \Cruda\ColeccionGenerica {
     
     public function __construct($array) {
         parent::__construct($array, Subcuenta::class);

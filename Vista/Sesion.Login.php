@@ -1,9 +1,9 @@
 <?php
-include_once __DIR__ . '/../Uargflow/Core.Init.php';
+include_once __DIR__ . '/../Cruda/Core.Init.php';
 
 try {
 
-    $Login = new \Uargflow\Login();
+    $Login = new \Cruda\Login();
 
     $Usuario = $Login->verificaUsuario($_POST['nombre_usuario']);
     $Login->verificaPass($_POST['password'], $Usuario->getPassword());
@@ -16,16 +16,16 @@ try {
     $_SESSION['permisos'] = $UsuarioPermisos;
     
     $loginOk = true;
-    $_SESSION['login_status'] = \Uargflow\Login::LOGIN_OK;
+    $_SESSION['login_status'] = \Cruda\Login::LOGIN_OK;
     header('Location: ../Vista/menu.php');
     
 } catch (\Exception $ex) {
 
     $loginOk = false;
     if (isset($Usuario))
-        $_SESSION['login_status'] = \Uargflow\Login::LOGIN_ERROR_PASS;
+        $_SESSION['login_status'] = \Cruda\Login::LOGIN_ERROR_PASS;
     if (!isset($Usuario))
-        $_SESSION['login_status'] = \Uargflow\Login::LOGIN_ERROR_NOMBRE_USUARIO;
+        $_SESSION['login_status'] = \Cruda\Login::LOGIN_ERROR_NOMBRE_USUARIO;
     header('Location: ../Vista/index.php?error=' . $ex->getMessage());
 }
 

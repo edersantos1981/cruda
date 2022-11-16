@@ -6,12 +6,12 @@ namespace Mappers;
  * Mapper de la clase Sistema
  * @author Eder dos Santos - esantos@uarg.unpa.edu.ar
  */
-class Sistema extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
+class Sistema extends \Cruda\BDMapper implements \Cruda\MapperInterface
 {
 
     function __construct()
     {
-        $this->nombreTabla = \Uargflow\BDConfig::SCHEMA_USUARIOS . ".sistema";
+        $this->nombreTabla = \Cruda\BDConfig::SCHEMA_USUARIOS . ".sistema";
         $this->nombreAtributoId = "id";
         parent::__construct();
     }

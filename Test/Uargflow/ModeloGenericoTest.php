@@ -1,6 +1,6 @@
 <?php
 
-namespace Uargflow;
+namespace Cruda;
 
 use PHPUnit\Framework\TestCase;
 

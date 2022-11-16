@@ -1,4 +1,4 @@
-<?php include_once __DIR__ . '/../Uargflow/Core.Init.php'; ?>
+<?php include_once __DIR__ . '/../Cruda/Core.Init.php'; ?>
 <?php session_destroy() ?>
 <html>
 

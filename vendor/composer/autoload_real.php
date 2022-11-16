@@ -13,6 +13,9 @@ class ComposerAutoloaderInit717c0d97f8d114f6bb19eb1745dfec6d
         }
     }
 
+    /**
+     * @return \Composer\Autoload\ClassLoader
+     */
     public static function getLoader()
     {
         if (null !== self::$loader) {
@@ -20,40 +23,14 @@ class ComposerAutoloaderInit717c0d97f8d114f6bb19eb1745dfec6d
         }
 
         spl_autoload_register(array('ComposerAutoloaderInit717c0d97f8d114f6bb19eb1745dfec6d', 'loadClassLoader'), true, true);
-        self::$loader = $loader = new \Composer\Autoload\ClassLoader();
+        self::$loader = $loader = new \Composer\Autoload\ClassLoader(\dirname(__DIR__));
         spl_autoload_unregister(array('ComposerAutoloaderInit717c0d97f8d114f6bb19eb1745dfec6d', 'loadClassLoader'));
 
-        $map = require __DIR__ . '/autoload_namespaces.php';
-        foreach ($map as $namespace => $path) {
-            $loader->set($namespace, $path);
-        }
-
-        $map = require __DIR__ . '/autoload_psr4.php';
-        foreach ($map as $namespace => $path) {
-            $loader->setPsr4($namespace, $path);
-        }
-
-        $classMap = require __DIR__ . '/autoload_classmap.php';
-        if ($classMap) {
-            $loader->addClassMap($classMap);
-        }
+        require __DIR__ . '/autoload_static.php';
+        call_user_func(\Composer\Autoload\ComposerStaticInit717c0d97f8d114f6bb19eb1745dfec6d::getInitializer($loader));
 
         $loader->register(true);
 
-        $includeFiles = require __DIR__ . '/autoload_files.php';
-        foreach ($includeFiles as $fileIdentifier => $file) {
-            composerRequire717c0d97f8d114f6bb19eb1745dfec6d($fileIdentifier, $file);
-        }
-
         return $loader;
-    }
-}
-
-function composerRequire717c0d97f8d114f6bb19eb1745dfec6d($fileIdentifier, $file)
-{
-    if (empty($GLOBALS['__composer_autoload_files'][$fileIdentifier])) {
-        require $file;
-
-        $GLOBALS['__composer_autoload_files'][$fileIdentifier] = true;
     }
 }

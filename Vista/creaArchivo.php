@@ -23,7 +23,7 @@ echo "<br />";
 /* Creación y Escritura de Archivo / Clase PermisosSistema*/
 $archivoClasePermisos = fopen("./PermisosSistema.php", "w") or die("Unable to open file!");
 fwrite($archivoClasePermisos, "<?php \n");
-fwrite($archivoClasePermisos, "namespace Uargflow; \n");
+fwrite($archivoClasePermisos, "namespace Cruda; \n");
 fwrite($archivoClasePermisos, "class PermisosSistema { \n");
 foreach ($arrayPermisosBD as $idPermiso => $nombrePermiso) {
     $nombreTratado = strtoupper(str_replace(" ", "_", $nombrePermiso));

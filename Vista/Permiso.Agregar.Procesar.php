@@ -15,7 +15,7 @@ if (count($_POST) > 0) {
         $_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG'] = $Mapper->insert($ObjetoCreado);
     }
     catch (\Exception $th) {
-        $_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG'] = \Uargflow\BDMapper::PRG_ERROR;
+        $_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG'] = \Cruda\BDMapper::PRG_ERROR;
         $Error = $th->getCode();
     }
 

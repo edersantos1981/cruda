@@ -1,8 +1,8 @@
 <?php
 include_once __DIR__ . '/../vendor/autoload.php'; 
-$handler = new \Uargflow\SessionManager();
+$handler = new \Cruda\SessionManager();
 session_set_save_handler($handler, true);
-\Uargflow\SessionManager::start_session('cruda', true);  
+\Cruda\SessionManager::start_session('cruda', true);  
 ?>
 <?php include_once __DIR__ . '/../lib/Constantes.Class.php'; ?>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">

@@ -26,7 +26,7 @@ include_once '../lib/Constantes.Class.php';
 
                 <?php
                 /*  Escenario 1: Ya fue cargado anteriormente (Refresh). No vuelve a cargar.  */
-                if ($_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG'] == \Uargflow\BDMapper::PRG_OK) {
+                if ($_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG'] == \Cruda\BDMapper::PRG_OK) {
                 ?>
 
                     <p class="alert alert-warning">Hubo un error</p>
@@ -39,7 +39,7 @@ include_once '../lib/Constantes.Class.php';
                 <?php
                 /* Escenario 2: Se cargó exitosamente. Se carga flag PRG_OK en sesion. */
                 if (is_int($_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG']) && $_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG'] >= 0) {
-                    $_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG'] = \Uargflow\BDMapper::PRG_OK;
+                    $_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG'] = \Cruda\BDMapper::PRG_OK;
                 ?>
 
                     <p class="alert alert-success">Operaci&oacute;n realizada con &eacute;xito.</p>
@@ -53,7 +53,7 @@ include_once '../lib/Constantes.Class.php';
 
                 <?php
                 /*  Escenario 3: Error capturado por excepción.  */
-                if ($_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG'] == \Uargflow\BDMapper::PRG_ERROR) {
+                if ($_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG'] == \Cruda\BDMapper::PRG_ERROR) {
                 ?>
 
                     <p class="alert alert-danger">Hubo un error</p>

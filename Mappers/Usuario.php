@@ -6,14 +6,14 @@ namespace Mappers;
  * Mapper de la clase Usuario
  * @author Eder dos Santos - esantos@uarg.unpa.edu.ar
  */
-class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface{
+class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
 
     protected $tablaRoles;
 
     function __construct(){
         $this->nombreAtributoId = "id";
-        $this->nombreTabla = \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario";
-        $this->tablaRoles = \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario_rol";
+        $this->nombreTabla = \Cruda\BDConfig::SCHEMA_USUARIOS . ".usuario";
+        $this->tablaRoles = \Cruda\BDConfig::SCHEMA_USUARIOS . ".usuario_rol";
         parent::__construct();
     }
 
@@ -45,7 +45,7 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface{
             . "'" . strtolower($this->bdconexion->escape_string($Objeto->getNombre_usuario())) . "', "
             . "'" . $this->bdconexion->escape_string($Objeto->getMail()) . "', "
             . "'" . $this->bdconexion->escape_string($Objeto->getWhatsapp()) . "', "
-            . "'" . \Uargflow\Hash::creaHash($this->bdconexion->escape_string($Objeto->getPassword())) . "', "
+            . "'" . \Cruda\Hash::creaHash($this->bdconexion->escape_string($Objeto->getPassword())) . "', "
             . "'" . $this->bdconexion->escape_string($Objeto->getNombre_completo()) . "')";
 
         try {
@@ -129,13 +129,13 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface{
             if ($borrar) {
                 //Registra en log el rol borrado
                 $this->query = "INSERT INTO " 
-                    . \Uargflow\BDConfig::SCHEMA_LOGS . ".usuario_alta_baja_rol "
+                    . \Cruda\BDConfig::SCHEMA_LOGS . ".usuario_alta_baja_rol "
                     . "VALUES (NULL, " 
                                  . $Objeto->getId() . ", " 
                                  . $rolActual["fk_rol"] . ", '" 
                                  . $rolActual["fecha_desde"] . "', " 
                                  . "NULL, '" 
-                                 . \Uargflow\IpAddress::get_client_ip() 
+                                 . \Cruda\IpAddress::get_client_ip() 
                                  . "', NULL)";
 
                 try {
@@ -191,7 +191,7 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface{
         $this->bdconexion->begin_transaction();
 
         $this->query = "UPDATE {$this->nombreTabla} "
-            . "SET password = '" . \Uargflow\Hash::creaHash($this->bdconexion->escape_string($Objeto->getPassword())) . "' "
+            . "SET password = '" . \Cruda\Hash::creaHash($this->bdconexion->escape_string($Objeto->getPassword())) . "' "
             . "WHERE {$this->nombreAtributoId} = {$Objeto->getId()}";
 
         try {
@@ -203,11 +203,11 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface{
 
         $usuario = $this->findById($Objeto->getId());
 
-        $this->query = "INSERT INTO " . \Uargflow\BDConfig::SCHEMA_LOGS . ".usuario_blanqueo "
+        $this->query = "INSERT INTO " . \Cruda\BDConfig::SCHEMA_LOGS . ".usuario_blanqueo "
             . "VALUES (NULL, "
             . $this->bdconexion->escape_string($usuario['id']) . ", "
             . "NULL, " 
-            . "'" . \Uargflow\IpAddress::get_client_ip() . "', "
+            . "'" . \Cruda\IpAddress::get_client_ip() . "', "
             . "NULL )";
 
         try {
@@ -237,7 +237,7 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface{
     function findRoles($idUsuario){
         $this->query =
             "SELECT RU.* "
-            . "FROM " . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario U, " . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario_rol RU "
+            . "FROM " . \Cruda\BDConfig::SCHEMA_USUARIOS . ".usuario U, " . \Cruda\BDConfig::SCHEMA_USUARIOS . ".usuario_rol RU "
             . "WHERE U.id = RU.fk_usuario "
             . "AND RU.fk_usuario = {$idUsuario}";
         try {
@@ -256,8 +256,8 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface{
 
         $this->query =
             "SELECT fk_permiso "
-            . "FROM " . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario_rol UR, " 
-            . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".rol_permiso RP "
+            . "FROM " . \Cruda\BDConfig::SCHEMA_USUARIOS . ".usuario_rol UR, " 
+            . \Cruda\BDConfig::SCHEMA_USUARIOS . ".rol_permiso RP "
             . "WHERE UR.fk_rol = RP.fk_rol "
             . "AND UR.fk_usuario = {$idUsuario}";
         try {
