@@ -1,5 +1,9 @@
 <?php include_once __DIR__ . '/../lib/Core.Init.php'; ?>
 <?php include_once __DIR__ . '/../lib/Constantes.Class.php'; ?>
+<?php
+$MapperUsuario = new \Mappers\Usuario();
+$ObjetoUsuario = new \Modelo\Usuario($MapperUsuario->findbyNombreUsuario($_SESSION['nombre_usuario']));
+?>
 <html>
 
 <head>
@@ -11,7 +15,7 @@
 <body>
     <?php include_once __DIR__ . '/../gui/navbar.php'; ?>
     <div class="jumbotron jumbo-pic text-white">
-        <h1 class="jumbotron-titulo">¡Hola, <?php echo $_SESSION['nombre_usuario'] ?>!</h1>
+        <h1 class="jumbotron-titulo">¡Hola, <?php echo $ObjetoUsuario->getNombre_completo(); ?>!</h1>
         <h3 class="jumbotron-subtitulo lead">¿A qu&eacute; sistema deseas ingresar?</h3>
         <div>
             <img class="logo-santacruz" src="../lib/img/logo_santacruz.png">

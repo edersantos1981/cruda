@@ -1,8 +1,13 @@
+<?php
+include_once __DIR__ . '/../vendor/autoload.php'; 
+$handler = new \Uargflow\SessionManager();
+session_set_save_handler($handler, true);
+\Uargflow\SessionManager::start_session('cruda', true);  
+?>
 <?php include_once __DIR__ . '/../lib/Constantes.Class.php'; ?>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 <!DOCTYPE html>
 <html>
 
@@ -32,7 +37,6 @@
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
 							<input type="text" class="form-control" placeholder="Usuario" name="nombre_usuario" required>
-
 						</div>
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
@@ -40,6 +44,12 @@
 							</div>
 							<input type="password" class="form-control" placeholder="Contrase&ntilde;a" name="password" required>
 						</div>
+						<?php if (isset($_SESSION['login_status']) && $_SESSION['login_status'] == 0) { ?>
+							<p class="alert alert-danger">Usuario no encontrado</p>
+						<?php } ?>
+						<?php if (isset($_SESSION['login_status']) && $_SESSION['login_status'] == 1) { ?>
+							<p class="alert alert-danger">Contraseña incorrecta</p>
+						<?php } ?>
 						<div class="form-group">
 							<input type="submit" value="Login" class="btn float-right login_btn">
 						</div>

@@ -6,31 +6,26 @@ namespace Mappers;
  * Mapper de la clase Usuario
  * @author Eder dos Santos - esantos@uarg.unpa.edu.ar
  */
-class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
-{
+class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface{
 
     protected $tablaRoles;
 
-    function __construct()
-    {
+    function __construct(){
         $this->nombreAtributoId = "id";
         $this->nombreTabla = \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario";
         $this->tablaRoles = \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario_rol";
         parent::__construct();
     }
 
-    public function findAll($filtrosBusqueda = null)
-    {
+    public function findAll($filtrosBusqueda = null){
         return parent::findAll($filtrosBusqueda);
     }
 
-    public function findById($id)
-    {
+    public function findById($id){
         return parent::findById($id);
     }
 
-    public function delete($idObjeto)
-    {
+    public function delete($idObjeto){
         return parent::delete($idObjeto);
     }
 
@@ -39,8 +34,7 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
      * @param \Modelo\Usuario $Objeto
      * @return Int 
      */
-    public function insert($Objeto)
-    {
+    public function insert($Objeto){
         // Autocommit a falso para mantener atomicidad de transaccion
         $this->bdconexion->autocommit(false);
         // Inicia transaccion
@@ -88,8 +82,7 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
     /**
      * @param \modelo\Usuario $Objeto
      */
-    public function update($Objeto)
-    {
+    public function update($Objeto){
         // Autocommit a falso para mantener atomicidad de transaccion
         $this->bdconexion->autocommit(false);
         // Inicia transaccion
@@ -193,8 +186,7 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
     /**
      * @param \modelo\Usuario $Objeto
      */
-    function updatePassword($Objeto)
-    {
+    function updatePassword($Objeto){
         $this->bdconexion->autocommit(false);
         $this->bdconexion->begin_transaction();
 
@@ -234,8 +226,7 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
     /**
      * @return array 
      */
-    function findRolById($idRol)
-    {
+    function findRolById($idRol){
         $MapperRol = new \Mappers\Rol();
         return new \Modelo\Rol($MapperRol->findById($idRol));
     }
@@ -243,8 +234,7 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
     /**
      * @return array
      */
-    function findRoles($idUsuario)
-    {
+    function findRoles($idUsuario){
         $this->query =
             "SELECT RU.* "
             . "FROM " . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario U, " . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario_rol RU "
@@ -262,8 +252,7 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
     /**
      * @return array Array asociativo
      */
-    function findbyNombreUsuario($nombreUsuario)
-    {
+    function findbyNombreUsuario($nombreUsuario){
         $nombreUsusairolc = strtolower($nombreUsuario);
         $this->query =
             "SELECT * "

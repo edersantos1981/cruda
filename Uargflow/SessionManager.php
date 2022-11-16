@@ -9,8 +9,7 @@ class SessionManager implements \SessionHandlerInterface
      */
     private $link;
 
-    static function start_session($session_name, $secure)
-    {
+    static function start_session($session_name, $secure){
         // Make sure the session cookie is not accessible via javascript.
         $httponly = true;
 
@@ -34,21 +33,18 @@ class SessionManager implements \SessionHandlerInterface
 
 
 
-    public function open($path, $name): bool
-    {
+    public function open($path, $name): bool{
         $this->link = new \mysqli(BDConfig::HOST, BDConfig::USUARIO, BDConfig::PASS, BDConfig::SCHEMA_SESIONES);
 
         return true;
     }
 
-    public function close(): bool
-    {
+    public function close(): bool{
         $this->link->close();
         return true;
     }
 
-    public function read($id): string|false
-    {
+    public function read($id): string|false{
         $result = $this->link->query("SELECT Session_Data FROM Session WHERE Session_Id = '" . $id . "' AND Session_Expires > '" . date('Y-m-d H:i:s') . "'");
         if ($row = $result->fetch_assoc()) {
             return \Uargflow\SSLHandler::decrypt($row['Session_Data']);
@@ -57,8 +53,7 @@ class SessionManager implements \SessionHandlerInterface
         }
     }
 
-    public function write($id, $data): bool
-    {
+    public function write($id, $data): bool{
         $DateTime = date('Y-m-d H:i:s');
         $NewDateTime = date('Y-m-d H:i:s', strtotime($DateTime . ' + 1 hour'));
         $result = $this->link->query("REPLACE INTO Session SET Session_Id = '" . $id . "', Session_Expires = '" . $NewDateTime . "', Session_Data = '" . \Uargflow\SSLHandler::encrypt($data) . "'");
@@ -69,8 +64,7 @@ class SessionManager implements \SessionHandlerInterface
         }
     }
 
-    public function destroy($id): bool
-    {
+    public function destroy($id): bool{
         $result = $this->link->query("DELETE FROM Session WHERE Session_Id ='" . $id . "'");
         if ($result) {
             return true;
@@ -79,8 +73,7 @@ class SessionManager implements \SessionHandlerInterface
         }
     }
 
-    public function gc($maxlifetime): int|false
-    {
+    public function gc($maxlifetime): int|false{
         //$result = $this->link->query("DELETE FROM Session WHERE ((UNIX_TIMESTAMP(Session_Expires) + " . $maxlifetime . ") < " . $maxlifetime . ")");
         $result = $this->link->query("DELETE FROM Session WHERE Session_Expires <= NOW()");
 
@@ -90,10 +83,8 @@ class SessionManager implements \SessionHandlerInterface
             return false;
         }
     }
-
     static function checkUsuario(){
         if(!isset($_SESSION['nombre_usuario']))
             header('Location: ../Vista/index.php');
     }
-
 }

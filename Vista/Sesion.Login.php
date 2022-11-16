@@ -8,10 +8,15 @@ try {
     $Login->verificaPass($_POST['password'], $Usuario->getPassword());
     $loginOk = true;
     $_SESSION['nombre_usuario']  = $_POST['nombre_usuario'];
+    $_SESSION['login_status'] = 2;
     header('Location: ../Vista/menu.php');
 } catch (\Exception $ex) {
     $loginOk = false;
-    //header('Location: ../Vista/index.php');
+    if (isset($Usuario))
+        $_SESSION['login_status'] = 1;
+    if (!isset($Usuario))
+        $_SESSION['login_status'] = 0;
+    header('Location: ../Vista/index.php');
 }
 
 ?>
