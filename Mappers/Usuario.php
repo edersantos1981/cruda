@@ -3,8 +3,11 @@
 namespace Mappers;
 
 /**
- * Mapper de la clase Usuario
- * @author Eder dos Santos - esantos@uarg.unpa.edu.ar
+ * 
+ * @author @edersantos1981
+ * @author @BracamonteF
+ * @author @VictorHValentin
+ * 
  */
 class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
 
@@ -35,9 +38,8 @@ class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
      * @return Int 
      */
     public function insert($Objeto){
-        // Autocommit a falso para mantener atomicidad de transaccion
+
         $this->bdconexion->autocommit(false);
-        // Inicia transaccion
         $this->bdconexion->begin_transaction();
 
         $this->query = "INSERT INTO {$this->nombreTabla} "
@@ -52,11 +54,9 @@ class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
             $this->ejecutarQuery();
         } catch (\Exception $ex) {
             throw $ex;
-            // Si hay error, rollback
             $this->bdconexion->rollback();
         }
 
-        //Recupera el id de usuario insertado para utilizar en insert de roles 
         $idUsuarioCreado = $this->bdconexion->insert_id;
 
         foreach ($Objeto->getRoles() as $rol) {
@@ -71,8 +71,6 @@ class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
             }
         }
 
-        // @todo: con el insert_id, recorrer Objeto->getPermisos y hacer INSERT en ROL_PERMISO
-        // Al final:
         $this->bdconexion->commit();
         $this->bdconexion->autocommit(true);
 
@@ -83,9 +81,8 @@ class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
      * @param \modelo\Usuario $Objeto
      */
     public function update($Objeto){
-        // Autocommit a falso para mantener atomicidad de transaccion
+
         $this->bdconexion->autocommit(false);
-        // Inicia transaccion
         $this->bdconexion->begin_transaction();
 
         //Actualiza datos en tabla usuario
@@ -100,7 +97,6 @@ class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
             $this->ejecutarQuery();
         } catch (\Exception $ex) {
             throw $ex;
-            // Si hay error, rollback
             $this->bdconexion->rollback();
         }
 
@@ -111,14 +107,12 @@ class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
         try {
             $this->ejecutarQuery();
         } catch (\Exception $ex) {
-            // Si hay error, rollback
             $this->bdconexion->rollback();
             throw $ex;
         }
         $rolesActuales =  $this->resultset->fetch_all(MYSQLI_ASSOC);
      
-
-        //elimina los roles actuales que no coinciden con los nuevos
+        // Elimina los roles actuales que no coinciden con los nuevos
         foreach ($rolesActuales as $rolActual) {
             $borrar = true;
             foreach ($Objeto->getRoles() as $rol) {
@@ -141,7 +135,7 @@ class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
                 try {
                     $this->ejecutarQuery();
                 } catch (\Exception $ex) {
-                    // Si hay error, rollback
+
                     $this->bdconexion->rollback();
                     throw $ex;
                 }
@@ -153,7 +147,7 @@ class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
                 try {
                     $this->ejecutarQuery();
                 } catch (\Exception $ex) {
-                    // Si hay error, rollback
+
                     $this->bdconexion->rollback();
                     throw $ex;
                 }
@@ -169,14 +163,12 @@ class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
             try {
                 $this->ejecutarQuery();
             } catch (\Exception $ex) {
-                // Si hay error, rollback
+
                 $this->bdconexion->rollback();
                 throw $ex;
             }
         }
 
-        // @todo: con el insert_id, recorrer Objeto->getPermisos y hacer INSERT en ROL_PERMISO
-        // Al final:
         $this->bdconexion->commit();
         $this->bdconexion->autocommit(true);
 

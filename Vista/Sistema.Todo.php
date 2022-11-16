@@ -1,6 +1,8 @@
+<?php 
+include_once __DIR__ . '/../Cruda/Core.Init.php'; 
+\Cruda\SessionManager::checkPermisoRedirect(2);
+?>
 <?php
-
-include_once '../vendor/autoload.php';
 
 $Mapper = new \Mappers\Sistema();
 $ArrayFindAll = $Mapper->findAll();
@@ -11,7 +13,6 @@ $Coleccion = new \Modelo\SistemaColeccion($ArrayFindAll);
 <head>
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
-    <?php include_once '../lib/Constantes.Class.php'; ?>
     <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - Sistemas</title>
 </head>
 
