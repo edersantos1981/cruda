@@ -44,8 +44,9 @@ class SessionManager implements \SessionHandlerInterface
         return true;
     }
 
-    public function read($id): string|false{
-        $result = $this->link->query("SELECT Session_Data FROM Session WHERE Session_Id = '" . $id . "' AND Session_Expires > '" . date('Y-m-d H:i:s') . "'");
+    public function read($id): string
+    {
+        $result = $this->link->query("SELECT Session_Data FROM session WHERE Session_Id = '" . $id . "' AND Session_Expires > '" . date('Y-m-d H:i:s') . "'");
         if ($row = $result->fetch_assoc()) {
             return \Uargflow\SSLHandler::decrypt($row['Session_Data']);
         } else {
@@ -56,7 +57,7 @@ class SessionManager implements \SessionHandlerInterface
     public function write($id, $data): bool{
         $DateTime = date('Y-m-d H:i:s');
         $NewDateTime = date('Y-m-d H:i:s', strtotime($DateTime . ' + 1 hour'));
-        $result = $this->link->query("REPLACE INTO Session SET Session_Id = '" . $id . "', Session_Expires = '" . $NewDateTime . "', Session_Data = '" . \Uargflow\SSLHandler::encrypt($data) . "'");
+        $result = $this->link->query("REPLACE INTO session SET Session_Id = '" . $id . "', Session_Expires = '" . $NewDateTime . "', Session_Data = '" . \Uargflow\SSLHandler::encrypt($data) . "'");
         if ($result) {
             return true;
         } else {
@@ -64,8 +65,9 @@ class SessionManager implements \SessionHandlerInterface
         }
     }
 
-    public function destroy($id): bool{
-        $result = $this->link->query("DELETE FROM Session WHERE Session_Id ='" . $id . "'");
+    public function destroy($id): bool
+    {
+        $result = $this->link->query("DELETE FROM session WHERE Session_Id ='" . $id . "'");
         if ($result) {
             return true;
         } else {
@@ -73,9 +75,10 @@ class SessionManager implements \SessionHandlerInterface
         }
     }
 
-    public function gc($maxlifetime): int|false{
+    public function gc($maxlifetime): bool
+    {
         //$result = $this->link->query("DELETE FROM Session WHERE ((UNIX_TIMESTAMP(Session_Expires) + " . $maxlifetime . ") < " . $maxlifetime . ")");
-        $result = $this->link->query("DELETE FROM Session WHERE Session_Expires <= NOW()");
+        $result = $this->link->query("DELETE FROM session WHERE Session_Expires <= NOW()");
 
         if ($result) {
             return true;
@@ -83,8 +86,20 @@ class SessionManager implements \SessionHandlerInterface
             return false;
         }
     }
-    static function checkUsuario(){
-        if(!isset($_SESSION['nombre_usuario']))
+
+    static function checkUsuario()
+    {
+        if (!isset($_SESSION['nombre_usuario']))
             header('Location: ../Vista/index.php');
     }
+
+    /**
+     * @BracamonteF @todo 15/11 Crear dos métodos, CON redirect y SIN redirect 
+     */
+    static function checkPermiso($idPermiso_)
+    {
+        $permisos = json_decode($_SESSION['permisos']);
+        return (in_array($idPermiso_, $permisos));
+    }
+
 }

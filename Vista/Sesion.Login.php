@@ -1,23 +1,36 @@
 <?php
-include_once __DIR__ . '/../lib/Core.Init.php';
-include_once __DIR__ . '/../lib/Constantes.Class.php';
-$Login = new \Uargflow\Login();
+include_once __DIR__ . '/../Uargflow/Core.Init.php';
 
 try {
+
+    $Login = new \Uargflow\Login();
+
     $Usuario = $Login->verificaUsuario($_POST['nombre_usuario']);
     $Login->verificaPass($_POST['password'], $Usuario->getPassword());
+
+    $MapperUsuario = new \Mappers\Usuario();
+    $UsuarioPermisos = $MapperUsuario->findPermisosJSON($Usuario->getId());
+
+    $_SESSION['nombre_usuario']  = $Usuario->getNombre_usuario();
+    $_SESSION['nombre_completo'] = $Usuario->getNombre_completo();
+    $_SESSION['permisos'] = $UsuarioPermisos;
+
     $loginOk = true;
     $_SESSION['nombre_usuario']  = $_POST['nombre_usuario'];
     $_SESSION['login_status'] = 2;
     header('Location: ../Vista/menu.php');
+    
 } catch (\Exception $ex) {
+
     $loginOk = false;
     if (isset($Usuario))
         $_SESSION['login_status'] = 1;
     if (!isset($Usuario))
         $_SESSION['login_status'] = 0;
     header('Location: ../Vista/index.php');
+    header('Location: ../Vista/index.php?error=' . $ex->getMessage());
 }
+
 
 ?>
 <html>
@@ -42,6 +55,7 @@ try {
                 <?php if (!$loginOk) { ?>
                     <p class="alert alert-danger">Hubo un error</p>
                     <p><?php echo $ex->getMessage(); ?></p>
+                    <p>Por favor intente nuevamente. Si el problema persiste, entre en contacto con la Direcci&oacute;n de Inform&aacute;tica.</p>
                 <?php } ?>
             </div>
 

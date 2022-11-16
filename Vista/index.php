@@ -53,6 +53,7 @@ session_set_save_handler($handler, true);
 						<div class="form-group">
 							<input type="submit" value="Login" class="btn float-right login_btn">
 						</div>
+						<?= $_GET['error'] ?>
 					</form>
 				</div>
 				<div class="card-footer">

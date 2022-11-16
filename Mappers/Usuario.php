@@ -250,6 +250,30 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface{
     }
 
     /**
+     * @return array
+     */
+    function findPermisosJSON($idUsuario) {
+
+        $this->query =
+            "SELECT fk_permiso "
+            . "FROM " . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario_rol UR, " 
+            . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".rol_permiso RP "
+            . "WHERE UR.fk_rol = RP.fk_rol "
+            . "AND UR.fk_usuario = {$idUsuario}";
+        try {
+            $this->ejecutarQuery();
+        } catch (\Exception $ex) {
+            throw $ex;
+        }
+
+        while($row = $this->resultset->fetch_assoc()) {
+            $arrayResultado[] = $row["fk_permiso"];
+        }
+        return json_encode($arrayResultado);
+    }
+
+
+    /**
      * @return array Array asociativo
      */
     function findbyNombreUsuario($nombreUsuario){
@@ -266,4 +290,6 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface{
 
         return $this->resultset->fetch_assoc();
     }
+
+
 }

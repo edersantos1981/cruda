@@ -84,7 +84,7 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#"><i class="bi bi-person"></i> Mis Datos</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#"><i class="oi oi-account-logout"></i> Salir</a>
+                    <a class="dropdown-item" href="../Vista/Sesion.Salir.php"><i class="oi oi-account-logout"></i> Salir</a>
                 </div>
             </li>
         </ul>
