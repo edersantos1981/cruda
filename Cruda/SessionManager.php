@@ -77,7 +77,6 @@ class SessionManager implements \SessionHandlerInterface
 
     public function gc($maxlifetime): bool
     {
-        //$result = $this->link->query("DELETE FROM Session WHERE ((UNIX_TIMESTAMP(Session_Expires) + " . $maxlifetime . ") < " . $maxlifetime . ")");
         $result = $this->link->query("DELETE FROM session WHERE Session_Expires <= NOW()");
 
         if ($result) {
@@ -90,19 +89,16 @@ class SessionManager implements \SessionHandlerInterface
     static function checkUsuario()
     {
         if (!isset($_SESSION['nombre_usuario']))
-            header('Location: ' . \Cruda\Constantes::URL_LOGIN);
+            header('Location: ' . Constantes::URL_LOGIN);
     }
 
-    /**
-     * @BracamonteF @todo 15/11 Crear dos métodos, CON redirect y SIN redirect 
-     */
     static function checkPermiso($idPermiso_)
     {
         $permisos = json_decode($_SESSION['permisos']);
         return (in_array($idPermiso_, $permisos));
     }
 
-    static function checkPermisoRedirect($idPermiso_, $URL = \Cruda\Constantes::URL_USUARIO)
+    static function checkPermisoRedirect($idPermiso_, $URL = Constantes::URL_USUARIO)
     {
         if(!self::checkPermiso($idPermiso_)) {
             header('Location: ' . $URL);
