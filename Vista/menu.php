@@ -4,7 +4,7 @@
 <head>
     <?php include_once __DIR__ . '/../lib/includesCss.php'; ?>
     <?php include_once __DIR__ . '/../lib/includesJs.php'; ?>
-    <title><?= Constantes::NOMBRE_SISTEMA; ?> - Portada</title>
+    <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - Portada</title>
 </head>
 
 <body>

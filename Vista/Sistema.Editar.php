@@ -10,7 +10,7 @@ $ObjetoCreado = new \Modelo\Sistema($Mapper->findById($_GET['id']));
     <head>
         <?php include_once '../lib/includesCss.php'; ?>
         <?php include_once '../lib/includesJs.php'; ?>
-        <title><?= Constantes::NOMBRE_SISTEMA; ?> - Sistemas</title>
+        <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - Sistemas</title>
     </head>
     <body>
         <?php include_once '../gui/navbar.php'; ?>

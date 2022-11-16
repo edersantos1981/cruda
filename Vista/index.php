@@ -1,19 +1,17 @@
-<?php
-include_once __DIR__ . '/../vendor/autoload.php'; 
-$handler = new \Cruda\SessionManager();
-session_set_save_handler($handler, true);
-\Cruda\SessionManager::start_session('cruda', true);  
+<?php 
+include_once __DIR__ . '/../vendor/autoload.php';
+use Cruda\Constantes as Constantes; 
 ?>
-<?php include_once __DIR__ . '/../lib/Constantes.Class.php'; ?>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <!DOCTYPE html>
 <html>
 
 <head>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title><?= Constantes::NOMBRE_SISTEMA ?> - Ingreso</title>
+	<title><?= \Cruda\Constantes::NOMBRE_SISTEMA ?> - Ingreso</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="../lib/indexStyles.css">

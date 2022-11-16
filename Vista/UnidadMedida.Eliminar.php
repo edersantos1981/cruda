@@ -2,7 +2,7 @@
 
 include_once '../lib/Constantes.Class.php';
 
-if (!isset($_SERVER["HTTP_REFERER"]) || ($_SERVER["HTTP_REFERER"] != Constantes::APPURL . "/Vista/UnidadMedida.Todo.php")) {
+if (!isset($_SERVER["HTTP_REFERER"]) || ($_SERVER["HTTP_REFERER"] != \Cruda\Constantes::APPURL . "/Vista/UnidadMedida.Todo.php")) {
     header("Location: UnidadMedida.Todo.php");
     die();
 }
@@ -23,7 +23,7 @@ try {
 <head>
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
-    <title><?= Constantes::NOMBRE_SISTEMA; ?> - Unidades de Medida</title>
+    <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - Unidades de Medida</title>
 </head>
 
 <body>

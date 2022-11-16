@@ -15,7 +15,7 @@
 
     <a class="navbar-brand text-warning" href="../Vista/menu.php">
         <i class="bi-check-square"></i>
-        <?= Constantes::NOMBRE_SISTEMA; ?>
+        <?= \Cruda\Constantes::NOMBRE_SISTEMA; ?>
     </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333" aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">

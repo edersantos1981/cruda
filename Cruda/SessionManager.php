@@ -48,7 +48,7 @@ class SessionManager implements \SessionHandlerInterface
     {
         $result = $this->link->query("SELECT Session_Data FROM session WHERE Session_Id = '" . $id . "' AND Session_Expires > '" . date('Y-m-d H:i:s') . "'");
         if ($row = $result->fetch_assoc()) {
-            return \Cruda\SSLHandler::decrypt($row['Session_Data']);
+            return SSLHandler::decrypt($row['Session_Data']);
         } else {
             return "";
         }
@@ -57,7 +57,7 @@ class SessionManager implements \SessionHandlerInterface
     public function write($id, $data): bool{
         $DateTime = date('Y-m-d H:i:s');
         $NewDateTime = date('Y-m-d H:i:s', strtotime($DateTime . ' + 1 hour'));
-        $result = $this->link->query("REPLACE INTO session SET Session_Id = '" . $id . "', Session_Expires = '" . $NewDateTime . "', Session_Data = '" . \Cruda\SSLHandler::encrypt($data) . "'");
+        $result = $this->link->query("REPLACE INTO session SET Session_Id = '" . $id . "', Session_Expires = '" . $NewDateTime . "', Session_Data = '" . SSLHandler::encrypt($data) . "'");
         if ($result) {
             return true;
         } else {
@@ -90,7 +90,7 @@ class SessionManager implements \SessionHandlerInterface
     static function checkUsuario()
     {
         if (!isset($_SESSION['nombre_usuario']))
-            header('Location: ' . \Constantes::URL_LOGIN);
+            header('Location: ' . \Cruda\Constantes::URL_LOGIN);
     }
 
     /**
@@ -102,7 +102,7 @@ class SessionManager implements \SessionHandlerInterface
         return (in_array($idPermiso_, $permisos));
     }
 
-    static function checkPermisoRedirect($idPermiso_, $URL = \Constantes::URL_USUARIO)
+    static function checkPermisoRedirect($idPermiso_, $URL = \Cruda\Constantes::URL_USUARIO)
     {
         if(!self::checkPermiso($idPermiso_)) {
             header('Location: ' . $URL);

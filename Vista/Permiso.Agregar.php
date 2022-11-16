@@ -5,7 +5,7 @@
     <?php include_once '../lib/includesJs.php'; ?>
     <?php include_once '../lib/Constantes.Class.php'; ?>
     <?php include_once '../lib/includeComboboxJQueryUI.php' ?>
-    <title><?= Constantes::NOMBRE_SISTEMA; ?> - Permisos</title>
+    <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - Permisos</title>
 </head>
 
 <body>

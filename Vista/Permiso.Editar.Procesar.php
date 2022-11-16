@@ -12,7 +12,7 @@ $idObjetoEditado = $Mapper->update($ObjetoCreado);
     <head>
         <?php include_once '../lib/includesCss.php'; ?>
         <?php include_once '../lib/includesJs.php'; ?>
-        <title><?= Constantes::NOMBRE_SISTEMA; ?> - Permisos</title>
+        <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - Permisos</title>
     </head>
     <body>
         <?php include_once '../gui/navbar.php'; ?>

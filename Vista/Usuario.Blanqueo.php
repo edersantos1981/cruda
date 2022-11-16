@@ -12,7 +12,7 @@ $ObjetoCreado = new \Modelo\Usuario($Mapper->findById($_GET['id']));
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
     <?php include_once '../lib/includeComboboxJQueryUI.php' ?>
-    <title><?= Constantes::NOMBRE_SISTEMA; ?> - Usarios</title>
+    <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - Usarios</title>
 </head>
 
 <body>

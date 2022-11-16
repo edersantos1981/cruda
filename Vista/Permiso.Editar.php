@@ -11,7 +11,7 @@ $ObjetoCreado = new \Modelo\Permiso($Mapper->findById($_GET['id']));
         <?php include_once '../lib/includesCss.php'; ?>
         <?php include_once '../lib/includesJs.php'; ?>
         <?php include_once '../lib/includeComboboxJQueryUI.php' ?>
-        <title><?= Constantes::NOMBRE_SISTEMA; ?> - Permisos</title>
+        <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - Permisos</title>
     </head>
     <body>
         <?php include_once '../gui/navbar.php'; ?>

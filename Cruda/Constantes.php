@@ -1,4 +1,5 @@
 <?php
+namespace Cruda;
 
 setlocale(LC_TIME, 'es_AR.utf8');
 

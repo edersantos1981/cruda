@@ -6,7 +6,7 @@ namespace Cruda;
  * Este Clase se encuentra en \Cruda\SSLHandler y permite encriptar y descifrar datos
  * haciendo uso de metodos estáticos que implementan la libreria OpenSSL.
  */
-class SSLHandler implements \Cruda\SSLInterface
+class SSLHandler implements SSLInterface
 {
 
     /** Definición de Llave */

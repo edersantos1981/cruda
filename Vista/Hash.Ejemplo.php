@@ -33,7 +33,7 @@ $arrayPasswords['passDefault2'] = new \Cruda\Hash($password2, PASSWORD_DEFAULT);
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
     <?php include_once '../lib/Constantes.Class.php'; ?>
-    <title><?= Constantes::NOMBRE_SISTEMA; ?> - HASH</title>
+    <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - HASH</title>
 </head>
 
 <body>

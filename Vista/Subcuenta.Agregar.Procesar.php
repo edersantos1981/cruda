@@ -12,14 +12,14 @@ if (count($_POST) > 0) {
 
     try {
        
-        $_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG'] = $Mapper->insert($ObjetoCreado);
+        $_SESSION[\Cruda\Constantes::ID_SISTEMA]['idObjetoPRG'] = $Mapper->insert($ObjetoCreado);
     }
     catch (\Exception $th) {
-        $_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG'] = \Cruda\BDMapper::PRG_ERROR;
+        $_SESSION[\Cruda\Constantes::ID_SISTEMA]['idObjetoPRG'] = \Cruda\BDMapper::PRG_ERROR;
         $Error = $th->getCode();
     }
 
     header("HTTP/1.1 303 See Other");
-    header("Location: " . Constantes::APPURL . "/Vista/GuiABM.PRGAgregar.php?modelo=Subcuenta");
+    header("Location: " . \Cruda\Constantes::APPURL . "/Vista/GuiABM.PRGAgregar.php?modelo=Subcuenta");
     die();
 }

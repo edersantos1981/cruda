@@ -20,7 +20,7 @@ $ArrayData['3'] = "Distrito El Calafate";
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
     <?php include_once '../lib/Constantes.Class.php'; ?>
-    <title><?= Constantes::NOMBRE_SISTEMA; ?> - SSL Handler</title>
+    <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - SSL Handler</title>
 </head>
 
 <body>

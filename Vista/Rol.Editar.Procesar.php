@@ -25,7 +25,7 @@ try {
 <head>
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
-    <title><?= Constantes::NOMBRE_SISTEMA; ?> - Roles</title>
+    <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - Roles</title>
 </head>
 
 <body>
