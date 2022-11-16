@@ -14,9 +14,8 @@ try {
     $_SESSION['nombre_usuario']  = $Usuario->getNombre_usuario();
     $_SESSION['nombre_completo'] = $Usuario->getNombre_completo();
     $_SESSION['permisos'] = $UsuarioPermisos;
-
+    
     $loginOk = true;
-    $_SESSION['nombre_usuario']  = $_POST['nombre_usuario'];
     $_SESSION['login_status'] = 2;
     header('Location: ../Vista/menu.php');
     
@@ -27,7 +26,6 @@ try {
         $_SESSION['login_status'] = 1;
     if (!isset($Usuario))
         $_SESSION['login_status'] = 0;
-    header('Location: ../Vista/index.php');
     header('Location: ../Vista/index.php?error=' . $ex->getMessage());
 }
 
