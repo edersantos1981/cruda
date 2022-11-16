@@ -16,16 +16,16 @@ try {
     $_SESSION['permisos'] = $UsuarioPermisos;
     
     $loginOk = true;
-    $_SESSION['login_status'] = 2;
+    $_SESSION['login_status'] = \Uargflow\Login::LOGIN_OK;
     header('Location: ../Vista/menu.php');
     
 } catch (\Exception $ex) {
 
     $loginOk = false;
     if (isset($Usuario))
-        $_SESSION['login_status'] = 1;
+        $_SESSION['login_status'] = \Uargflow\Login::LOGIN_ERROR_PASS;
     if (!isset($Usuario))
-        $_SESSION['login_status'] = 0;
+        $_SESSION['login_status'] = \Uargflow\Login::LOGIN_ERROR_NOMBRE_USUARIO;
     header('Location: ../Vista/index.php?error=' . $ex->getMessage());
 }
 

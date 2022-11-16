@@ -90,7 +90,7 @@ class SessionManager implements \SessionHandlerInterface
     static function checkUsuario()
     {
         if (!isset($_SESSION['nombre_usuario']))
-            header('Location: ../Vista/index.php');
+            header('Location: ' . \Constantes::URL_LOGIN);
     }
 
     /**
@@ -100,6 +100,13 @@ class SessionManager implements \SessionHandlerInterface
     {
         $permisos = json_decode($_SESSION['permisos']);
         return (in_array($idPermiso_, $permisos));
+    }
+
+    static function checkPermisoRedirect($idPermiso_, $URL = \Constantes::URL_USUARIO)
+    {
+        if(!self::checkPermiso($idPermiso_)) {
+            header('Location: ' . $URL);
+        }
     }
 
 }

@@ -1,5 +1,4 @@
 <?php include_once __DIR__ . '/../Uargflow/Core.Init.php'; ?>
-<?php include_once __DIR__ . '/../lib/Constantes.Class.php'; ?>
 <html>
 
 <head>
