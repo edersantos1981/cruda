@@ -9,7 +9,8 @@ class SessionManager implements \SessionHandlerInterface
      */
     private $link;
 
-    static function start_session($session_name, $secure){
+    static function start_session($session_name, $secure)
+    {
         // Make sure the session cookie is not accessible via javascript.
         $httponly = true;
 
@@ -33,13 +34,15 @@ class SessionManager implements \SessionHandlerInterface
 
 
 
-    public function open($path, $name): bool{
+    public function open($path, $name): bool
+    {
         $this->link = new \mysqli(BDConfig::HOST, BDConfig::USUARIO, BDConfig::PASS, BDConfig::SCHEMA_SESIONES);
 
         return true;
     }
 
-    public function close(): bool{
+    public function close(): bool
+    {
         $this->link->close();
         return true;
     }
@@ -54,7 +57,8 @@ class SessionManager implements \SessionHandlerInterface
         }
     }
 
-    public function write($id, $data): bool{
+    public function write($id, $data): bool
+    {
         $DateTime = date('Y-m-d H:i:s');
         $NewDateTime = date('Y-m-d H:i:s', strtotime($DateTime . ' + 1 hour'));
         $result = $this->link->query("REPLACE INTO session SET Session_Id = '" . $id . "', Session_Expires = '" . $NewDateTime . "', Session_Data = '" . SSLHandler::encrypt($data) . "'");
@@ -94,15 +98,18 @@ class SessionManager implements \SessionHandlerInterface
 
     static function checkPermiso($idPermiso_)
     {
-        $permisos = json_decode($_SESSION['permisos']);
-        return (in_array($idPermiso_, $permisos));
+        if ($_SESSION['permisos'] != "null") {
+            
+            $permisos = json_decode($_SESSION['permisos']);
+            return (in_array($idPermiso_, $permisos));
+        }
+        return false;
     }
 
     static function checkPermisoRedirect($idPermiso_, $URL = Constantes::URL_USUARIO)
     {
-        if(!self::checkPermiso($idPermiso_)) {
+        if (!self::checkPermiso($idPermiso_)) {
             header('Location: ' . $URL);
         }
     }
-
 }

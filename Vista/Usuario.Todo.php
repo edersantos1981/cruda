@@ -1,7 +1,7 @@
 <?php
 
 include_once __DIR__ . '/../Cruda/Core.Init.php'; 
-
+\Cruda\SessionManager::checkPermisoRedirect(2);
 $Mapper = new \Mappers\Usuario();
 $ArrayFindAll = $Mapper->findAll();
 $Coleccion = new \Modelo\UsuarioColeccion($ArrayFindAll);
@@ -50,8 +50,11 @@ $Coleccion = new \Modelo\UsuarioColeccion($ArrayFindAll);
                                 <td><?= $Item->getNombre_completo(); ?></td>
                                 <td>
                                     <a name="" id="" class="btn btn-outline-warning" href="Usuario.Editar.php?id=<?= $Item->getId(); ?>" role="button"><i class="oi oi-pencil"> </i> Editar</a>
+                                    <?php 
+                                     if(\Cruda\SessionManager::checkPermiso(3)){?>
                                     <a name="" id="" class="btn btn-outline-success" href="Usuario.Blanqueo.php?id=<?= $Item->getId(); ?>" role="button"><i class="bi bi-key"> </i> Blanqueo</a>
-                                </td>
+                                    <?php }?>
+                                    </td>
                             </tr>
                         <?php
                         } ?>

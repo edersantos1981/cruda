@@ -18,11 +18,11 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `logs_1_15_0`
+-- Base de datos: `logs_1_15_1`
 --
 
-CREATE SCHEMA `logs_1_15_0`;
-USE `logs_1_15_0`;
+CREATE SCHEMA `logs_1_15_1`;
+USE `logs_1_15_1`;
 
 -- --------------------------------------------------------
 
