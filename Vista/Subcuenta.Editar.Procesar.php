@@ -1,7 +1,7 @@
 <?php
 
-include_once '../lib/Constantes.Class.php';
-include_once '../vendor/autoload.php';
+include_once __DIR__ . '/../Cruda/Core.Init.php'; 
+include_once __DIR__ . '/../Cruda/Constantes.php';
 
 $Mapper = new \Mappers\Subcuenta(); 
 $ObjetoCreado = new \Modelo\Subcuenta($_POST); 

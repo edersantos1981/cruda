@@ -1,13 +1,13 @@
 <?php
 
-include_once '../lib/Constantes.Class.php';
+include_once __DIR__ . '/../Cruda/Constantes.php';
 
 if (!isset($_SERVER["HTTP_REFERER"]) || ($_SERVER["HTTP_REFERER"] != \Cruda\Constantes::APPURL . "/Vista/UnidadMedida.Todo.php")) {
     header("Location: UnidadMedida.Todo.php");
     die();
 }
 
-include_once '../vendor/autoload.php';
+include_once __DIR__ . '/../Cruda/Core.Init.php'; 
 $Mapper = new \Mappers\UnidadMedida();
 try {
     $ObjetoEliminado = $Mapper->delete($_GET['id']);

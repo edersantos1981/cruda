@@ -1,8 +1,5 @@
 <?php
-session_start();
-
-include_once '../lib/Constantes.Class.php';
-include_once '../vendor/autoload.php';
+include_once __DIR__ . '/../Cruda/Core.Init.php'; 
 
 if (count($_POST) > 0) {
     

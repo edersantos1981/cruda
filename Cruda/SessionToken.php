@@ -4,7 +4,7 @@ namespace Cruda;
 
 use phpDocumentor\Reflection\Types\Boolean;
 
-include_once '../vendor/autoload.php';
+include_once __DIR__ . '/../vendor/autoload.php'; 
 
 /**
  * Esta clase permite crear y acceder a Tokens de sesión codificados mediante un algoritmo Hash.

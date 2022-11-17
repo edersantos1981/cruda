@@ -1,10 +1,11 @@
+<?php include_once __DIR__ . '/../Cruda/Core.Init.php';  ?>
+
 <html>
 
 <head>
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
-    <?php include_once '../lib/Constantes.Class.php'; ?>
-    <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - Unidades de Medida</title>
+        <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - Unidades de Medida</title>
 </head>
 
 <body>

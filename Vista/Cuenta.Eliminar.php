@@ -1,13 +1,13 @@
 <?php
 
-include_once '../lib/Constantes.Class.php';
+include_once __DIR__ . '/../Cruda/Constantes.php';
 
 if (!isset($_SERVER["HTTP_REFERER"]) || ($_SERVER["HTTP_REFERER"] != \Cruda\Constantes::APPURL . "/Vista/Cuenta.Todo.php")) {
     header("Location: Cuenta.Todo.php");
     die();
 }
 
-include_once '../vendor/autoload.php';
+include_once __DIR__ . '/../Cruda/Core.Init.php'; 
 
 
 $Mapper = new \Mappers\Cuenta();

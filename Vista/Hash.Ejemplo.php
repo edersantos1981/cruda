@@ -1,6 +1,6 @@
 <?php
 
-include_once '../vendor/autoload.php';
+include_once __DIR__ . '/../Cruda/Core.Init.php'; 
 
 /* 
 
@@ -32,8 +32,7 @@ $arrayPasswords['passDefault2'] = new \Cruda\Hash($password2, PASSWORD_DEFAULT);
 <head>
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
-    <?php include_once '../lib/Constantes.Class.php'; ?>
-    <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - HASH</title>
+        <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - HASH</title>
 </head>
 
 <body>
