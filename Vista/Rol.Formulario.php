@@ -13,11 +13,11 @@ $ColeccionPermisos = new \Modelo\PermisoColeccion($ArrayFindAll);
     <div class="ui-widget">
         <select id="combobox" name="fk_sistema" class="form-control" aria-describedby="emailHelp" required>
             <?php foreach ($ColeccionSistema->getColeccion() as $ItemSistema) { ?>
-                <option value="<?= $ItemSistema->getId() ?>" 
-                    <?php if (isset($ObjetoCreado) && ($ObjetoCreado->getFk_sistema() == $ItemSistema->getId())) {
-                            echo "selected"; 
-                            $sistema =  $ItemSistema->getId();
-                        }?>><?= $ItemSistema;?></option>
+                <option value="<?= $ItemSistema->getId() ?>" <?php if (
+                                                                    isset($ObjetoCreado) && ($ObjetoCreado->getFk_sistema() == $ItemSistema->getId())
+                                                                )
+                                                                    echo "selected"; ?>><?= $ItemSistema; ?>
+                </option>
             <?php } ?>
         </select>
     </div>
@@ -43,37 +43,23 @@ $ColeccionPermisos = new \Modelo\PermisoColeccion($ArrayFindAll);
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($ColeccionPermisos->getColeccion() as $Item) {
-            if (isset($sistema))
-                if ($Item->getFk_sistema() == $sistema) { ?>
-                <?php $Item->setSistema($Mapper->findSistemaById($Item->getFk_sistema())); ?>
+    <?php foreach ($ColeccionPermisos->getColeccion() as $Item) { ?>
+            <?php $Item->setSistema($Mapper->findSistemaById($Item->getFk_sistema())); ?>
 
-                <tr>
-                    <td><?= $Item->getSistema(); ?></td>
-                    <td><?= $Item; ?></td>
-                    <td>
-                        <input type="checkbox" name="permiso[<?= $Item->getId() ?>]" 
-                        <?php
-                            if (isset($ArrayFindPermisosRol))
-                                foreach ($ArrayFindPermisosRol as $ItemPermisoRol) {
-                                    if ($Item->getId() == $ItemPermisoRol["id"]) {
-                                        echo "checked";
-                                    }
-                                } ?>>
-                    </td>
-                </tr>
-            <?php } ?>
-            <?php if (!isset($sistema)) { ?>
-                <?php $Item->setSistema($Mapper->findSistemaById($Item->getFk_sistema())); ?>
-
-                <tr>
-                    <td><?= $Item->getSistema(); ?></td>
-                    <td><?= $Item; ?></td>
-                    <td>
-                        <input type="checkbox" name="permiso[<?= $Item->getId() ?>]">
-                    </td>
-                </tr>
-            <?php } ?>
+            <tr>
+                <td><?= $Item->getSistema(); ?></td>
+                <td><?= $Item; ?></td>
+                <td>
+                    <input type="checkbox" name="permiso[<?= $Item->getId() ?>]"
+                    <?php
+                    if(isset($ArrayFindPermisosRol)) 
+                    foreach ($ArrayFindPermisosRol as $ItemPermisoRol) {
+                        if ($Item->getId() == $ItemPermisoRol["id"]) {
+                            echo "checked";
+                        }
+                    } ?>>
+                </td>
+            </tr>
         <?php } ?>
     </tbody>
 </table>
