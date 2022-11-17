@@ -1,5 +1,5 @@
 <?php include_once __DIR__ . '/../Cruda/Core.Init.php'; ?>
-<?php session_destroy() ?>
+<?php session_destroy(); ?>
 <html>
 
 <head>
@@ -32,7 +32,6 @@
         </div>
         <p><a class="btn btn-lg btn-warning text-white" href="../Vista/index.php">VOLVER A INGRESAR</a></p>
     </div>
-    <?php // include_once __DIR__ . '/../gui/footer.php'; ?>
 </body>
 
 </html>

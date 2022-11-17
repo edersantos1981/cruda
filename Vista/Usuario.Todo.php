@@ -1,6 +1,6 @@
 <?php
 
-include_once '../vendor/autoload.php';
+include_once __DIR__ . '/../Cruda/Core.Init.php'; 
 
 $Mapper = new \Mappers\Usuario();
 $ArrayFindAll = $Mapper->findAll();
@@ -11,7 +11,6 @@ $Coleccion = new \Modelo\UsuarioColeccion($ArrayFindAll);
 <head>
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
-    <?php include_once '../lib/Constantes.Class.php'; ?>
     <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - Usuarios</title>
 </head>
 

@@ -1,5 +1,5 @@
-<?php
-include_once __DIR__ . '/../Cruda/Core.Init.php';
+<?php 
+include_once __DIR__ . '/../Cruda/Core.Init.php'; 
 
 try {
 

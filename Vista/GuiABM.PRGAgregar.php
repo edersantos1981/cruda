@@ -1,8 +1,4 @@
-<?php
-session_start();
-include_once '../vendor/autoload.php';
-include_once '../lib/Constantes.Class.php';
-?>
+<?php include_once __DIR__ . '/../Cruda/Core.Init.php';  ?>
 <html>
 
 <head>

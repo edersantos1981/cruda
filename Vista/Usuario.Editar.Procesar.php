@@ -1,7 +1,5 @@
+<?php include_once __DIR__ . '/../Cruda/Core.Init.php';  ?>
 <?php
-
-include_once '../lib/Constantes.Class.php';
-include_once '../vendor/autoload.php';
 
 $ObjetoCreado = new \Modelo\Usuario($_POST); 
 foreach ($_POST['rol'] as $idRol => $foo) {

@@ -42,16 +42,15 @@ use Cruda\Constantes as Constantes;
 							</div>
 							<input type="password" class="form-control" placeholder="Contrase&ntilde;a" name="password" required>
 						</div>
-						<?php if (isset($_SESSION['login_status']) && $_SESSION['login_status'] == 0) { ?>
+						<?php if (isset($_SESSION['login_status']) && $_SESSION['login_status'] == \Cruda\Login::LOGIN_ERROR_NOMBRE_USUARIO) { ?>
 							<p class="alert alert-danger">Usuario no encontrado</p>
 						<?php } ?>
-						<?php if (isset($_SESSION['login_status']) && $_SESSION['login_status'] == 1) { ?>
-							<p class="alert alert-danger">Contraseña incorrecta</p>
+						<?php if (isset($_SESSION['login_status']) && $_SESSION['login_status'] == \Cruda\Login::LOGIN_ERROR_PASS) { ?>
+							<p class="alert alert-danger">Contrase&ntilde;a incorrecta</p>
 						<?php } ?>
 						<div class="form-group">
 							<input type="submit" value="Login" class="btn float-right login_btn">
 						</div>
-						<?= $_GET['error'] ?>
 					</form>
 				</div>
 				<div class="card-footer">

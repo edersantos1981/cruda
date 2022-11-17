@@ -1,6 +1,6 @@
 <?php 
 include_once __DIR__ . '/../Cruda/Core.Init.php'; 
-\Cruda\SessionManager::checkPermisoRedirect(2);
+// \Cruda\SessionManager::checkPermisoRedirect(\Cruda\Constantes::PERMISO_USUARIOS);
 ?>
 <?php
 
