@@ -21,6 +21,9 @@ SET time_zone = "+00:00";
 -- Base de datos: `usuarios_1_15_1`
 --
 
+CREATE SCHEMA `usuarios_1_15_1`;
+USE `usuarios_1_15_1`;
+
 -- --------------------------------------------------------
 
 --
