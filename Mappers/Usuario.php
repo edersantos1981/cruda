@@ -9,26 +9,31 @@ namespace Mappers;
  * @author @VictorHValentin
  * 
  */
-class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
+class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface
+{
 
     protected $tablaRoles;
 
-    function __construct(){
+    function __construct()
+    {
         $this->nombreAtributoId = "id";
         $this->nombreTabla = \Cruda\BDConfig::SCHEMA_USUARIOS . ".usuario";
         $this->tablaRoles = \Cruda\BDConfig::SCHEMA_USUARIOS . ".usuario_rol";
         parent::__construct();
     }
 
-    public function findAll($filtrosBusqueda = null){
+    public function findAll($filtrosBusqueda = null)
+    {
         return parent::findAll($filtrosBusqueda);
     }
 
-    public function findById($id){
+    public function findById($id)
+    {
         return parent::findById($id);
     }
 
-    public function delete($idObjeto){
+    public function delete($idObjeto)
+    {
         return parent::delete($idObjeto);
     }
 
@@ -37,7 +42,8 @@ class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
      * @param \Modelo\Usuario $Objeto
      * @return Int 
      */
-    public function insert($Objeto){
+    public function insert($Objeto)
+    {
 
         $this->bdconexion->autocommit(false);
         $this->bdconexion->begin_transaction();
@@ -80,7 +86,8 @@ class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
     /**
      * @param \modelo\Usuario $Objeto
      */
-    public function update($Objeto){
+    public function update($Objeto)
+    {
 
         $this->bdconexion->autocommit(false);
         $this->bdconexion->begin_transaction();
@@ -103,7 +110,7 @@ class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
         //devuelve los roles actualmente asociados al usuario
         $this->query = "SELECT * FROM {$this->tablaRoles} "
             . "WHERE fk_usuario = " . $Objeto->getId();
-            
+
         try {
             $this->ejecutarQuery();
         } catch (\Exception $ex) {
@@ -111,7 +118,7 @@ class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
             throw $ex;
         }
         $rolesActuales =  $this->resultset->fetch_all(MYSQLI_ASSOC);
-     
+
         // Elimina los roles actuales que no coinciden con los nuevos
         foreach ($rolesActuales as $rolActual) {
             $borrar = true;
@@ -122,15 +129,15 @@ class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
             }
             if ($borrar) {
                 //Registra en log el rol borrado
-                $this->query = "INSERT INTO " 
+                $this->query = "INSERT INTO "
                     . \Cruda\BDConfig::SCHEMA_LOGS . ".usuario_alta_baja_rol "
-                    . "VALUES (NULL, " 
-                                 . $Objeto->getId() . ", " 
-                                 . $rolActual["fk_rol"] . ", '" 
-                                 . $rolActual["fecha_desde"] . "', " 
-                                 . "NULL, '" 
-                                 . \Cruda\IpAddress::get_client_ip() 
-                                 . "', NULL)";
+                    . "VALUES (NULL, "
+                    . $Objeto->getId() . ", "
+                    . $rolActual["fk_rol"] . ", '"
+                    . $rolActual["fecha_desde"] . "', "
+                    . "NULL, '"
+                    . \Cruda\IpAddress::get_client_ip()
+                    . "', NULL)";
 
                 try {
                     $this->ejecutarQuery();
@@ -178,7 +185,8 @@ class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
     /**
      * @param \modelo\Usuario $Objeto
      */
-    function updatePassword($Objeto){
+    function updatePassword($Objeto)
+    {
         $this->bdconexion->autocommit(false);
         $this->bdconexion->begin_transaction();
 
@@ -198,7 +206,7 @@ class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
         $this->query = "INSERT INTO " . \Cruda\BDConfig::SCHEMA_LOGS . ".usuario_blanqueo "
             . "VALUES (NULL, "
             . $this->bdconexion->escape_string($usuario['id']) . ", "
-            . "NULL, " 
+            . "NULL, "
             . "'" . \Cruda\IpAddress::get_client_ip() . "', "
             . "NULL )";
 
@@ -218,7 +226,8 @@ class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
     /**
      * @return array 
      */
-    function findRolById($idRol){
+    function findRolById($idRol)
+    {
         $MapperRol = new \Mappers\Rol();
         return new \Modelo\Rol($MapperRol->findById($idRol));
     }
@@ -226,7 +235,8 @@ class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
     /**
      * @return array
      */
-    function findRoles($idUsuario){
+    function findRoles($idUsuario)
+    {
         $this->query =
             "SELECT RU.* "
             . "FROM " . \Cruda\BDConfig::SCHEMA_USUARIOS . ".usuario U, " . \Cruda\BDConfig::SCHEMA_USUARIOS . ".usuario_rol RU "
@@ -244,11 +254,12 @@ class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
     /**
      * @return array
      */
-    function findPermisosJSON($idUsuario) {
+    function findPermisosJSON($idUsuario)
+    {
 
         $this->query =
             "SELECT fk_permiso "
-            . "FROM " . \Cruda\BDConfig::SCHEMA_USUARIOS . ".usuario_rol UR, " 
+            . "FROM " . \Cruda\BDConfig::SCHEMA_USUARIOS . ".usuario_rol UR, "
             . \Cruda\BDConfig::SCHEMA_USUARIOS . ".rol_permiso RP "
             . "WHERE UR.fk_rol = RP.fk_rol "
             . "AND UR.fk_usuario = {$idUsuario}";
@@ -258,7 +269,7 @@ class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
             throw $ex;
         }
 
-        while($row = $this->resultset->fetch_assoc()) {
+        while ($row = $this->resultset->fetch_assoc()) {
             $arrayResultado[] = $row["fk_permiso"];
         }
         return json_encode($arrayResultado);
@@ -268,7 +279,8 @@ class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
     /**
      * @return array Array asociativo
      */
-    function findbyNombreUsuario($nombreUsuario){
+    function findbyNombreUsuario($nombreUsuario)
+    {
         $nombreUsusairolc = strtolower($nombreUsuario);
         $this->query =
             "SELECT * "
@@ -283,5 +295,23 @@ class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
         return $this->resultset->fetch_assoc();
     }
 
+    function registrarLogin($nombreUsuario, $loginStatus)
+    {
+        $this->query = "INSERT INTO " . \Cruda\BDConfig::SCHEMA_LOGS . ".usuario_login "
+            . "VALUES (NULL, "
+            . "'" . $this->bdconexion->escape_string($nombreUsuario) . "', "
+            . "NULL, "
+            . "'" . \Cruda\IpAddress::get_client_ip() . "', "
+            . "'" . $loginStatus . "' )";
 
+        try {
+            $this->ejecutarQuery();
+        } catch (\Exception $ex) {
+            throw $ex;
+        }
+
+        $idLoginUsuarioCreado = $this->bdconexion->insert_id;
+
+        return $idLoginUsuarioCreado;;
+    }
 }

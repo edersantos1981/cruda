@@ -4,11 +4,12 @@ include_once __DIR__ . '/../Cruda/Core.Init.php';
 try {
 
     $Login = new \Cruda\Login();
+    $MapperUsuario = new \Mappers\Usuario();
 
     $Usuario = $Login->verificaUsuario($_POST['nombre_usuario']);
     $Login->verificaPass($_POST['password'], $Usuario->getPassword());
 
-    $MapperUsuario = new \Mappers\Usuario();
+   
     $UsuarioPermisos = $MapperUsuario->findPermisosJSON($Usuario->getId());
 
     $_SESSION['nombre_usuario']  = $Usuario->getNombre_usuario();
@@ -17,7 +18,9 @@ try {
     
     $loginOk = true;
     $_SESSION['login_status'] = \Cruda\Login::LOGIN_OK;
-    header('Location: ../Vista/menu.php');
+
+
+
     
 } catch (\Exception $ex) {
 
@@ -26,8 +29,17 @@ try {
         $_SESSION['login_status'] = \Cruda\Login::LOGIN_ERROR_PASS;
     if (!isset($Usuario))
         $_SESSION['login_status'] = \Cruda\Login::LOGIN_ERROR_NOMBRE_USUARIO;
-    header('Location: ../Vista/index.php?error=' . $ex->getMessage());
+
+
 }
+
+
+$MapperUsuario->registrarLogin($_POST['nombre_usuario'], $_SESSION['login_status']);
+
+header('Location: ../Vista/menu.php');
+header('Location: ../Vista/index.php?error=' . $ex->getMessage());
+
+
 
 
 ?>

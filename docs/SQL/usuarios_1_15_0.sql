@@ -18,9 +18,11 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `usuarios_1_14_5`
+-- Base de datos: `usuarios_1_15_0`
 --
 
+CREATE SCHEMA `usuarios_1_15_0`;
+USE `usuarios_1_15_0`;
 -- --------------------------------------------------------
 
 --

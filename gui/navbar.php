@@ -63,10 +63,10 @@
                     <i class="fa fa-caret-down"></i>
                 </a>
                 <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-                    <a class="dropdown-item" href="../Vista/Usuario.Todo.php"><i class="bi bi-person-fill"></i> Usuarios</a>
-                    <a class="dropdown-item" href="../Vista/Sistema.Todo.php"><i class="bi bi-pc-display"></i></i> Sistemas</a>
-                    <a class="dropdown-item" href="../Vista/Rol.Todo.php"><i class="bi bi-person-check-fill"></i> Roles</a>
-                    <a class="dropdown-item" href="../Vista/Permiso.Todo.php"><i class="bi bi-key-fill"></i> Permisos</a>
+                    <a class="dropdown-item" href="../Vista/Usuario.Todo.php"><i class="oi oi-person"></i> Usuarios</a>
+                    <a class="dropdown-item" href="../Vista/Sistema.Todo.php"><i class="oi oi-monitor"></i></i> Sistemas</a>
+                    <a class="dropdown-item" href="../Vista/Rol.Todo.php"><i class="oi oi-file"></i> Roles</a>
+                    <a class="dropdown-item" href="../Vista/Permiso.Todo.php"><i class="oi oi-list"></i> Permisos</a>
                 </div>
             </li>
         </ul>
