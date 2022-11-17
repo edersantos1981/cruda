@@ -12,8 +12,7 @@ $ObjetoCreado = new \Modelo\Subcuenta($Mapper->findById($_GET['id']));
 
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
-    <?php include_once __DIR__ . '/../Cruda/Constantes.php'; ?>
-    <?php include_once '../lib/includeComboboxJQueryUI.php'; ?>
+        <?php include_once '../lib/includeComboboxJQueryUI.php'; ?>
     <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - SubCuentas</title>
     
 </head>
