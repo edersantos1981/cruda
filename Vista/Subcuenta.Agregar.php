@@ -10,7 +10,7 @@ include_once '../vendor/autoload.php';
     <?php include_once '../lib/includesJs.php'; ?>
     <?php include_once '../lib/Constantes.Class.php'; ?>
     <?php include_once '../lib/includeComboboxJQueryUI.php' ?>
-    <title><?= Constantes::NOMBRE_SISTEMA; ?> - SubCuentas</title>
+    <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - SubCuentas</title>
 </head>
 
 <body>

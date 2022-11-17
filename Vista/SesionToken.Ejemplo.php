@@ -4,12 +4,12 @@ include_once '../vendor/autoload.php';
 
 /* 
 
-Este es un ejemplo de uso de la Clase \Uargflow\SessionToken.
+Este es un ejemplo de uso de la Clase \Cruda\SessionToken.
 
 */
 // Casos de test
 session_start();
-\Uargflow\SessionToken::createToken();
+\Cruda\SessionToken::createToken();
 
 ?>
 
@@ -19,7 +19,7 @@ session_start();
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
     <?php include_once '../lib/Constantes.Class.php'; ?>
-    <title><?= Constantes::NOMBRE_SISTEMA; ?> - Session Manager</title>
+    <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - Session Manager</title>
 </head>
 
 <body>
@@ -29,7 +29,7 @@ session_start();
         <div class="card ">
             <div class="card-header">
                 <h5 class="card-title">
-                    <i class="oi oi-thumb-up"> </i> Ejemplo de uso - componente \Uargflow\SessionToken
+                    <i class="oi oi-thumb-up"> </i> Ejemplo de uso - componente \Cruda\SessionToken
                 </h5>
             </div>
             <div class="card-body">
@@ -37,9 +37,9 @@ session_start();
                 <div class="row">
                     <div class="col-6">
                         <form method="POST">
-                            <input type="hidden" name="token" value="<?= \Uargflow\SessionToken::getToken(); ?>" />
+                            <input type="hidden" name="token" value="<?= \Cruda\SessionToken::getToken(); ?>" />
                             <input type="submit" value="Enviar Formulario con Token" class="btn btn-block btn-success btn-lg" />
-                            <small class="text-success"><i class="oi oi-check"> </i> Token de Ejemplo: <?= \Uargflow\SessionToken::getToken(); ?></small>
+                            <small class="text-success"><i class="oi oi-check"> </i> Token de Ejemplo: <?= \Cruda\SessionToken::getToken(); ?></small>
                         </form>
                     </div>
                     <div class="col-6">
@@ -62,8 +62,8 @@ session_start();
                     <tbody>
                         <tr>
                             <td><?= $_POST['token'] ?: "Vacio"; ?></td>
-                            <td><?= \Uargflow\SessionToken::getToken(); ?> </td>
-                            <td><?= \Uargflow\SessionToken::checkToken($_POST['token']) ? "SI" : "NO"; ?></td>
+                            <td><?= \Cruda\SessionToken::getToken(); ?> </td>
+                            <td><?= \Cruda\SessionToken::checkToken($_POST['token']) ? "SI" : "NO"; ?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -71,7 +71,7 @@ session_start();
             <div class="card-body jumbotron">
                 <h3><i class="oi oi-thumb-up"> </i> Ayuda para Desarrolladores</h3>
                 <hr />
-                <p>La clase SessionToken se encuentra en el namespace \Uargflow, e implementa una protecci&oacute;n contra ataques CSRF.</p>
+                <p>La clase SessionToken se encuentra en el namespace \Cruda, e implementa una protecci&oacute;n contra ataques CSRF.</p>
                 <p>Para la creaci&oacute;n del Token, se emplea hashing y se utilizan datos de sesi&oacute;n. Una vez utilizado, un token se destruye autom&aacute;ticamente.</p>
                 <p>Para mayor informacion, visitar https://www.php.net/manual/en/function.uniqid.php y https://www.php.net/manual/en/function.password-hash</p>
                 <p>Modo de Uso</p>
@@ -83,11 +83,11 @@ session_start();
                 <pre>
                     <code class="language-html" data-lang="html">
                     /* Paso 1 */
-                    &lt;?php \Uargflow\SessionToken::createToken(); ?&gt;
-                    &lt;input type="hidden" name="token" value="&lt;?= \Uargflow\SessionToken::getToken(); &gt; /&gt;
+                    &lt;?php \Cruda\SessionToken::createToken(); ?&gt;
+                    &lt;input type="hidden" name="token" value="&lt;?= \Cruda\SessionToken::getToken(); &gt; /&gt;
 
                     /* Paso 2 */
-                    &lt;?= \Uargflow\SessionToken::checkToken($_POST['token']) ? "SI" : "NO"; ?&gt;
+                    &lt;?= \Cruda\SessionToken::checkToken($_POST['token']) ? "SI" : "NO"; ?&gt;
                     </code>
                 </pre>
 

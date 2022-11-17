@@ -1,7 +1,6 @@
 <?php
 
-include_once '../lib/Constantes.Class.php';
-include_once '../vendor/autoload.php';
+include_once __DIR__ . '/../Cruda/Core.Init.php'; 
 
 $Mapper = new \Mappers\Usuario();
 $ObjetoCreado = new \Modelo\Usuario($Mapper->findById($_GET['id']));
@@ -12,7 +11,7 @@ $ObjetoCreado = new \Modelo\Usuario($Mapper->findById($_GET['id']));
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
     <?php include_once '../lib/includeComboboxJQueryUI.php' ?>
-    <title><?= Constantes::NOMBRE_SISTEMA; ?> - Usarios</title>
+    <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - Usarios</title>
 </head>
 
 <body>

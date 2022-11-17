@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-11-2022 a las 15:59:37
+-- Tiempo de generación: 17-11-2022 a las 13:48:31
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 7.4.29
 
@@ -102,7 +102,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nombre_usuario`, `mail`, `whatsapp`, `password`, `nombre_completo`) VALUES
-(4, 'VICTOR_182', 'Valentinvictor@agvp.gob.ar', '2966313352', '123456', 'Victor Hugo Valentin');
+(4, 'VICTOR_182', 'Valentinvictor@agvp.gob.ar', '2966313352', '$argon2i$v=19$m=65536,t=4,p=1$OU5JWDZvL3RwOHNob201VQ$DE5TFVbJxFom4ZfpFgoOqI8g0ZhCIsy79DWehUAAZVw', 'Victor Hugo Valentin'),
+(7, 'esantos', 'eder@eder.com', '2966', '$argon2i$v=19$m=65536,t=4,p=1$Lk45eWR3VjhaTlQwZC5NYw$eIOXTu6Esfjgmj6aA9XE8HKtaXl6eYBzwqgGO0CnG68', 'Eder dos Santos'),
+(8, 'fbraca', 'facundo@agvp', '2966', '$argon2i$v=19$m=65536,t=4,p=1$WEVrbHZEVjNWZEJteW9PQw$LLZeaxTZrRhunB3h/yNO4UyRiBH+dWKoVx/oyjgpfDM', 'Facundo Bracamonte');
 
 -- --------------------------------------------------------
 
@@ -189,7 +191,7 @@ ALTER TABLE `sistema`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Restricciones para tablas volcadas

@@ -2,7 +2,7 @@
 
 include_once '../lib/Constantes.Class.php';
 
-if (!isset($_SERVER["HTTP_REFERER"]) || ($_SERVER["HTTP_REFERER"] != Constantes::APPURL . "/Vista/Subcuenta.Todo.php")) {
+if (!isset($_SERVER["HTTP_REFERER"]) || ($_SERVER["HTTP_REFERER"] != \Cruda\Constantes::APPURL . "/Vista/Subcuenta.Todo.php")) {
     header("Location: Subcuenta.Todo.php");
     die();
 }
@@ -23,7 +23,7 @@ try {
 <head>
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
-    <title><?= Constantes::NOMBRE_SISTEMA; ?> - SubCuentas</title>
+    <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - SubCuentas</title>
 </head>
 
 <body>

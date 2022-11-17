@@ -7,7 +7,7 @@ namespace Modelo;
  *
  * @author usuario
  */
-class Sistema extends \Uargflow\ModeloGenerico {
+class Sistema extends \Cruda\ModeloGenerico {
 
 
     function __construct($arrayDatos) {

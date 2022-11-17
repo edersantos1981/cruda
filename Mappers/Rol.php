@@ -6,7 +6,7 @@ namespace Mappers;
  * Mapper de la clase Rol
  * @author Eder dos Santos - esantos@uarg.unpa.edu.ar
  */
-class Rol extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
+class Rol extends \Cruda\BDMapper implements \Cruda\MapperInterface
 {
 
     protected $tablaPermisos;
@@ -14,8 +14,8 @@ class Rol extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
     function __construct()
     {
         $this->nombreAtributoId = "id";
-        $this->nombreTabla = \Uargflow\BDConfig::SCHEMA_USUARIOS . ".rol";
-        $this->tablaPermisos = \Uargflow\BDConfig::SCHEMA_USUARIOS . ".rol_permiso";
+        $this->nombreTabla = \Cruda\BDConfig::SCHEMA_USUARIOS . ".rol";
+        $this->tablaPermisos = \Cruda\BDConfig::SCHEMA_USUARIOS . ".rol_permiso";
         parent::__construct();
     }
 
@@ -157,7 +157,7 @@ class Rol extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
     {
         $this->query = 
             "SELECT P.* "
-            . "FROM " . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".permiso P, " . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".rol_permiso RP "
+            . "FROM " . \Cruda\BDConfig::SCHEMA_USUARIOS . ".permiso P, " . \Cruda\BDConfig::SCHEMA_USUARIOS . ".rol_permiso RP "
             . "WHERE P.id = RP.fk_permiso "
             . "AND RP.fk_rol = {$idRol}";
         try {

@@ -1,7 +1,5 @@
+<?php include_once __DIR__ . '/../Cruda/Core.Init.php';  ?>
 <?php
-
-include_once '../lib/Constantes.Class.php';
-include_once '../vendor/autoload.php';
 
 $ObjetoCreado = new \Modelo\Usuario($_POST); 
 foreach ($_POST['rol'] as $idRol => $foo) {
@@ -21,7 +19,7 @@ try {
     <head>
         <?php include_once '../lib/includesCss.php'; ?>
         <?php include_once '../lib/includesJs.php'; ?>
-        <title><?= Constantes::NOMBRE_SISTEMA; ?> - Usuarios</title>
+        <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - Usuarios</title>
     </head>
     <body>
         <?php include_once '../gui/navbar.php'; ?>

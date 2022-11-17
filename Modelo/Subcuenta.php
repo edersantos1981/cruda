@@ -7,7 +7,7 @@ namespace Modelo;
  *
  * @author usuario
  */
-class Subcuenta extends \Uargflow\ModeloGenerico
+class Subcuenta extends \Cruda\ModeloGenerico
 {
 
     /**

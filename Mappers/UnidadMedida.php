@@ -6,7 +6,7 @@ namespace Mappers;
  * Mapper de la clase UnidadMedida
  * @author Eder dos Santos - esantos@uarg.unpa.edu.ar
  */
-class UnidadMedida extends \Uargflow\BDMapper implements \Uargflow\MapperInterface {
+class UnidadMedida extends \Cruda\BDMapper implements \Cruda\MapperInterface {
 
     function __construct() {
         $this->nombreTabla = "unidad_medida";

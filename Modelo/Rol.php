@@ -7,7 +7,7 @@ namespace Modelo;
  *
  * @author usuario
  */
-class Rol extends \Uargflow\ModeloGenerico {
+class Rol extends \Cruda\ModeloGenerico {
 
      /**
      *

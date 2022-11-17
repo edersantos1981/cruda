@@ -4,7 +4,7 @@ include_once '../vendor/autoload.php';
 
 /* 
 
-Este es un ejemplo de uso de la Clase \Uargflow\Hash, en distintas modalidades:
+Este es un ejemplo de uso de la Clase \Cruda\Hash, en distintas modalidades:
 
 - Algoritmo BCrypt
 - Algoritmo Argon2i
@@ -19,12 +19,12 @@ A partir de ello, también permite la verificación de contraseñas.
 $password1 = 123;
 $password2 = 321;
 
-$arrayPasswords['passBCrypt1']  = new \Uargflow\Hash($password1, PASSWORD_BCRYPT);
-$arrayPasswords['passArgon2i1'] = new \Uargflow\Hash($password1, PASSWORD_ARGON2I);
-$arrayPasswords['passDefault1'] = new \Uargflow\Hash($password1, PASSWORD_DEFAULT);
-$arrayPasswords['passBCrypt2']  = new \Uargflow\Hash($password2, PASSWORD_BCRYPT);
-$arrayPasswords['passArgon2i2'] = new \Uargflow\Hash($password2, PASSWORD_ARGON2I);
-$arrayPasswords['passDefault2'] = new \Uargflow\Hash($password2, PASSWORD_DEFAULT);
+$arrayPasswords['passBCrypt1']  = new \Cruda\Hash($password1, PASSWORD_BCRYPT);
+$arrayPasswords['passArgon2i1'] = new \Cruda\Hash($password1, PASSWORD_ARGON2I);
+$arrayPasswords['passDefault1'] = new \Cruda\Hash($password1, PASSWORD_DEFAULT);
+$arrayPasswords['passBCrypt2']  = new \Cruda\Hash($password2, PASSWORD_BCRYPT);
+$arrayPasswords['passArgon2i2'] = new \Cruda\Hash($password2, PASSWORD_ARGON2I);
+$arrayPasswords['passDefault2'] = new \Cruda\Hash($password2, PASSWORD_DEFAULT);
 
 ?>
 <html>
@@ -33,7 +33,7 @@ $arrayPasswords['passDefault2'] = new \Uargflow\Hash($password2, PASSWORD_DEFAUL
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
     <?php include_once '../lib/Constantes.Class.php'; ?>
-    <title><?= Constantes::NOMBRE_SISTEMA; ?> - HASH</title>
+    <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - HASH</title>
 </head>
 
 <body>
@@ -43,7 +43,7 @@ $arrayPasswords['passDefault2'] = new \Uargflow\Hash($password2, PASSWORD_DEFAUL
         <div class="card ">
             <div class="card-header">
                 <h5 class="card-title">
-                    <i class="oi oi-thumb-up"> </i> Ejemplo de uso - componente \Uargflow\Hash
+                    <i class="oi oi-thumb-up"> </i> Ejemplo de uso - componente \Cruda\Hash
                 </h5>
             </div>
             <div class="card-body">
@@ -91,7 +91,7 @@ $arrayPasswords['passDefault2'] = new \Uargflow\Hash($password2, PASSWORD_DEFAUL
             <div class="card-body jumbotron">
                 <h3><i class="oi oi-thumb-up"> </i> Ayuda para Desarrolladores</h3>
                 <hr />
-                <p>La clase Hash se encuentra en el namespace \Uargflow, y posee los siguientes m&eacute;todos :</p>
+                <p>La clase Hash se encuentra en el namespace \Cruda, y posee los siguientes m&eacute;todos :</p>
                 <ul>Hash::creaHash($password_, $metodoAutentificacion_) - Crea un Hash (contrase&ntilde;a encriptada). </ul>
                 <ul>Hash::verificaPasswordHashBD($password_, $hashBD_) - Compara una contrase&ntilde;a con un hash almacenado en alguna fuente de datos. </ul>
                 <p>Para mayor informacion, visitar https://www.php.net/manual/es/ref.password.php</p>

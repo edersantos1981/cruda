@@ -9,12 +9,9 @@
     ],
     "autoload": {
         "psr-4": {
-            "Uargflow\\": "Uargflow/",
+            "Cruda\\": "Cruda/",
             "Mappers\\": "Mappers/",
             "Modelo\\": "Modelo/"
         }
-    },
-    "require": {
-        "phpunit/phpunit": "6.5"
     }
 }

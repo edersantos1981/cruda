@@ -3,34 +3,32 @@
 namespace Mappers;
 
 /**
- * Mapper de la clase Usuario
- * @author Eder dos Santos - esantos@uarg.unpa.edu.ar
+ * 
+ * @author @edersantos1981
+ * @author @BracamonteF
+ * @author @VictorHValentin
+ * 
  */
-class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
-{
+class Usuario extends \Cruda\BDMapper implements \Cruda\MapperInterface{
 
     protected $tablaRoles;
 
-    function __construct()
-    {
+    function __construct(){
         $this->nombreAtributoId = "id";
-        $this->nombreTabla = \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario";
-        $this->tablaRoles = \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario_rol";
+        $this->nombreTabla = \Cruda\BDConfig::SCHEMA_USUARIOS . ".usuario";
+        $this->tablaRoles = \Cruda\BDConfig::SCHEMA_USUARIOS . ".usuario_rol";
         parent::__construct();
     }
 
-    public function findAll($filtrosBusqueda = null)
-    {
+    public function findAll($filtrosBusqueda = null){
         return parent::findAll($filtrosBusqueda);
     }
 
-    public function findById($id)
-    {
+    public function findById($id){
         return parent::findById($id);
     }
 
-    public function delete($idObjeto)
-    {
+    public function delete($idObjeto){
         return parent::delete($idObjeto);
     }
 
@@ -39,11 +37,9 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
      * @param \Modelo\Usuario $Objeto
      * @return Int 
      */
-    public function insert($Objeto)
-    {
-        // Autocommit a falso para mantener atomicidad de transaccion
+    public function insert($Objeto){
+
         $this->bdconexion->autocommit(false);
-        // Inicia transaccion
         $this->bdconexion->begin_transaction();
 
         $this->query = "INSERT INTO {$this->nombreTabla} "
@@ -51,18 +47,16 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
             . "'" . strtolower($this->bdconexion->escape_string($Objeto->getNombre_usuario())) . "', "
             . "'" . $this->bdconexion->escape_string($Objeto->getMail()) . "', "
             . "'" . $this->bdconexion->escape_string($Objeto->getWhatsapp()) . "', "
-            . "'" . \Uargflow\Hash::creaHash($this->bdconexion->escape_string($Objeto->getPassword())) . "', "
+            . "'" . \Cruda\Hash::creaHash($this->bdconexion->escape_string($Objeto->getPassword())) . "', "
             . "'" . $this->bdconexion->escape_string($Objeto->getNombre_completo()) . "')";
 
         try {
             $this->ejecutarQuery();
         } catch (\Exception $ex) {
             throw $ex;
-            // Si hay error, rollback
             $this->bdconexion->rollback();
         }
 
-        //Recupera el id de usuario insertado para utilizar en insert de roles 
         $idUsuarioCreado = $this->bdconexion->insert_id;
 
         foreach ($Objeto->getRoles() as $rol) {
@@ -77,8 +71,6 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
             }
         }
 
-        // @todo: con el insert_id, recorrer Objeto->getPermisos y hacer INSERT en ROL_PERMISO
-        // Al final:
         $this->bdconexion->commit();
         $this->bdconexion->autocommit(true);
 
@@ -88,11 +80,9 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
     /**
      * @param \modelo\Usuario $Objeto
      */
-    public function update($Objeto)
-    {
-        // Autocommit a falso para mantener atomicidad de transaccion
+    public function update($Objeto){
+
         $this->bdconexion->autocommit(false);
-        // Inicia transaccion
         $this->bdconexion->begin_transaction();
 
         //Actualiza datos en tabla usuario
@@ -107,7 +97,6 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
             $this->ejecutarQuery();
         } catch (\Exception $ex) {
             throw $ex;
-            // Si hay error, rollback
             $this->bdconexion->rollback();
         }
 
@@ -118,14 +107,12 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
         try {
             $this->ejecutarQuery();
         } catch (\Exception $ex) {
-            // Si hay error, rollback
             $this->bdconexion->rollback();
             throw $ex;
         }
         $rolesActuales =  $this->resultset->fetch_all(MYSQLI_ASSOC);
      
-
-        //elimina los roles actuales que no coinciden con los nuevos
+        // Elimina los roles actuales que no coinciden con los nuevos
         foreach ($rolesActuales as $rolActual) {
             $borrar = true;
             foreach ($Objeto->getRoles() as $rol) {
@@ -136,19 +123,19 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
             if ($borrar) {
                 //Registra en log el rol borrado
                 $this->query = "INSERT INTO " 
-                    . \Uargflow\BDConfig::SCHEMA_LOGS . ".usuario_alta_baja_rol "
+                    . \Cruda\BDConfig::SCHEMA_LOGS . ".usuario_alta_baja_rol "
                     . "VALUES (NULL, " 
                                  . $Objeto->getId() . ", " 
                                  . $rolActual["fk_rol"] . ", '" 
                                  . $rolActual["fecha_desde"] . "', " 
                                  . "NULL, '" 
-                                 . \Uargflow\IpAddress::get_client_ip() 
+                                 . \Cruda\IpAddress::get_client_ip() 
                                  . "', NULL)";
 
                 try {
                     $this->ejecutarQuery();
                 } catch (\Exception $ex) {
-                    // Si hay error, rollback
+
                     $this->bdconexion->rollback();
                     throw $ex;
                 }
@@ -160,7 +147,7 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
                 try {
                     $this->ejecutarQuery();
                 } catch (\Exception $ex) {
-                    // Si hay error, rollback
+
                     $this->bdconexion->rollback();
                     throw $ex;
                 }
@@ -176,14 +163,12 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
             try {
                 $this->ejecutarQuery();
             } catch (\Exception $ex) {
-                // Si hay error, rollback
+
                 $this->bdconexion->rollback();
                 throw $ex;
             }
         }
 
-        // @todo: con el insert_id, recorrer Objeto->getPermisos y hacer INSERT en ROL_PERMISO
-        // Al final:
         $this->bdconexion->commit();
         $this->bdconexion->autocommit(true);
 
@@ -193,13 +178,12 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
     /**
      * @param \modelo\Usuario $Objeto
      */
-    function updatePassword($Objeto)
-    {
+    function updatePassword($Objeto){
         $this->bdconexion->autocommit(false);
         $this->bdconexion->begin_transaction();
 
         $this->query = "UPDATE {$this->nombreTabla} "
-            . "SET password = '" . \Uargflow\Hash::creaHash($this->bdconexion->escape_string($Objeto->getPassword())) . "' "
+            . "SET password = '" . \Cruda\Hash::creaHash($this->bdconexion->escape_string($Objeto->getPassword())) . "' "
             . "WHERE {$this->nombreAtributoId} = {$Objeto->getId()}";
 
         try {
@@ -211,11 +195,11 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
 
         $usuario = $this->findById($Objeto->getId());
 
-        $this->query = "INSERT INTO " . \Uargflow\BDConfig::SCHEMA_LOGS . ".usuario_blanqueo "
+        $this->query = "INSERT INTO " . \Cruda\BDConfig::SCHEMA_LOGS . ".usuario_blanqueo "
             . "VALUES (NULL, "
             . $this->bdconexion->escape_string($usuario['id']) . ", "
             . "NULL, " 
-            . "'" . \Uargflow\IpAddress::get_client_ip() . "', "
+            . "'" . \Cruda\IpAddress::get_client_ip() . "', "
             . "NULL )";
 
         try {
@@ -234,8 +218,7 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
     /**
      * @return array 
      */
-    function findRolById($idRol)
-    {
+    function findRolById($idRol){
         $MapperRol = new \Mappers\Rol();
         return new \Modelo\Rol($MapperRol->findById($idRol));
     }
@@ -243,11 +226,10 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
     /**
      * @return array
      */
-    function findRoles($idUsuario)
-    {
+    function findRoles($idUsuario){
         $this->query =
             "SELECT RU.* "
-            . "FROM " . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario U, " . \Uargflow\BDConfig::SCHEMA_USUARIOS . ".usuario_rol RU "
+            . "FROM " . \Cruda\BDConfig::SCHEMA_USUARIOS . ".usuario U, " . \Cruda\BDConfig::SCHEMA_USUARIOS . ".usuario_rol RU "
             . "WHERE U.id = RU.fk_usuario "
             . "AND RU.fk_usuario = {$idUsuario}";
         try {
@@ -260,10 +242,33 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
     }
 
     /**
+     * @return array
+     */
+    function findPermisosJSON($idUsuario) {
+
+        $this->query =
+            "SELECT fk_permiso "
+            . "FROM " . \Cruda\BDConfig::SCHEMA_USUARIOS . ".usuario_rol UR, " 
+            . \Cruda\BDConfig::SCHEMA_USUARIOS . ".rol_permiso RP "
+            . "WHERE UR.fk_rol = RP.fk_rol "
+            . "AND UR.fk_usuario = {$idUsuario}";
+        try {
+            $this->ejecutarQuery();
+        } catch (\Exception $ex) {
+            throw $ex;
+        }
+
+        while($row = $this->resultset->fetch_assoc()) {
+            $arrayResultado[] = $row["fk_permiso"];
+        }
+        return json_encode($arrayResultado);
+    }
+
+
+    /**
      * @return array Array asociativo
      */
-    function findbyNombreUsuario($nombreUsuario)
-    {
+    function findbyNombreUsuario($nombreUsuario){
         $nombreUsusairolc = strtolower($nombreUsuario);
         $this->query =
             "SELECT * "
@@ -277,4 +282,6 @@ class Usuario extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
 
         return $this->resultset->fetch_assoc();
     }
+
+
 }

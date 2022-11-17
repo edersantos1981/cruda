@@ -6,12 +6,12 @@ namespace Mappers;
  * Mapper de la clase Permiso
  * @author Eder dos Santos - esantos@uarg.unpa.edu.ar
  */
-class Permiso extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
+class Permiso extends \Cruda\BDMapper implements \Cruda\MapperInterface
 {
 
     function __construct()
     {
-        $this->nombreTabla = \Uargflow\BDConfig::SCHEMA_USUARIOS . ".permiso";
+        $this->nombreTabla = \Cruda\BDConfig::SCHEMA_USUARIOS . ".permiso";
         $this->nombreAtributoId = "id";
         parent::__construct();
     }
@@ -87,7 +87,7 @@ class Permiso extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
     {
         $this->query = 
             "SELECT * "
-            . "FROM "  . \Uargflow\BDConfig::SCHEMA_USUARIOS .  ".permiso "
+            . "FROM "  . \Cruda\BDConfig::SCHEMA_USUARIOS .  ".permiso "
             . "WHERE fk_sistema = $idSistema ";
         try {
             $this->ejecutarQuery();

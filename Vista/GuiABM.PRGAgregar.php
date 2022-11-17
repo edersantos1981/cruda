@@ -1,15 +1,11 @@
-<?php
-session_start();
-include_once '../vendor/autoload.php';
-include_once '../lib/Constantes.Class.php';
-?>
+<?php include_once __DIR__ . '/../Cruda/Core.Init.php';  ?>
 <html>
 
 <head>
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
     <title>
-        <?= Constantes::NOMBRE_SISTEMA; ?> Agregar Elemento
+        <?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> Agregar Elemento
     </title>
 </head>
 
@@ -26,7 +22,7 @@ include_once '../lib/Constantes.Class.php';
 
                 <?php
                 /*  Escenario 1: Ya fue cargado anteriormente (Refresh). No vuelve a cargar.  */
-                if ($_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG'] == \Uargflow\BDMapper::PRG_OK) {
+                if ($_SESSION[\Cruda\Constantes::ID_SISTEMA]['idObjetoPRG'] == \Cruda\BDMapper::PRG_OK) {
                 ?>
 
                     <p class="alert alert-warning">Hubo un error</p>
@@ -38,8 +34,8 @@ include_once '../lib/Constantes.Class.php';
 
                 <?php
                 /* Escenario 2: Se cargó exitosamente. Se carga flag PRG_OK en sesion. */
-                if (is_int($_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG']) && $_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG'] >= 0) {
-                    $_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG'] = \Uargflow\BDMapper::PRG_OK;
+                if (is_int($_SESSION[\Cruda\Constantes::ID_SISTEMA]['idObjetoPRG']) && $_SESSION[\Cruda\Constantes::ID_SISTEMA]['idObjetoPRG'] >= 0) {
+                    $_SESSION[\Cruda\Constantes::ID_SISTEMA]['idObjetoPRG'] = \Cruda\BDMapper::PRG_OK;
                 ?>
 
                     <p class="alert alert-success">Operaci&oacute;n realizada con &eacute;xito.</p>
@@ -53,7 +49,7 @@ include_once '../lib/Constantes.Class.php';
 
                 <?php
                 /*  Escenario 3: Error capturado por excepción.  */
-                if ($_SESSION[Constantes::ID_SISTEMA]['idObjetoPRG'] == \Uargflow\BDMapper::PRG_ERROR) {
+                if ($_SESSION[\Cruda\Constantes::ID_SISTEMA]['idObjetoPRG'] == \Cruda\BDMapper::PRG_ERROR) {
                 ?>
 
                     <p class="alert alert-danger">Hubo un error</p>

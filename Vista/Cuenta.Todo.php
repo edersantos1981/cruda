@@ -12,7 +12,7 @@ $Coleccion = new \Modelo\CuentaColeccion($ArrayFindAll);
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
     <?php include_once '../lib/Constantes.Class.php'; ?>
-    <title><?= Constantes::NOMBRE_SISTEMA; ?> - Cuentas</title>
+    <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - Cuentas</title>
 </head>
 
 <body>

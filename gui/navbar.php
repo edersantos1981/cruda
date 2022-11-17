@@ -10,15 +10,13 @@
         border-bottom-width: 2px !important;
     }
 </style>
-<!--Navbar -->
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
     <a class="navbar-brand text-warning" href="../Vista/menu.php">
         <i class="bi-check-square"></i>
-        <?= Constantes::NOMBRE_SISTEMA; ?>
+        <?= \Cruda\Constantes::NOMBRE_SISTEMA; ?>
     </a>
-
-
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333" aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -79,12 +77,12 @@
                     <i class="fa fa-caret-down"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-                    <a class="dropdown-item" href="#"><i class="bi bi-person"> </i> Valeria </a>
+                    <a class="dropdown-item" href="#" title="<?= $_SESSION['nombre_completo'] ?>"><i class="bi bi-person"> </i> <?= $_SESSION['nombre_usuario'] ?> </a>
                     <a class="dropdown-item" href="#"><i class="bi bi-geo-alt"> </i> Sede Central </a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#"><i class="bi bi-person"></i> Mis Datos</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#"><i class="oi oi-account-logout"></i> Salir</a>
+                    <a class="dropdown-item" href="../Vista/Sesion.Salir.php"><i class="oi oi-account-logout"></i> Salir</a>
                 </div>
             </li>
         </ul>

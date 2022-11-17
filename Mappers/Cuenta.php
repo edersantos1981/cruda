@@ -6,7 +6,7 @@ namespace Mappers;
  * Mapper de la clase Cuenta
  * @author Eder dos Santos - esantos@uarg.unpa.edu.ar
  */
-class Cuenta extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
+class Cuenta extends \Cruda\BDMapper implements \Cruda\MapperInterface
 {
 
     function __construct()

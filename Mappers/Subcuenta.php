@@ -6,7 +6,7 @@ namespace Mappers;
  * Mapper de la clase Subcuenta
  * @author Eder dos Santos - esantos@uarg.unpa.edu.ar
  */
-class Subcuenta extends \Uargflow\BDMapper implements \Uargflow\MapperInterface
+class Subcuenta extends \Cruda\BDMapper implements \Cruda\MapperInterface
 {
 
     function __construct()

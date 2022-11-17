@@ -4,19 +4,18 @@ include_once '../vendor/autoload.php';
 
 /* 
 
-Este es un ejemplo de uso de la Clase \Uargflow\SessionManager.
+Este es un ejemplo de uso de la Clase \Cruda\SessionManager.
 
 */
 
 // Casos de test
-$handler = new \Uargflow\SessionManager();
+$handler = new \Cruda\SessionManager();
 session_set_save_handler($handler, true);
-\Uargflow\SessionManager::start_session('dogo', true);
+\Cruda\SessionManager::start_session('cruda', true);
 
 $_SESSION['var1']  = "Sede Central";
 $_SESSION['var2'] = "Distrito Río Gallegos";
 $_SESSION['var3'] = "Distrito El Calafate";
-
 ?>
 
 <html>
@@ -25,7 +24,7 @@ $_SESSION['var3'] = "Distrito El Calafate";
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
     <?php include_once '../lib/Constantes.Class.php'; ?>
-    <title><?= Constantes::NOMBRE_SISTEMA; ?> - Session Manager</title>
+    <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - Session Manager</title>
 </head>
 
 <body>
@@ -35,7 +34,7 @@ $_SESSION['var3'] = "Distrito El Calafate";
         <div class="card ">
             <div class="card-header">
                 <h5 class="card-title">
-                    <i class="oi oi-thumb-up"> </i> Ejemplo de uso - componente \Uargflow\SessionManager
+                    <i class="oi oi-thumb-up"> </i> Ejemplo de uso - componente \Cruda\SessionManager
                 </h5>
             </div>
             <div class="card-body">
@@ -61,14 +60,14 @@ $_SESSION['var3'] = "Distrito El Calafate";
             <div class="card-body jumbotron">
                 <h3><i class="oi oi-thumb-up"> </i> Ayuda para Desarrolladores</h3>
                 <hr />
-                <p>La clase SessionManager se encuentra en el namespace \Uargflow, e implementa la interface SessionHandlerInterface</p>
+                <p>La clase SessionManager se encuentra en el namespace \Cruda, e implementa la interface SessionHandlerInterface</p>
                 <p>Se alamacenan los datos de sesi&oacute;n en la base de datos</p>
                 <p>Para mayor informacion, visitar https://www.php.net/manual/en/class.sessionhandlerinterface.php</p>
                 <pre>
                     <code class="language-html" data-lang="html">
-                    $handler = new \Uargflow\SessionManager();
+                    $handler = new \Cruda\SessionManager();
                     session_set_save_handler($handler, true);
-                    \Uargflow\SessionManager::start_session('nombre de la sesión', true);
+                    \Cruda\SessionManager::start_session('nombre de la sesión', true);
                     $_SESSION['var1'] = "primera variable de sesión";
                     </code>
                 </pre>

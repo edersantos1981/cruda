@@ -1,6 +1,6 @@
 <?php 
 namespace Modelo;
-class PermisoColeccion extends \Uargflow\ColeccionGenerica {
+class PermisoColeccion extends \Cruda\ColeccionGenerica {
     
     public function __construct($array) {
         parent::__construct($array, Permiso::class);

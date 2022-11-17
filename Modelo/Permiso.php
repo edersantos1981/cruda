@@ -7,7 +7,7 @@ namespace Modelo;
  *
  * @author usuario
  */
-class Permiso extends \Uargflow\ModeloGenerico {
+class Permiso extends \Cruda\ModeloGenerico {
 
      /**
      *
