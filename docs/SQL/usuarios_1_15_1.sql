@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-11-2022 a las 13:48:31
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 7.4.29
+-- Tiempo de generación: 17-11-2022 a las 17:45:06
+-- Versión del servidor: 10.4.25-MariaDB
+-- Versión de PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 -- Base de datos: `usuarios_1_15_1`
 --
 
-CREATE SCHEMA `usuarios_1_15_1`;
-USE `usuarios_1_15_1`;
 -- --------------------------------------------------------
 
 --
@@ -40,7 +38,10 @@ CREATE TABLE `permiso` (
 --
 
 INSERT INTO `permiso` (`id`, `descripcion`, `fk_sistema`) VALUES
-(1, 'Administrar el Sistema', 1);
+(1, 'Administrar el Sistema', 1),
+(2, 'Alta/Modificacion de Usuario', 3),
+(3, 'Blanqueo', 3),
+(4, 'General', 3);
 
 -- --------------------------------------------------------
 
@@ -54,6 +55,15 @@ CREATE TABLE `rol` (
   `fk_sistema` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Volcado de datos para la tabla `rol`
+--
+
+INSERT INTO `rol` (`id`, `descripcion`, `fk_sistema`) VALUES
+(1, 'Administrador de Sistema', 3),
+(2, 'Root', 3),
+(3, 'Comun', 3);
+
 -- --------------------------------------------------------
 
 --
@@ -64,6 +74,18 @@ CREATE TABLE `rol_permiso` (
   `fk_rol` int(11) NOT NULL,
   `fk_permiso` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `rol_permiso`
+--
+
+INSERT INTO `rol_permiso` (`fk_rol`, `fk_permiso`) VALUES
+(1, 2),
+(1, 4),
+(2, 2),
+(2, 3),
+(2, 4),
+(3, 4);
 
 -- --------------------------------------------------------
 
@@ -82,7 +104,8 @@ CREATE TABLE `sistema` (
 
 INSERT INTO `sistema` (`id`, `descripcion`) VALUES
 (1, 'D.O.G.O Depósitos -. Operativo y Gestión Online'),
-(2, 'Nomenclador 1078/19');
+(2, 'Nomenclador 1078/19'),
+(3, 'CRUDA FLOW');
 
 -- --------------------------------------------------------
 
@@ -104,7 +127,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nombre_usuario`, `mail`, `whatsapp`, `password`, `nombre_completo`) VALUES
-(4, 'VICTOR_182', 'Valentinvictor@agvp.gob.ar', '2966313352', '$argon2i$v=19$m=65536,t=4,p=1$OU5JWDZvL3RwOHNob201VQ$DE5TFVbJxFom4ZfpFgoOqI8g0ZhCIsy79DWehUAAZVw', 'Victor Hugo Valentin'),
+(4, 'victor_182', 'Valentinvictor@agvp.gob.ar', '2966313352', '$argon2i$v=19$m=65536,t=4,p=1$OU5JWDZvL3RwOHNob201VQ$DE5TFVbJxFom4ZfpFgoOqI8g0ZhCIsy79DWehUAAZVw', 'Victor Hugo Valentin'),
 (7, 'esantos', 'eder@eder.com', '2966', '$argon2i$v=19$m=65536,t=4,p=1$Lk45eWR3VjhaTlQwZC5NYw$eIOXTu6Esfjgmj6aA9XE8HKtaXl6eYBzwqgGO0CnG68', 'Eder dos Santos'),
 (8, 'fbraca', 'facundo@agvp', '2966', '$argon2i$v=19$m=65536,t=4,p=1$WEVrbHZEVjNWZEJteW9PQw$LLZeaxTZrRhunB3h/yNO4UyRiBH+dWKoVx/oyjgpfDM', 'Facundo Bracamonte');
 
@@ -119,6 +142,14 @@ CREATE TABLE `usuario_rol` (
   `fk_rol` int(11) NOT NULL,
   `fecha_desde` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `usuario_rol`
+--
+
+INSERT INTO `usuario_rol` (`fk_usuario`, `fk_rol`, `fecha_desde`) VALUES
+(4, 1, '2022-11-17 15:51:19'),
+(8, 3, '2022-11-17 16:10:22');
 
 --
 -- Índices para tablas volcadas
@@ -175,19 +206,19 @@ ALTER TABLE `usuario_rol`
 -- AUTO_INCREMENT de la tabla `permiso`
 --
 ALTER TABLE `permiso`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `sistema`
 --
 ALTER TABLE `sistema`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
