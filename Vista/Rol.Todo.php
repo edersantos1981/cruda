@@ -1,6 +1,6 @@
 <?php
 
-include_once '../vendor/autoload.php';
+include_once __DIR__ . '/../Cruda/Core.Init.php'; 
 
 $Mapper = new \Mappers\Rol();
 $ArrayFindAll = $Mapper->findAll();
@@ -11,7 +11,7 @@ $Coleccion = new \Modelo\RolColeccion($ArrayFindAll);
 <head>
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
-    <?php include_once '../lib/Constantes.Class.php'; ?>
+    <?php include_once __DIR__ . '/../Cruda/Constantes.php'; ?>
     <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - Roles</title>
 </head>
 

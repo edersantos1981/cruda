@@ -3,7 +3,7 @@
 <head>
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
-    <?php include_once '../lib/Constantes.Class.php'; ?>
+    <?php include_once __DIR__ . '/../Cruda/Constantes.php'; ?>
     <?php include_once '../lib/includeComboboxJQueryUI.php' ?>
     <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - Roles</title>
 </head>

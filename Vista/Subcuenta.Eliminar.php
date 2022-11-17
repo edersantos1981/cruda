@@ -1,13 +1,13 @@
 <?php
 
-include_once '../lib/Constantes.Class.php';
+include_once __DIR__ . '/../Cruda/Constantes.php';
 
 if (!isset($_SERVER["HTTP_REFERER"]) || ($_SERVER["HTTP_REFERER"] != \Cruda\Constantes::APPURL . "/Vista/Subcuenta.Todo.php")) {
     header("Location: Subcuenta.Todo.php");
     die();
 }
 
-include_once '../vendor/autoload.php';
+include_once __DIR__ . '/../Cruda/Core.Init.php'; 
 $Mapper = new \Mappers\Subcuenta();
 try {
     $ObjetoEliminado = $Mapper->delete($_GET['id']);

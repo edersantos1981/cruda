@@ -1,5 +1,5 @@
 <?php
-include_once '../vendor/autoload.php';
+include_once __DIR__ . '/../Cruda/Core.Init.php'; 
 
 ?>
 
@@ -8,7 +8,7 @@ include_once '../vendor/autoload.php';
 <head>
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
-    <?php include_once '../lib/Constantes.Class.php'; ?>
+    <?php include_once __DIR__ . '/../Cruda/Constantes.php';  ?>
     <?php include_once '../lib/includeComboboxJQueryUI.php' ?>
     <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - SubCuentas</title>
 </head>

@@ -1,7 +1,7 @@
 <?php
 
-include_once '../lib/Constantes.Class.php';
-include_once '../vendor/autoload.php';
+include_once __DIR__ . '/../Cruda/Core.Init.php'; 
+include_once __DIR__ . '/../Cruda/Constantes.php';
 
 $Mapper = new \Mappers\Subcuenta();
 $ObjetoCreado = new \Modelo\Subcuenta($Mapper->findById($_GET['id']));
@@ -12,7 +12,7 @@ $ObjetoCreado = new \Modelo\Subcuenta($Mapper->findById($_GET['id']));
 
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
-    <?php include_once '../lib/Constantes.Class.php'; ?>
+    <?php include_once __DIR__ . '/../Cruda/Constantes.php'; ?>
     <?php include_once '../lib/includeComboboxJQueryUI.php'; ?>
     <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - SubCuentas</title>
     

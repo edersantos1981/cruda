@@ -3,7 +3,7 @@
 <head>
     <?php include_once '../lib/includesCss.php'; ?>
     <?php include_once '../lib/includesJs.php'; ?>
-    <?php include_once '../lib/Constantes.Class.php'; ?>
+    <?php include_once __DIR__ . '/../Cruda/Constantes.php'; ?>
     <title><?= \Cruda\Constantes::NOMBRE_SISTEMA; ?> - Sistemas</title>
 </head>
 

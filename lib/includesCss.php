@@ -1,4 +1,4 @@
-<?php include_once '../vendor/autoload.php'; ?>
+<?include_once __DIR__ . '/../vendor/autoload.php'; ?>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">        
 <!-- Las librerías fontawesome no funcionan descargadas -->
