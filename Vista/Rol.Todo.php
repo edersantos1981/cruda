@@ -44,7 +44,8 @@ $Coleccion = new \Modelo\RolColeccion($ArrayFindAll);
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($Coleccion->getColeccion() as $Item) { ?>
+                        <?php if($Coleccion->getColeccion()) 
+                              foreach ($Coleccion->getColeccion() as $Item) { ?>
                             <?php $Item->setSistema($Mapper->findSistemaById($Item->getFk_sistema()));?>
                             <tr>
                                 <td><?= $Item->getSistema(); ?></td>

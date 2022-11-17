@@ -30,19 +30,35 @@ SET time_zone = "+00:00";
 CREATE TABLE `usuario_blanqueo` (
   `id` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
-  `nombre_usuario` varchar(250) COLLATE utf8_bin NOT NULL,
-  `nombre_completo` varchar(250) COLLATE utf8_bin NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `ip_operador` varchar(250) COLLATE utf8_bin NOT NULL,
-  `nombre_operador` varchar(250) COLLATE utf8_bin DEFAULT NULL,
-  `fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `nombre_operador` varchar(250) COLLATE utf8_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario_alta_baja_rol`
+--
+
+CREATE TABLE `usuario_alta_baja_rol` (
+  `id` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_rol` int(11) NOT NULL,
+  `fecha_desde` timestamp NOT NULL,
+  `fecha_hasta` timestamp NOT NULL DEFAULT current_timestamp(),
+  `ip_operador` varchar(250) COLLATE utf8_bin NOT NULL,
+  `nombre_operador` varchar(250) COLLATE utf8_bin DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
 
 --
 -- Volcado de datos para la tabla `usuario_blanqueo`
 --
 
-INSERT INTO `usuario_blanqueo` (`id`, `id_usuario`, `nombre_usuario`, `nombre_completo`, `ip_operador`, `nombre_operador`, `fecha`) VALUES
-(6, 4, 'VICTOR_182', 'Victor Valentin', '127.0.0.1', NULL, '2022-11-11 16:57:15');
+INSERT INTO `usuario_blanqueo` (`id`, `id_usuario`, `fecha`, `ip_operador`, `nombre_operador`) VALUES
+(6, 4, '2022-11-11 16:57:15', '127.0.0.1', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -55,6 +71,12 @@ ALTER TABLE `usuario_blanqueo`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `usuario_alta_baja_rol`
+--
+ALTER TABLE `usuario_alta_baja_rol`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -63,6 +85,13 @@ ALTER TABLE `usuario_blanqueo`
 --
 ALTER TABLE `usuario_blanqueo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+COMMIT;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario_alta_baja_rol`
+--
+ALTER TABLE `usuario_alta_baja_rol`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
