@@ -8,7 +8,7 @@
 
 <div class="container-fluid bg-light card card-body">
     <div class="row text-center">
-        <?php if(\Cruda\SessionManager::checkPermiso(\Cruda\PermisosSistema::GENERAL)) { ?>
+        <?php if(\Cruda\SessionManager::checkPermiso(\Cruda\PermisosSistema::ABM_GENERAL)) { ?>
         <div class="col-md-6 col-sm-12">
             <br />
             <p><i class="shadow-lg admin-bi oi oi-monitor text-white bg-warning rounded-circle border-secondary" style="font-size: 2rem; padding: 1.5rem;"> </i> </p>

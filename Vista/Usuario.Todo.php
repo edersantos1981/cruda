@@ -1,7 +1,7 @@
 <?php
 
 include_once __DIR__ . '/../Cruda/Core.Init.php'; 
-\Cruda\SessionManager::checkPermisoRedirect(\Cruda\PermisosSistema::ADMINISTRAR_EL_SISTEMA);
+\Cruda\SessionManager::checkPermisoRedirect(\Cruda\PermisosSistema::VER_USUARIOS);
 
 $Mapper = new \Mappers\Usuario();
 $ArrayFindAll = $Mapper->findAll();

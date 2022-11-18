@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-11-2022 a las 17:45:06
--- Versión del servidor: 10.4.25-MariaDB
--- Versión de PHP: 8.1.10
+-- Tiempo de generación: 18-11-2022 a las 16:35:22
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -21,10 +21,10 @@ SET time_zone = "+00:00";
 -- Base de datos: `usuarios_1_15_1`
 --
 
+-- --------------------------------------------------------
+
 CREATE SCHEMA `usuarios_1_15_1`;
 USE `usuarios_1_15_1`;
-
--- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `permiso`
@@ -41,11 +41,11 @@ CREATE TABLE `permiso` (
 --
 
 INSERT INTO `permiso` (`id`, `descripcion`, `fk_sistema`) VALUES
-(1, 'Agregar Todo', 3),
+(1, '[Inactivo] Agregar Todo', 3),
 (2, 'Blanqueo Clave', 3),
-(3, 'Editar Todo', 3),
+(3, '[Inactivo] Editar Todo', 3),
 (4, 'Ver Usuarios', 3),
-(5, 'ABM General');
+(5, 'ABM General', 3);
 
 -- --------------------------------------------------------
 
@@ -64,7 +64,7 @@ CREATE TABLE `rol` (
 --
 
 INSERT INTO `rol` (`id`, `descripcion`, `fk_sistema`) VALUES
-(1, 'Administrador de Sistema', 3),
+(1, 'Administrador del Sistema (Informatica)', 3),
 (2, 'Supervisor', 3);
 
 -- --------------------------------------------------------
@@ -83,10 +83,9 @@ CREATE TABLE `rol_permiso` (
 --
 
 INSERT INTO `rol_permiso` (`fk_rol`, `fk_permiso`) VALUES
-(1, 1),
 (1, 2),
-(1, 3),
 (1, 4),
+(1, 5),
 (2, 4);
 
 -- --------------------------------------------------------
@@ -207,7 +206,7 @@ ALTER TABLE `usuario_rol`
 -- AUTO_INCREMENT de la tabla `permiso`
 --
 ALTER TABLE `permiso`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
