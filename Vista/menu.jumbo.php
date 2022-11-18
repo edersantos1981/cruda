@@ -27,6 +27,7 @@
             <p><a class="btn btn-primary btn-lg btn-block shadow-lg" href="../Vista/Usuario.Todo.php" role="button"> <i class="bi bi-person-fill"> </i> Ir a Usuarios</a></a></p>
             <br />
         </div>
+        <?php if(\Cruda\SessionManager::checkPermiso(\Cruda\PermisosSistema::ABM_GENERAL)) { ?>
         <div class="col-md-6 col-sm-12">
             <br />
             <p><i class="shadow-lg admin-bi oi oi-file text-white bg-warning rounded-circle border-secondary" style="font-size: 2rem; padding: 1.5rem;"> </i> </p>
@@ -35,6 +36,8 @@
             <p><a class="btn btn-primary btn-lg btn-block shadow-lg" href="#" role="button"> <i class="oi oi-account-login"> </i> Ir a Reportes</a></p>
             <br />
         </div>
+        <?php } ?>
+        <?php if(\Cruda\SessionManager::checkPermiso(\Cruda\PermisosSistema::ABM_GENERAL)) { ?>
         <div class="col-md-6 col-sm-12">
             <br />
             <p><i class="shadow-lg admin-bi oi oi-list text-white bg-warning rounded-circle border-secondary" style="font-size: 2rem; padding: 1.5rem;"></i></p>
@@ -43,5 +46,6 @@
             <p><a class="btn btn-primary btn-lg btn-block shadow-lg" href="#" role="button"> <i class="oi oi-account-login"> </i> Ir a Nomenclador</a></p>
             <br />
         </div>
+        <?php } ?>
     </div>
 </div>
