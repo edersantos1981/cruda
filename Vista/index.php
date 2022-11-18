@@ -1,7 +1,4 @@
-<?php 
-include_once __DIR__ . '/../vendor/autoload.php';
-use Cruda\Constantes as Constantes; 
-?>
+<?php include_once __DIR__ . '/../Cruda/Core.Init.CheckOff.php';  ?>
 
 <!DOCTYPE html>
 <html>

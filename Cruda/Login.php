@@ -4,9 +4,9 @@ namespace Cruda;
 
 class Login {
 
-    const LOGIN_ERROR_NOMBRE_USUARIO = 0;
-    const LOGIN_ERROR_PASS = 1;
-    const LOGIN_OK = 2;
+    const LOGIN_OK = 1;
+    const LOGIN_ERROR_NOMBRE_USUARIO = 2;
+    const LOGIN_ERROR_PASS = 3;
 
     /**
      * @var \Modelo\Usuario

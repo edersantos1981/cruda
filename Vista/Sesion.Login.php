@@ -1,14 +1,17 @@
+<?php include_once __DIR__ . '/../Cruda/Core.Init.CheckOff.php';  ?>
 <?php 
-include_once __DIR__ . '/../Cruda/Core.Init.php'; 
 
+if(!isset($_POST)) {
+    header('Location: ' . \Cruda\Constantes::URL_LOGIN);
+}
+
+$MapperUsuario = new \Mappers\Usuario();
 try {
 
     $Login = new \Cruda\Login();
-    $MapperUsuario = new \Mappers\Usuario();
 
     $Usuario = $Login->verificaUsuario($_POST['nombre_usuario']);
     $Login->verificaPass($_POST['password'], $Usuario->getPassword());
-
    
     $UsuarioPermisos = $MapperUsuario->findPermisosJSON($Usuario->getId());
 
@@ -18,9 +21,6 @@ try {
     
     $loginOk = true;
     $_SESSION['login_status'] = \Cruda\Login::LOGIN_OK;
-
-
-
     
 } catch (\Exception $ex) {
 
@@ -33,15 +33,9 @@ try {
 
 }
 
-
 $MapperUsuario->registrarLogin($_POST['nombre_usuario'], $_SESSION['login_status']);
-
-header('Location: ../Vista/menu.php');
-header('Location: ../Vista/index.php?error=' . $ex->getMessage());
-
-
-
-
+$location = $loginOk ? \Cruda\Constantes::URL_USUARIO : \Cruda\Constantes::URL_LOGIN . "?error=" . $ex->getMessage();
+header('Location: ' . $location);
 ?>
 <html>
 
