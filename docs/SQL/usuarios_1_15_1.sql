@@ -41,11 +41,10 @@ CREATE TABLE `permiso` (
 --
 
 INSERT INTO `permiso` (`id`, `descripcion`, `fk_sistema`) VALUES
-(1, 'Administrar el Sistema', 1),
-(2, 'Agregar Todo', 3),
-(3, 'Blanqueo Clave', 3),
-(4, 'Editar Todo', 3),
-(5, 'Ver Todo', 3);
+(1, 'Agregar Todo', 3),
+(2, 'Blanqueo Clave', 3),
+(3, 'Editar Todo', 3),
+(4, 'Ver Usuarios', 3);
 
 -- --------------------------------------------------------
 
@@ -83,11 +82,11 @@ CREATE TABLE `rol_permiso` (
 --
 
 INSERT INTO `rol_permiso` (`fk_rol`, `fk_permiso`) VALUES
+(1, 1),
 (1, 2),
 (1, 3),
 (1, 4),
-(1, 5),
-(2, 5);
+(2, 4);
 
 -- --------------------------------------------------------
 
