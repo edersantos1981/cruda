@@ -3,6 +3,8 @@
 include_once __DIR__ . '/../Cruda/Core.Init.php'; 
 include_once __DIR__ . '/../Cruda/Constantes.php';
 
+\Cruda\SessionManager::checkPermisoRedirect(\Cruda\PermisosSistema::ABM_GENERAL); 
+
 $Mapper = new \Mappers\Permiso(); 
 $ObjetoCreado = new \Modelo\Permiso($_POST); 
 $idObjetoEditado = $Mapper->update($ObjetoCreado);

@@ -4,6 +4,8 @@ session_start();
 include_once __DIR__ . '/../Cruda/Core.Init.php'; 
 include_once __DIR__ . '/../Cruda/Constantes.php';
 
+\Cruda\SessionManager::checkPermisoRedirect(\Cruda\PermisosSistema::ABM_GENERAL); 
+
 if (count($_POST) > 0) {
     
     $ObjetoCreado = new \Modelo\Permiso($_POST);

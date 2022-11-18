@@ -1,7 +1,8 @@
 <?php
 
 include_once __DIR__ . '/../Cruda/Core.Init.php'; 
-\Cruda\SessionManager::checkPermisoRedirect(3);
+\Cruda\SessionManager::checkPermisoRedirect(\Cruda\PermisosSistema::BLANQUEO_CLAVE);
+
 $Mapper = new \Mappers\Usuario();
 $ObjetoCreado = new \Modelo\Usuario($Mapper->findById($_GET['id']));
 ?>

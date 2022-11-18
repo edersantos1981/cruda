@@ -1,5 +1,7 @@
-<?php include_once __DIR__ . '/../Cruda/Core.Init.php';  ?>
-<?php
+<?php 
+
+include_once __DIR__ . '/../Cruda/Core.Init.php';  
+\Cruda\SessionManager::checkPermisoRedirect(\Cruda\PermisosSistema::ABM_GENERAL);
 
 if (count($_POST) > 0) {
 

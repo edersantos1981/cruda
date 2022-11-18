@@ -1,4 +1,6 @@
 <?php
+\Cruda\SessionManager::checkPermisoRedirect(\Cruda\PermisosSistema::ABM_GENERAL); 
+
 $MapperSistema = new \Mappers\Sistema();
 $ArrayFindAllSistema = $MapperSistema->findAll();
 $ColeccionSistema = new \Modelo\SistemaColeccion($ArrayFindAllSistema);

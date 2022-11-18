@@ -1,6 +1,7 @@
 <?php
 
-include_once __DIR__ . '/../Cruda/Core.Init.php'; 
+include_once __DIR__ . '/../Cruda/Core.Init.php';
+\Cruda\SessionManager::checkPermisoRedirect(\Cruda\PermisosSistema::BLANQUEO_CLAVE); 
 
 $Mapper = new \Mappers\Usuario();
 $ObjetoCreado = new \Modelo\Usuario($_POST);

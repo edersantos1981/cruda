@@ -1,5 +1,7 @@
-<?php include_once __DIR__ . '/../Cruda/Core.Init.php';  ?>
-<?php
+<?php 
+
+include_once __DIR__ . '/../Cruda/Core.Init.php';
+\Cruda\SessionManager::checkPermisoRedirect(\Cruda\PermisosSistema::ABM_GENERAL);
 
 $Mapper = new \Mappers\Rol();
 $ArrayFindAll = $Mapper->findAll();
