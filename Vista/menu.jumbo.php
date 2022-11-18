@@ -1,3 +1,4 @@
+<?php include_once __DIR__ . '/../Cruda/Core.Init.php'; ?>
 <style>
     .admin-bi {
         font-size: 3rem;
@@ -7,7 +8,8 @@
 
 <div class="container-fluid bg-light card card-body">
     <div class="row text-center">
-    <div class="col-md-6 col-sm-12">
+        <?php if(\Cruda\SessionManager::checkPermiso(\Cruda\PermisosSistema::GENERAL)) { ?>
+        <div class="col-md-6 col-sm-12">
             <br />
             <p><i class="shadow-lg admin-bi oi oi-monitor text-white bg-warning rounded-circle border-secondary" style="font-size: 2rem; padding: 1.5rem;"> </i> </p>
             <h2>Sistemas</h2>
@@ -15,6 +17,8 @@
             <p><a class="btn btn-primary btn-lg btn-block shadow-lg" href="../Vista/Sistema.Todo.php" role="button"> <i class="bi bi-pc-display"> </i> Ir a Sistemas</a></p>
             <br />
         </div>
+        <?php } ?>
+
         <div class="col-md-6 col-sm-12">
             <br />
             <p><i class="shadow-lg admin-bi oi oi-person text-white bg-warning rounded-circle border-secondary" style="font-size: 2rem; padding: 1.5rem;"> </i> </p>

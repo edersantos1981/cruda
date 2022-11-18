@@ -8,10 +8,8 @@ setlocale(LC_TIME, 'es_AR.utf8');
  * Clase para mantener las directivas de sistema.
  * Deben coincidir con las configuraciones del proyecto.
  * 
- * @author Eder dos Santos <esantos@uarg.unpa.edu.ar>
- * 
  */
-class Constantes {
+ class Constantes {
 
     
     const NOMBRE_SISTEMA = "C.R.U.D.A.";
