@@ -44,7 +44,8 @@ INSERT INTO `permiso` (`id`, `descripcion`, `fk_sistema`) VALUES
 (1, 'Agregar Todo', 3),
 (2, 'Blanqueo Clave', 3),
 (3, 'Editar Todo', 3),
-(4, 'Ver Usuarios', 3);
+(4, 'Ver Usuarios', 3),
+(5, 'ABM General');
 
 -- --------------------------------------------------------
 
