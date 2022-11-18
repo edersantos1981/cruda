@@ -42,9 +42,10 @@ CREATE TABLE `permiso` (
 
 INSERT INTO `permiso` (`id`, `descripcion`, `fk_sistema`) VALUES
 (1, 'Administrar el Sistema', 1),
-(2, 'Alta/Modificacion de Usuario', 3),
-(3, 'Blanqueo', 3),
-(4, 'General', 3);
+(2, 'Agregar Todo', 3),
+(3, 'Blanqueo Clave', 3),
+(4, 'Editar Todo', 3),
+(5, 'Ver Todo', 3);
 
 -- --------------------------------------------------------
 
@@ -64,8 +65,7 @@ CREATE TABLE `rol` (
 
 INSERT INTO `rol` (`id`, `descripcion`, `fk_sistema`) VALUES
 (1, 'Administrador de Sistema', 3),
-(2, 'Root', 3),
-(3, 'Comun', 3);
+(2, 'Supervisor', 3);
 
 -- --------------------------------------------------------
 
@@ -84,11 +84,10 @@ CREATE TABLE `rol_permiso` (
 
 INSERT INTO `rol_permiso` (`fk_rol`, `fk_permiso`) VALUES
 (1, 2),
+(1, 3),
 (1, 4),
-(2, 2),
-(2, 3),
-(2, 4),
-(3, 4);
+(1, 5),
+(2, 5);
 
 -- --------------------------------------------------------
 
@@ -151,8 +150,7 @@ CREATE TABLE `usuario_rol` (
 --
 
 INSERT INTO `usuario_rol` (`fk_usuario`, `fk_rol`, `fecha_desde`) VALUES
-(4, 1, '2022-11-17 15:51:19'),
-(8, 3, '2022-11-17 16:10:22');
+(4, 1, '2022-11-17 15:51:19');
 
 --
 -- Índices para tablas volcadas
