@@ -1,3 +1,4 @@
+<?php include_once __DIR__ . '/../Cruda/Core.Init.php';  ?>
 <?php if ($ObjetoEliminado) { ?>
                 <p class="alert alert-success">Operaci&oacute;n realizada con &eacute;xito.</p>
                 <p>Se ha eliminado correctamente.</p>
