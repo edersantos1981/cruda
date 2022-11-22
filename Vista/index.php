@@ -1,4 +1,7 @@
-<?php include_once __DIR__ . '/../Cruda/Core.Init.CheckOff.php';  ?>
+<?php 
+include_once __DIR__ . '/../Cruda/Core.Init.CheckOff.php';  
+\Cruda\SessionManager::checkUsuarioPreLogin();
+?>
 
 <!DOCTYPE html>
 <html>

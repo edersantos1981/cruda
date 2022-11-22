@@ -96,6 +96,11 @@ class SessionManager implements \SessionHandlerInterface
             header('Location: ' . Constantes::URL_LOGIN);
     }
 
+    static function checkUsuarioPreLogin() {
+        if (isset($_SESSION['nombre_usuario']))
+        header('Location: ' . Constantes::URL_USUARIO);
+    }
+
     static function checkPermiso($idPermiso_)
     {
         if ($_SESSION['permisos'] != "null") {
