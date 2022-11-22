@@ -2,13 +2,8 @@
 
 include_once __DIR__ . '/../Cruda/Core.Init.php'; 
 
-/* 
+/* Este es un ejemplo de uso de la Clase \Cruda\SessionManager. */
 
-Este es un ejemplo de uso de la Clase \Cruda\SessionManager.
-
-*/
-
-// Casos de test
 $handler = new \Cruda\SessionManager();
 session_set_save_handler($handler, true);
 \Cruda\SessionManager::start_session('cruda', true);

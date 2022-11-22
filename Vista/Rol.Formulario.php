@@ -1,4 +1,5 @@
 <?php
+include_once __DIR__ . '/../Cruda/Core.Init.php'; 
 \Cruda\SessionManager::checkPermisoRedirect(\Cruda\PermisosSistema::ABM_GENERAL);
 
 $MapperSistema = new \Mappers\Sistema();

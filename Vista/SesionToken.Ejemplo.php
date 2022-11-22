@@ -7,8 +7,6 @@ include_once __DIR__ . '/../Cruda/Core.Init.php';
 Este es un ejemplo de uso de la Clase \Cruda\SessionToken.
 
 */
-// Casos de test
-session_start();
 \Cruda\SessionToken::createToken();
 
 ?>

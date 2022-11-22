@@ -1,7 +1,6 @@
 <?php
 
 include_once __DIR__ . '/../Cruda/Core.Init.php'; 
-include_once __DIR__ . '/../Cruda/Constantes.php';
 
 $Mapper = new \Mappers\UnidadMedida(); 
 $ObjetoCreado = new \Modelo\UnidadMedida($_POST); 

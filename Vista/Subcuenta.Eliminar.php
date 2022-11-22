@@ -1,6 +1,6 @@
 <?php
 
-include_once __DIR__ . '/../Cruda/Constantes.php';
+include_once __DIR__ . '/../Cruda/Core.Init.php'; 
 
 if (!isset($_SERVER["HTTP_REFERER"]) || ($_SERVER["HTTP_REFERER"] != \Cruda\Constantes::APPURL . "/Vista/Subcuenta.Todo.php")) {
     header("Location: Subcuenta.Todo.php");

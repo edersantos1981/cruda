@@ -1,5 +1,7 @@
-<?php include_once __DIR__ . '/../Cruda/Core.Init.php'; ?>
-<?php session_destroy(); ?>
+<?php 
+include_once __DIR__ . '/../Cruda/Core.Init.php';
+session_destroy(); 
+?>
 <html>
 
 <head>
