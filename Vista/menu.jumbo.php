@@ -33,7 +33,7 @@
             <p><i class="shadow-lg admin-bi oi oi-file text-white bg-warning rounded-circle border-secondary" style="font-size: 2rem; padding: 1.5rem;"> </i> </p>
             <h2>Roles</h2>
             <!-- <p>Generador de informes </p> -->
-            <p><a class="btn btn-primary btn-lg btn-block shadow-lg" href="#" role="button"> <i class="oi oi-account-login"> </i> Ir a Reportes</a></p>
+            <p><a class="btn btn-primary btn-lg btn-block shadow-lg" href="../Vista/Rol.Todo.php" role="button"> <i class="oi oi-account-login"> </i> Ir a Reportes</a></p>
             <br />
         </div>
         <?php } ?>
@@ -43,7 +43,7 @@
             <p><i class="shadow-lg admin-bi oi oi-list text-white bg-warning rounded-circle border-secondary" style="font-size: 2rem; padding: 1.5rem;"></i></p>
             <h2>Permisos</h2>
             <!-- <p>Codificador de Art&iacute;culos</p> -->
-            <p><a class="btn btn-primary btn-lg btn-block shadow-lg" href="#" role="button"> <i class="oi oi-account-login"> </i> Ir a Nomenclador</a></p>
+            <p><a class="btn btn-primary btn-lg btn-block shadow-lg" href="../Vista/Permiso.Todo.php" role="button"> <i class="oi oi-account-login"> </i> Ir a Nomenclador</a></p>
             <br />
         </div>
         <?php } ?>
