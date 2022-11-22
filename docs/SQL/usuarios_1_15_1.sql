@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-11-2022 a las 16:35:22
+-- Tiempo de generación: 22-11-2022 a las 11:12:54
 -- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 7.4.29
+-- Versión de PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -21,10 +21,10 @@ SET time_zone = "+00:00";
 -- Base de datos: `usuarios_1_15_1`
 --
 
--- --------------------------------------------------------
-
-CREATE SCHEMA `usuarios_1_15_1`;
+CREATE SCHEMA IF NOT EXISTS `usuarios_1_15_1`;
 USE `usuarios_1_15_1`;
+
+-- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `permiso`
@@ -45,7 +45,11 @@ INSERT INTO `permiso` (`id`, `descripcion`, `fk_sistema`) VALUES
 (2, 'Blanqueo Clave', 3),
 (3, '[Inactivo] Editar Todo', 3),
 (4, 'Ver Usuarios', 3),
-(5, 'ABM General', 3);
+(5, 'ABM General', 3),
+(6, 'ABM Nomenclador', 2),
+(7, 'Acceso a sistema', 1),
+(8, 'Acceso a sistema', 2),
+(9, 'Acceso a sistema', 3);
 
 -- --------------------------------------------------------
 
@@ -65,7 +69,8 @@ CREATE TABLE `rol` (
 
 INSERT INTO `rol` (`id`, `descripcion`, `fk_sistema`) VALUES
 (1, 'Administrador del Sistema (Informatica)', 3),
-(2, 'Supervisor', 3);
+(2, 'Supervisor', 3),
+(5, 'Administrador', 2);
 
 -- --------------------------------------------------------
 
@@ -86,7 +91,11 @@ INSERT INTO `rol_permiso` (`fk_rol`, `fk_permiso`) VALUES
 (1, 2),
 (1, 4),
 (1, 5),
-(2, 4);
+(1, 9),
+(2, 4),
+(2, 9),
+(5, 6),
+(5, 8);
 
 -- --------------------------------------------------------
 
@@ -128,7 +137,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nombre_usuario`, `mail`, `whatsapp`, `password`, `nombre_completo`) VALUES
-(4, 'victor_182', 'Valentinvictor@agvp.gob.ar', '2966313352', '$argon2i$v=19$m=65536,t=4,p=1$OU5JWDZvL3RwOHNob201VQ$DE5TFVbJxFom4ZfpFgoOqI8g0ZhCIsy79DWehUAAZVw', 'Victor Hugo Valentin'),
+(4, 'victor', 'Valentinvictor@agvp.gob.ar', '2966313352', '$argon2i$v=19$m=65536,t=4,p=1$OU5JWDZvL3RwOHNob201VQ$DE5TFVbJxFom4ZfpFgoOqI8g0ZhCIsy79DWehUAAZVw', 'Victor Hugo Valentin'),
 (7, 'esantos', 'eder@eder.com', '2966', '$argon2i$v=19$m=65536,t=4,p=1$Lk45eWR3VjhaTlQwZC5NYw$eIOXTu6Esfjgmj6aA9XE8HKtaXl6eYBzwqgGO0CnG68', 'Eder dos Santos'),
 (8, 'fbraca', 'facundo@agvp', '2966', '$argon2i$v=19$m=65536,t=4,p=1$WEVrbHZEVjNWZEJteW9PQw$LLZeaxTZrRhunB3h/yNO4UyRiBH+dWKoVx/oyjgpfDM', 'Facundo Bracamonte');
 
@@ -149,7 +158,8 @@ CREATE TABLE `usuario_rol` (
 --
 
 INSERT INTO `usuario_rol` (`fk_usuario`, `fk_rol`, `fecha_desde`) VALUES
-(4, 1, '2022-11-17 15:51:19');
+(4, 1, '2022-11-17 15:51:19'),
+(8, 2, '2022-11-18 16:47:40');
 
 --
 -- Índices para tablas volcadas
@@ -206,13 +216,13 @@ ALTER TABLE `usuario_rol`
 -- AUTO_INCREMENT de la tabla `permiso`
 --
 ALTER TABLE `permiso`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `sistema`
